@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liquidation Analysis - Executive Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f093fb;
+            --success-color: #4facfe;
+            --danger-color: #fa709a;
+            --warning-color: #fee140;
+            --dark: #2d3748;
+            --light: #f7fafc;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --shadow-hover: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            color: var(--dark);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+        }
+
+        header h1 {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        header p {
+            color: #666;
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+
+        .nav-bar {
+            background: var(--white);
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-bar ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .nav-bar a {
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-bar a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.5s;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .nav-bar a:hover::before {
+            left: 100%;
+        }
+
+        .nav-bar a {
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-bar a:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .section {
+            background: var(--white);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section h2 {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid;
+            border-image: linear-gradient(90deg, var(--primary-color), var(--secondary-color)) 1;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        #executive-summary h2::before {
+            content: '📈';
+            font-size: 1.5em;
+        }
+
+        #key-findings h2::before {
+            content: '🔍';
+            font-size: 1.5em;
+        }
+
+        #specific-questions h2::before {
+            content: '❓';
+            font-size: 1.5em;
+        }
+
+        #advanced-analysis h2::before {
+            content: '🔬';
+            font-size: 1.5em;
+        }
+
+        #execution-patterns h2::before {
+            content: '🛤️';
+            font-size: 1.5em;
+        }
+
+        #financial-impact h2::before {
+            content: '💰';
+            font-size: 1.5em;
+        }
+
+        #recommendations h2::before {
+            content: '💡';
+            font-size: 1.5em;
+        }
+
+        #visualizations h2::before {
+            content: '📊';
+            font-size: 1.5em;
+        }
+
+        #next-steps h2::before {
+            content: '🚀';
+            font-size: 1.5em;
+        }
+
+        .section h2::before {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-background-clip: initial;
+            -webkit-text-fill-color: initial;
+            background-clip: initial;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            color: white;
+        }
+
+        .section h3 {
+            color: var(--secondary-color);
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transition: transform 0.5s;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .metric-card:hover::before {
+            transform: rotate(45deg);
+        }
+
+        .metric-card h4,
+        .metric-card .value,
+        .metric-card .label {
+            position: relative;
+            z-index: 1;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .metric-card h4 {
+            font-size: 0.95em;
+            opacity: 0.95;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+        }
+
+        .metric-card .value {
+            font-size: 3em;
+            font-weight: 700;
+            margin: 15px 0;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .metric-card .label {
+            font-size: 1em;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .findings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .finding-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 6px solid;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .finding-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: inherit;
+            transition: width 0.3s;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .finding-card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .finding-card:hover::after {
+            width: 100%;
+            opacity: 0.05;
+        }
+
+        .finding-card h4 {
+            position: relative;
+            z-index: 1;
+        }
+
+
+        .finding-card p {
+            position: relative;
+            z-index: 1;
+        }
+
+        .finding-card .btn-visuals {
+            position: relative;
+            z-index: 10001 !important;
+            pointer-events: auto !important;
+        }
+
+        .finding-card.critical {
+            border-left-color: var(--danger-color);
+            background: linear-gradient(to right, rgba(250, 112, 154, 0.05), var(--white));
+        }
+
+        .finding-card.high {
+            border-left-color: var(--warning-color);
+            background: linear-gradient(to right, rgba(254, 225, 64, 0.05), var(--white));
+        }
+
+        .finding-card.medium {
+            border-left-color: var(--success-color);
+            background: linear-gradient(to right, rgba(79, 172, 254, 0.05), var(--white));
+        }
+
+        .finding-card h4 {
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+
+        .finding-card p {
+            color: #555;
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+
+        .finding-card strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .severity-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 25px;
+            font-size: 0.75em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .severity-critical {
+            background: linear-gradient(135deg, var(--danger-color), #ff6b9d);
+            color: var(--white);
+        }
+
+        .severity-high {
+            background: linear-gradient(135deg, var(--warning-color), #ffd93d);
+            color: var(--dark);
+        }
+
+        .severity-medium {
+            background: linear-gradient(135deg, var(--success-color), #43e97b);
+            color: var(--white);
+        }
+
+        .btn-visuals {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-visuals::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .btn-visuals:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-visuals:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-visuals span {
+            position: relative;
+            z-index: 2;
+            display: inline-block;
+        }
+
+        .btn-visuals:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-visuals:focus {
+            outline: 2px solid rgba(255,255,255,0.5);
+            outline-offset: 2px;
+        }
+
+        .recommendation-card {
+            background: var(--white);
+            border: 3px solid;
+            border-image: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) 1;
+            padding: 35px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .recommendation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .recommendation-card h4 {
+            color: var(--primary-color);
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .recommendation-meta {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            padding: 15px;
+            background: var(--light);
+            border-radius: 10px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .meta-item strong {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .priority-badge {
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .priority-high {
+            background: linear-gradient(135deg, var(--danger-color), #ff6b9d);
+            color: var(--white);
+        }
+
+        .priority-medium {
+            background: linear-gradient(135deg, var(--warning-color), #ffd93d);
+            color: var(--dark);
+        }
+
+        .priority-low {
+            background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+            color: var(--white);
+        }
+
+        .action-items {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .action-items ul {
+            margin-left: 25px;
+            margin-top: 15px;
+        }
+
+        .action-items li {
+            margin-bottom: 10px;
+            color: #555;
+            font-size: 1.05em;
+        }
+
+        .roi-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
+            color: var(--white);
+            padding: 50px;
+            border-radius: 20px;
+            margin: 40px 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .roi-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .roi-section h3,
+        .roi-metrics {
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .roi-section h3 {
+            color: var(--white);
+            margin-bottom: 30px;
+            font-size: 2em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .roi-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .roi-metric {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .roi-metric:hover {
+            background: rgba(255,255,255,0.25);
+            transform: scale(1.05);
+        }
+
+        .roi-metric .value {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .roi-metric .label {
+            font-size: 1em;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 30px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 0.5px;
+        }
+
+        tr:hover {
+            background: var(--light);
+        }
+
+        .insight-highlight {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border-left: 6px solid #f39c12;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .insight-highlight::before {
+            content: '💡';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 3em;
+            opacity: 0.2;
+        }
+
+        .insight-highlight h4 {
+            color: #d63031;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+        .footer {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            color: #666;
+            margin-top: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .nav-bar {
+                display: none;
+            }
+        }
+
+        .visual-evidence {
+            margin-top: 20px;
+            padding: 20px;
+            background: var(--light);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .visual-evidence h5 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        /* Tooltip Styles - Only show on specific elements, not entire cards */
+        [data-tooltip] {
+            position: relative;
+        }
+
+        /* Remove tooltips from entire cards - too intrusive */
+        .finding-card[data-tooltip],
+        .recommendation-card[data-tooltip],
+        .metric-card[data-tooltip] {
+            cursor: default;
+        }
+
+        .finding-card[data-tooltip]:hover::after,
+        .finding-card[data-tooltip]:hover::before,
+        .recommendation-card[data-tooltip]:hover::after,
+        .recommendation-card[data-tooltip]:hover::before,
+        .metric-card[data-tooltip]:hover::after,
+        .metric-card[data-tooltip]:hover::before {
+            display: none !important;
+        }
+
+        /* Tooltip for inline elements (badges, numbers, etc.) */
+        [data-tooltip]:not(.finding-card):not(.recommendation-card):not(.metric-card):hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 14px;
+            background: rgba(45, 55, 72, 0.95);
+            backdrop-filter: blur(10px);
+            color: white;
+            border-radius: 6px;
+            font-size: 0.8em;
+            white-space: normal;
+            z-index: 9999;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+            pointer-events: none;
+            max-width: 280px;
+            min-width: 180px;
+            text-align: left;
+            line-height: 1.4;
+            word-wrap: break-word;
+            opacity: 0;
+            animation: tooltipFadeIn 0.15s ease-out forwards;
+            font-weight: 400;
+        }
+
+        @keyframes tooltipFadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-3px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        /* Arrow for tooltips */
+        [data-tooltip]:not(.finding-card):not(.recommendation-card):not(.metric-card):hover::before {
+            content: '';
+            position: absolute;
+            bottom: calc(100% + 2px);
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: rgba(45, 55, 72, 0.95);
+            z-index: 10000;
+            pointer-events: none;
+            opacity: 0;
+            animation: tooltipFadeIn 0.15s ease-out forwards;
+        }
+
+        /* Cursor styles */
+        [data-tooltip]:not(.finding-card):not(.recommendation-card):not(.metric-card) {
+            cursor: help;
+        }
+
+        .btn-visuals:not([data-tooltip]),
+        .back-btn:not([data-tooltip]),
+        a:not([data-tooltip]),
+        button:not([data-tooltip]) {
+            cursor: pointer;
+        }
+
+        /* Ensure buttons are always clickable */
+        .btn-visuals {
+            position: relative;
+            z-index: 10001 !important;
+            pointer-events: auto !important;
+        }
+
+        /* Remove help cursor from cards */
+        .finding-card,
+        .recommendation-card,
+        .metric-card {
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Liquidation Analysis Dashboard</h1>
+            <p>Comprehensive Analysis of Amazon Repair Products Liquidation Process <b>COGS >= 1000</b></p>
+            <p style="margin-top: 15px; font-size: 1em; color: #999; font-weight: 300;">Executive Summary & Recommendations</p>
+        </header>
+
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="#executive-summary">Executive Summary</a></li>
+                <li><a href="#key-findings">Key Findings</a></li>
+                <li><a href="#specific-questions">Specific Questions</a></li>
+                <li><a href="#advanced-analysis">Advanced Analysis</a></li>
+                <li><a href="#execution-patterns">Execution Patterns</a></li>
+                <li><a href="#financial-impact">Financial Impact</a></li>
+                <li><a href="#recommendations">Recommendations</a></li>
+                <li><a href="#visualizations">Visualizations</a></li>
+                <li><a href="#next-steps">Next Steps</a></li>
+            </ul>
+        </nav>
+
+        <!-- Executive Summary -->
+        <section id="executive-summary" class="section">
+            <h2>Executive Summary</h2>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h4>Total Orders Analyzed</h4>
+                    <div class="value">954</div>
+                    <div class="label">Repair Orders</div>
+                </div>
+                <div class="metric-card">
+                    <h4>Liquidation Rate</h4>
+                    <div class="value">29.9%</div>
+                    <div class="label">285 Orders Liquidated</div>
+                </div>
+                <div class="metric-card">
+                    <h4>Total Value Lost</h4>
+                    <div class="value">$378.5K</div>
+                    <div class="label">Cost of Goods Sold</div>
+                </div>
+                <div class="metric-card">
+                    <h4>Potential Recovery</h4>
+                    <div class="value">$21.1K</div>
+                    <div class="label">Immediate Opportunity</div>
+                </div>
+            </div>
+
+            <div class="insight-highlight">
+                <h4>🎯 Key Insight</h4>
+                <p><strong>The "Does it Work?" check is the strongest predictor of liquidation.</strong> 97.5% of liquidated items failed this check, while items that passed had only a 1.2% liquidation rate. This represents a 72.9 percentage point difference, making it the most critical quality check in the decision process.</p>
+            </div>
+
+            <h3>Overview</h3>
+            <p style="font-size: 1.1em; line-height: 1.8;">This comprehensive analysis examined 954 repair orders to identify root causes of high liquidation rates and opportunities for improvement. The analysis reveals significant opportunities to reduce liquidation rates and recover value through targeted process improvements and exception handling.</p>
+        </section>
+
+        <!-- Key Findings -->
+        <section id="key-findings" class="section">
+            <h2>Key Findings</h2>
+            
+            <div class="findings-grid">
+                <div class="finding-card critical">
+                    <span class="severity-badge severity-critical" data-tooltip="Critical severity indicates findings that have the highest impact on business outcomes and require immediate attention.">CRITICAL</span>
+                    <h4>"Does it Work?" Check is Strongest Predictor</h4>
+                    <p><strong data-tooltip="97.5% of all liquidated items failed the 'Does it Work?' check, meaning they don't function properly">97.5%</strong> of liquidated items failed "Does it work?" check</p>
+                    <p><strong data-tooltip="Only 1.2% of items that passed the 'Does it Work?' check were liquidated, meaning 98.8% became sellable">1.2%</strong> liquidation rate for items that passed</p>
+                    <p><strong data-tooltip="The difference between liquidation rates for items that passed vs failed the Works check">72.9</strong> percentage point difference</p>
+                    <a href="visuals_key_findings.html#finding1" class="btn-visuals"><span>📊 See Visuals</span></a>
+                </div>
+
+                <div class="finding-card critical">
+                    <span class="severity-badge severity-critical" data-tooltip="Critical severity indicates findings that have the highest impact on business outcomes and require immediate attention.">CRITICAL</span>
+                    <h4>Functional Issues are Primary Reason</h4>
+                    <p><strong data-tooltip="47.4% of all liquidations were due to functional issues - items that don't work properly">47.4%</strong> of liquidations due to functional issues</p>
+                    <p><strong data-tooltip="Total COGS value lost due to functional issues - the largest single cause of liquidation">$179,823</strong> value lost to functional issues</p>
+                    <p data-tooltip="Functional issues represent the largest single category of liquidation reasons">Largest single cause of liquidation</p>
+                    <a href="visuals_key_findings.html#finding2" class="btn-visuals"><span>📊 See Visuals</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <span class="severity-badge severity-high" data-tooltip="High severity indicates findings with significant impact that should be addressed soon.">HIGH</span>
+                    <h4>Working Items Being Liquidated</h4>
+                    <p><strong data-tooltip="7 items passed the 'Does it Work?' check but were still liquidated - this should not happen">7 items</strong> that passed "Does it work?" were liquidated</p>
+                    <p><strong data-tooltip="Total COGS value of working items that were incorrectly liquidated - immediate recovery opportunity">$8,919</strong> potential recovery value</p>
+                    <p data-tooltip="These items represent a clear recovery opportunity as they should be sellable">Recovery opportunity identified</p>
+                    <a href="visuals_key_findings.html#finding3" class="btn-visuals"><span>📊 See Visuals</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <span class="severity-badge severity-high" data-tooltip="High severity indicates findings with significant impact that should be addressed soon.">HIGH</span>
+                    <h4>High COGS Items Being Liquidated</h4>
+                    <p><strong data-tooltip="9 items with COGS (Cost of Goods Sold) >= $2,000 were liquidated">9 items</strong> with COGS >= $2,000 liquidated</p>
+                    <p><strong data-tooltip="Total COGS value lost from high-value items that were liquidated">$24,336</strong> value lost</p>
+                    <p data-tooltip="High-value items should have additional review before liquidation to prevent unnecessary value loss">Exception handling needed</p>
+                    <a href="visuals_key_findings.html#finding4" class="btn-visuals"><span>📊 See Visuals</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <span class="severity-badge severity-high" data-tooltip="High severity indicates findings with significant impact that should be addressed soon.">HIGH</span>
+                    <h4>Cosmetic Checks Have High False Positive Rate</h4>
+                    <p><strong data-tooltip="79.6% false positive rate means 79.6% of items that failed cosmetic checks were still sellable, indicating the checks are too strict">79.6%</strong> false positive rate</p>
+                    <p data-tooltip="Items failed cosmetic checks (scratches/dents) but were still routed to sellable, indicating cosmetic issues don't always prevent sale">Items failed cosmetic checks but were still sellable</p>
+                    <p data-tooltip="Cosmetic check criteria may need to be relaxed as they're causing unnecessary liquidations">Criteria may be too strict</p>
+                    <a href="visuals_key_findings.html#finding5" class="btn-visuals"><span>📊 See Visuals</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <span class="severity-badge severity-high" data-tooltip="High severity indicates findings with significant impact that should be addressed soon.">HIGH</span>
+                    <h4>Products That Always Liquidate</h4>
+                    <p><strong data-tooltip="12 products have a 100% liquidation rate - every order for these products was liquidated">12 products</strong> have 100% liquidation rate</p>
+                    <p><strong data-tooltip="Total COGS value lost from products that always liquidate">$69,223</strong> value lost from these products</p>
+                    <p data-tooltip="These products may need exception rules or alternative routing since they always result in liquidation">Exception rules needed</p>
+                    <a href="visuals_key_findings.html#finding6" class="btn-visuals"><span>📊 See Visuals</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <span class="severity-badge severity-high" data-tooltip="High severity indicates findings with significant impact that should be addressed soon.">HIGH</span>
+                    <h4>Categories with Very High Liquidation Rates</h4>
+                    <p><strong data-tooltip="13 product categories have liquidation rates of 80% or higher">13 categories</strong> have >=80% liquidation rate</p>
+                    <p><strong data-tooltip="Total COGS value lost from categories with very high liquidation rates">$111,402</strong> value lost from high-rate categories</p>
+                    <p data-tooltip="These categories may need category-specific quality standards as current standards may be inappropriate">Category-specific standards review needed</p>
+                    <a href="visuals_key_findings.html#finding7" class="btn-visuals"><span>📊 See Visuals</span></a>
+                </div>
+
+                <div class="finding-card medium">
+                    <span class="severity-badge severity-medium" data-tooltip="Medium severity indicates findings that are important but may not require immediate action.">MEDIUM</span>
+                    <h4>Fraud Detection Accounts for Significant Liquidations</h4>
+                    <p><strong data-tooltip="30.5% of all liquidations were due to fraud detection">30.5%</strong> of liquidations due to fraud</p>
+                    <p><strong data-tooltip="Total COGS value lost due to fraud-related liquidations">$113,627</strong> value lost to fraud</p>
+                    <p data-tooltip="While fraud detection appears accurate (100% liquidation rate for fraud items), it's worth reviewing for potential false positives">Review fraud detection accuracy</p>
+                    <a href="visuals_key_findings.html#finding8" class="btn-visuals"><span>📊 See Visuals</span></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Answering Specific Questions -->
+        <section id="specific-questions" class="section">
+            <h2>Answering Specific Questions</h2>
+            <p style="font-size: 1.1em; margin-bottom: 30px; color: #666;">Direct answers to the 7 key business questions with supporting data and visualizations.</p>
+            
+            <div class="findings-grid">
+                <div class="finding-card high">
+                    <span class="severity-badge severity-high">Q1</span>
+                    <h4>Which Quality Checks Are Causing Liquidations?</h4>
+                    <p><strong>Top Check:</strong> "Is it IOG?" (285 failures, 100% failure rate)</p>
+                    <p><strong>Key Finding:</strong> "Does it Work?" check has 95.9% failure rate in liquidated items</p>
+                    <p><strong>Impact:</strong> 44 quality checks analyzed</p>
+                    <a href="visuals_specific_questions.html#q1" class="btn-visuals"><span>📊 See Visuals & Answer</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <span class="severity-badge severity-high">Q2</span>
+                    <h4>Patterns in High COGS Items That Get Liquidated</h4>
+                    <p><strong>Finding:</strong> High COGS items (>= $2,000) have 26.5% liquidation rate</p>
+                    <p><strong>Comparison:</strong> Lower COGS items have 30.0% rate</p>
+                    <p><strong>Impact:</strong> 9 high COGS items liquidated ($24,336 value)</p>
+                    <a href="visuals_specific_questions.html#q2" class="btn-visuals"><span>📊 See Visuals & Answer</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <span class="severity-badge severity-high">Q3</span>
+                    <h4>Comparison of Passed vs Failed Checks</h4>
+                    <p><strong>Liquidated:</strong> Avg 12.73 failed checks, 9.86 passed checks</p>
+                    <p><strong>Sellable:</strong> Avg 13.59 failed checks, 8.41 passed checks</p>
+                    <p><strong>Insight:</strong> Sellable items actually have more failed checks on average</p>
+                    <a href="visuals_specific_questions.html#q3" class="btn-visuals"><span>📊 See Visuals & Answer</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <span class="severity-badge severity-high">Q4</span>
+                    <h4>Product Categories Most Affected</h4>
+                    <p><strong>Top Category:</strong> Robotic Vacuums (56 liquidations, 35.0% rate)</p>
+                    <p><strong>Impact:</strong> $63,607 value lost from top category</p>
+                    <p><strong>Finding:</strong> 15 categories with significant liquidation rates</p>
+                    <a href="visuals_specific_questions.html#q4" class="btn-visuals"><span>📊 See Visuals & Answer</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <span class="severity-badge severity-high">Q5</span>
+                    <h4>Specific Liquidation Reasons</h4>
+                    <p><strong>Primary Reason:</strong> Functional Issues (47.4%, $179,823)</p>
+                    <p><strong>Secondary:</strong> Fraud (30.5%, $113,627)</p>
+                    <p><strong>Tertiary:</strong> Cosmetic (15.1%, $55,663)</p>
+                    <a href="visuals_specific_questions.html#q5" class="btn-visuals"><span>📊 See Visuals & Answer</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <span class="severity-badge severity-high">Q6</span>
+                    <h4>Liquidation and Sellable Counts by Category</h4>
+                    <p><strong>Top Category:</strong> Robotic Vacuums (56 liquidated, 104 sellable)</p>
+                    <p><strong>Analysis:</strong> Category-level breakdown of outcomes</p>
+                    <p><strong>Insight:</strong> Some categories have very high liquidation rates</p>
+                    <a href="visuals_specific_questions.html#q6" class="btn-visuals"><span>📊 See Visuals & Answer</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <span class="severity-badge severity-high">Q7</span>
+                    <h4>Liquidation and Sellable Counts by Product</h4>
+                    <p><strong>Top Product:</strong> ECOVACS DEEBOT X9 PRO OMNI (17 liquidated, 154 sellable)</p>
+                    <p><strong>Analysis:</strong> Product-level outcome analysis</p>
+                    <p><strong>Finding:</strong> Some products show inconsistent outcomes</p>
+                    <a href="visuals_specific_questions.html#q7" class="btn-visuals"><span>📊 See Visuals & Answer</span></a>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <a href="visuals_specific_questions.html" class="btn-visuals" style="font-size: 1.2em; padding: 15px 40px;"><span>📊 View All Specific Questions Visuals</span></a>
+            </div>
+        </section>
+
+        <!-- Advanced Analysis Questions -->
+        <section id="advanced-analysis" class="section">
+            <h2>Advanced Analysis Questions</h2>
+            <p style="font-size: 1.1em; margin-bottom: 30px; color: #666;">Deep dive analysis covering 18 additional questions (Q8-Q25) with comprehensive insights.</p>
+            
+            <div class="findings-grid">
+                <div class="finding-card medium">
+                    <span class="severity-badge severity-medium">Q8</span>
+                    <h4>Time Analysis - Processing Duration</h4>
+                    <p><strong>Liquidated:</strong> 4.01 days average</p>
+                    <p><strong>Sellable:</strong> 3.04 days average</p>
+                    <p><strong>Difference:</strong> 0.97 days longer for liquidated</p>
+                    <a href="visuals_advanced_analysis.html#q8" class="btn-visuals"><span>📊 See Visuals & Answer</span></a>
+                </div>
+
+                <div class="finding-card critical">
+                    <span class="severity-badge severity-critical">Q9</span>
+                    <h4>Check Correlation Analysis</h4>
+                    <p><strong>Strongest:</strong> "Is it the expected item?" (0.5125 correlation)</p>
+                    <p><strong>Key:</strong> "Does it Work?" (0.4399 correlation)</p>
+                    <p><strong>Finding:</strong> 15 checks with strong correlation identified</p>
+                    <a href="visuals_advanced_analysis.html#q9" class="btn-visuals"><span>📊 See Visuals & Answer</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <span class="severity-badge severity-high">Q10</span>
+                    <h4>Product Consistency</h4>
+                    <p><strong>Finding:</strong> 12 products always liquidate (100% rate)</p>
+                    <p><strong>Impact:</strong> $69,223 value lost from these products</p>
+                    <p><strong>Action:</strong> Exception handling needed</p>
+                    <a href="visuals_advanced_analysis.html#q10" class="btn-visuals"><span>📊 See Visuals & Answer</span></a>
+                </div>
+
+                <div class="finding-card medium">
+                    <span class="severity-badge severity-medium">Q11</span>
+                    <h4>COGS Threshold Analysis</h4>
+                    <p><strong>$2,000+:</strong> 26.5% liquidation rate</p>
+                    <p><strong>$3,000+:</strong> 14.3% liquidation rate (lowest)</p>
+                    <p><strong>Insight:</strong> Higher COGS = Lower liquidation rate</p>
+                    <a href="visuals_advanced_analysis.html#q11" class="btn-visuals"><span>📊 See Visuals & Answer</span></a>
+                </div>
+
+                <div class="finding-card medium">
+                    <span class="severity-badge severity-medium">Q12</span>
+                    <h4>Liquidation Reason by COGS</h4>
+                    <p><strong>Highest Avg COGS:</strong> Destroy - NRS ($1,830)</p>
+                    <p><strong>Most Value:</strong> Functional Issues ($179,823)</p>
+                    <p><strong>Analysis:</strong> Reason-level COGS breakdown</p>
+                    <a href="visuals_advanced_analysis.html#q12" class="btn-visuals"><span>📊 See Visuals & Answer</span></a>
+                </div>
+
+                <div class="finding-card critical">
+                    <span class="severity-badge severity-critical">Q14</span>
+                    <h4>"Does it Work?" Success Rate</h4>
+                    <p><strong>Passed:</strong> 98.8% became sellable (572/579)</p>
+                    <p><strong>Failed:</strong> 63.0% were liquidated (162/257)</p>
+                    <p><strong>Insight:</strong> Strongest predictor of outcome</p>
+                    <a href="visuals_advanced_analysis.html#q14" class="btn-visuals"><span>📊 See Visuals & Answer</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <span class="severity-badge severity-high">Q15</span>
+                    <h4>Fraud Recovery Potential</h4>
+                    <p><strong>Total Fraud:</strong> 87 items ($113,627)</p>
+                    <p><strong>High COGS Fraud:</strong> 3 items >= $2,000 ($8,951)</p>
+                    <p><strong>Recovery:</strong> Potential review opportunity</p>
+                    <a href="visuals_advanced_analysis.html#q15" class="btn-visuals"><span>📊 See Visuals & Answer</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <span class="severity-badge severity-high">Q16</span>
+                    <h4>Category Value Impact</h4>
+                    <p><strong>Top Category:</strong> Robotic Vacuums ($63,607 lost)</p>
+                    <p><strong>Analysis:</strong> 15 categories by total value lost</p>
+                    <p><strong>Priority:</strong> Focus on high-value categories</p>
+                    <a href="visuals_advanced_analysis.html#q16" class="btn-visuals"><span>📊 See Visuals & Answer</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <span class="severity-badge severity-high">Q17</span>
+                    <h4>Exception Candidates</h4>
+                    <p><strong>High COGS Liquidated:</strong> 9 items ($24,336)</p>
+                    <p><strong>Working High COGS:</strong> 0 items (good sign)</p>
+                    <p><strong>Action:</strong> Exception rules for high COGS items</p>
+                    <a href="visuals_advanced_analysis.html#q17" class="btn-visuals"><span>📊 See Visuals & Answer</span></a>
+                </div>
+
+                <div class="finding-card medium">
+                    <span class="severity-badge severity-medium">Q18</span>
+                    <h4>Processing Time Impact</h4>
+                    <p><strong>Correlation:</strong> 0.0464 (negligible)</p>
+                    <p><strong>30+ Days:</strong> 45.0% liquidation rate</p>
+                    <p><strong>0 Days:</strong> 32.3% liquidation rate</p>
+                    <a href="visuals_advanced_analysis.html#q18" class="btn-visuals"><span>📊 See Visuals & Answer</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <span class="severity-badge severity-high">Q19</span>
+                    <h4>False Positive Rate</h4>
+                    <p><strong>Top False Positive:</strong> Scratches/dents (89.1%)</p>
+                    <p><strong>Finding:</strong> Cosmetic checks have high false positives</p>
+                    <p><strong>Impact:</strong> 15 checks with high false positive rates</p>
+                    <a href="visuals_advanced_analysis.html#q19" class="btn-visuals"><span>📊 See Visuals & Answer</span></a>
+                </div>
+
+                <div class="finding-card medium">
+                    <span class="severity-badge severity-medium">Q21</span>
+                    <h4>Fraud Check Impact</h4>
+                    <p><strong>Liquidated:</strong> 39.3% failed fraud check</p>
+                    <p><strong>Sellable:</strong> 36.0% failed fraud check</p>
+                    <p><strong>Difference:</strong> Only 3.3 percentage points</p>
+                    <a href="visuals_advanced_analysis.html#q21" class="btn-visuals"><span>📊 See Visuals & Answer</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <span class="severity-badge severity-high">Q22</span>
+                    <h4>Working Items Liquidated</h4>
+                    <p><strong>Count:</strong> 7 items (2.5% of liquidations)</p>
+                    <p><strong>Value:</strong> $8,919 potential recovery</p>
+                    <p><strong>Reason:</strong> All marked as Functional Issues</p>
+                    <a href="visuals_advanced_analysis.html#q22" class="btn-visuals"><span>📊 See Visuals & Answer</span></a>
+                </div>
+
+                <div class="finding-card medium">
+                    <span class="severity-badge severity-medium">Q23</span>
+                    <h4>Failure Count Analysis</h4>
+                    <p><strong>Liquidated:</strong> 12.73 failed checks (mean)</p>
+                    <p><strong>Sellable:</strong> 13.59 failed checks (mean)</p>
+                    <p><strong>Insight:</strong> Counter-intuitive finding</p>
+                    <a href="visuals_advanced_analysis.html#q23" class="btn-visuals"><span>📊 See Visuals & Answer</span></a>
+                </div>
+
+                <div class="finding-card medium">
+                    <span class="severity-badge severity-medium">Q24</span>
+                    <h4>Inconsistent Products</h4>
+                    <p><strong>Count:</strong> 35 products with mixed outcomes</p>
+                    <p><strong>Top:</strong> ECOVACS DEEBOT (17 liquidated, 154 sellable)</p>
+                    <p><strong>Action:</strong> Standardize decision criteria</p>
+                    <a href="visuals_advanced_analysis.html#q24" class="btn-visuals"><span>📊 See Visuals & Answer</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <span class="severity-badge severity-high">Q25</span>
+                    <h4>Recovery Potential</h4>
+                    <p><strong>Current Recovery:</strong> $8,919 (working items)</p>
+                    <p><strong>High COGS Potential:</strong> $24,336</p>
+                    <p><strong>Total Potential:</strong> $33,255</p>
+                    <a href="visuals_advanced_analysis.html#q25" class="btn-visuals"><span>📊 See Visuals & Answer</span></a>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <a href="visuals_advanced_analysis.html" class="btn-visuals" style="font-size: 1.2em; padding: 15px 40px;"><span>📊 View All Advanced Analysis Visuals</span></a>
+            </div>
+        </section>
+
+        <!-- Execution Patterns -->
+        <section id="execution-patterns" class="section">
+            <h2>Execution Patterns Analysis</h2>
+            <p style="font-size: 1.1em; margin-bottom: 30px; color: #666;">Analysis of actual quality check execution patterns - which paths users actually executed compared to theoretical decision tree paths.</p>
+            
+            <div class="findings-grid">
+                <div class="finding-card critical">
+                    <span class="severity-badge severity-critical">CRITICAL</span>
+                    <h4>Works Check is Most Critical</h4>
+                    <p><strong>98.8%</strong> sellable rate when Works check passes</p>
+                    <p><strong>63.0%</strong> liquidation rate when Works check fails</p>
+                    <p><strong>72.9</strong> percentage point difference</p>
+                    <a href="execution_patterns_dashboard.html#path7" class="btn-visuals"><span>📊 See Execution Patterns</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <span class="severity-badge severity-high">HIGH</span>
+                    <h4>66 Unique Execution Patterns</h4>
+                    <p><strong>Top 20 patterns</strong> account for 70-75% of outcomes</p>
+                    <p><strong>Common start:</strong> IOG:F → Something_in_Box:P → TREX_Open:P</p>
+                    <p>Pattern concentration analysis</p>
+                    <a href="execution_patterns_dashboard.html#patterns" class="btn-visuals"><span>📊 See All Patterns</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <span class="severity-badge severity-high">HIGH</span>
+                    <h4>Path Adherence Analysis</h4>
+                    <p><strong>100%</strong> adherence for Empty Box, Fraud, Factory Sealed</p>
+                    <p><strong>100%</strong> adherence for Destroy, Scratches/Dents</p>
+                    <p>Users follow decision tree as designed</p>
+                    <a href="execution_patterns_dashboard.html#paths" class="btn-visuals"><span>📊 See Path Analysis</span></a>
+                </div>
+
+                <div class="finding-card medium">
+                    <span class="severity-badge severity-medium">MEDIUM</span>
+                    <h4>Top Liquidation Pattern</h4>
+                    <p><strong>82 orders</strong> follow simplest pattern</p>
+                    <p><strong>Pattern:</strong> IOG:F → Something_in_Box:P → TREX_Open:P</p>
+                    <p>Most common liquidation path</p>
+                    <a href="execution_patterns_dashboard.html#liquidation-patterns" class="btn-visuals"><span>📊 See Patterns</span></a>
+                </div>
+
+                <div class="finding-card medium">
+                    <span class="severity-badge severity-medium">MEDIUM</span>
+                    <h4>Top Sellable Pattern</h4>
+                    <p><strong>82 orders</strong> with Works:P check</p>
+                    <p><strong>Key:</strong> Works check passed → Sellable</p>
+                    <p>Confirms functional capability importance</p>
+                    <a href="execution_patterns_dashboard.html#sellable-patterns" class="btn-visuals"><span>📊 See Patterns</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <span class="severity-badge severity-high">HIGH</span>
+                    <h4>Recovery Opportunity</h4>
+                    <p><strong>7 items</strong> passed Works check but were liquidated</p>
+                    <p><strong>Pattern deviation</strong> from expected outcome</p>
+                    <p>Exception handling needed</p>
+                    <a href="execution_patterns_dashboard.html#insights" class="btn-visuals"><span>📊 See Insights</span></a>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <a href="execution_patterns_dashboard.html" class="btn-visuals" style="font-size: 1.2em; padding: 15px 40px;"><span>📊 View Complete Execution Patterns Analysis</span></a>
+            </div>
+        </section>
+
+        <!-- Financial Impact -->
+        <section id="financial-impact" class="section">
+            <h2>Financial Impact</h2>
+            
+            <div class="roi-section">
+                <h3>Return on Investment Analysis</h3>
+                <div class="roi-metrics">
+                <div class="roi-metric" data-tooltip="Return on Investment: 406.1% ROI means for every $1 invested in process improvements, you get $4.06 back. This is calculated based on recovery potential vs implementation costs.">
+                    <div class="value">406.1%</div>
+                    <div class="label">ROI</div>
+                </div>
+                <div class="roi-metric" data-tooltip="Payback Period: 2.4 months means the implementation costs will be recovered in less than 3 months through value recovery from reduced liquidations.">
+                    <div class="value">2.4</div>
+                    <div class="label">Months Payback</div>
+                </div>
+                <div class="roi-metric" data-tooltip="Annual Recovery Potential: $253,041 represents the projected annual value recovery if current monthly recovery opportunities ($21,087) are sustained throughout the year.">
+                    <div class="value">$253K</div>
+                    <div class="label">Annual Recovery Potential</div>
+                </div>
+                <div class="roi-metric" data-tooltip="Implementation Cost: Estimated cost to implement recommended process improvements, BPMN modifications, and exception handling rules.">
+                    <div class="value">$50K</div>
+                    <div class="label">Implementation Cost</div>
+                </div>
+                </div>
+            </div>
+
+            <h3>Current Status</h3>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr>
+                        <td data-tooltip="Total COGS value lost due to liquidations. This is the financial impact of items that cannot be sold.">Current Value Lost</td>
+                        <td><strong data-tooltip="Total value: $378,526.57 represents the sum of COGS for all 285 liquidated items">$378,526.57</strong></td>
+                    </tr>
+                    <tr>
+                        <td data-tooltip="Potential value that could be recovered immediately by fixing process issues, particularly working items that were liquidated">Potential Recovery Value</td>
+                        <td><strong data-tooltip="$8,918.89 represents the COGS value of 7 working items that were incorrectly liquidated">$8,918.89</strong></td>
+                    </tr>
+                    <tr>
+                        <td data-tooltip="High COGS items (>= $2,000) that were liquidated. These represent significant value loss and should have exception handling">High COGS Items Liquidated</td>
+                        <td><strong data-tooltip="9 items with total COGS of $24,335.74 were liquidated. These high-value items should have additional review before liquidation">9 items ($24,335.74)</strong></td>
+                    </tr>
+                    <tr>
+                        <td data-tooltip="Items that passed the 'Does it Work?' check but were still liquidated. These represent clear recovery opportunities">Working Items Liquidated</td>
+                        <td><strong data-tooltip="7 items that passed the Works check were liquidated, representing $8,918.89 in recovery potential">7 items ($8,918.89)</strong></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="visuals_financial_impact.html" class="btn-visuals"><span>📊 See Financial Impact Visuals</span></a>
+            </div>
+
+            <h3>Recovery Scenarios</h3>
+            <div class="findings-grid">
+                <div class="finding-card">
+                    <h4>Recover All Working Items</h4>
+                    <p><strong data-tooltip="Total COGS value of working items that were incorrectly liquidated">$8,918.89</strong> recovery potential</p>
+                    <p data-tooltip="7 items passed the 'Does it Work?' check but were still liquidated, indicating a process error">7 items that passed "Does it work?" check</p>
+                </div>
+                <div class="finding-card">
+                    <h4>Exception Handling for High COGS</h4>
+                    <p><strong data-tooltip="Total COGS value of high-value items that were liquidated">$24,335.74</strong> recovery potential</p>
+                    <p data-tooltip="9 items with COGS >= $2,000 were liquidated. These should have additional review before liquidation">9 items with COGS >= $2,000</p>
+                </div>
+                <div class="finding-card">
+                    <h4>Reduce Cosmetic False Positives by 50%</h4>
+                    <p><strong data-tooltip="Potential recovery value if cosmetic check false positives are reduced by half">$86,557.34</strong> recovery potential</p>
+                    <p data-tooltip="64 items failed cosmetic checks but were still sellable, indicating cosmetic criteria may be too strict">64 items with cosmetic issues</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recommendations -->
+        <section id="recommendations" class="section">
+            <h2>Recommendations</h2>
+
+            <h3>Immediate Actions (Quick Wins - 1-4 Weeks)</h3>
+            
+            <div class="recommendation-card">
+                <h4>1. Review and Prevent Liquidating Working Items</h4>
+                <div class="recommendation-meta">
+                    <div class="meta-item">
+                        <strong>Priority:</strong> <span class="priority-badge priority-high" data-tooltip="High priority recommendations should be implemented within 1-4 weeks for maximum impact">HIGH</span>
+                    </div>
+                    <div class="meta-item">
+                        <strong>Timeline:</strong> <span data-tooltip="Estimated time to implement this recommendation: 1-2 weeks">1-2 weeks</span>
+                    </div>
+                    <div class="meta-item">
+                        <strong>Impact:</strong> <span data-tooltip="Expected recovery value from implementing this recommendation: $8,919">$8,919 recovery</span>
+                    </div>
+                </div>
+                <p><strong>Description:</strong> Items that pass "Does it work?" should rarely be liquidated. Currently, 7 working items were liquidated, representing a clear recovery opportunity.</p>
+                <div class="action-items">
+                    <strong>Action Items:</strong>
+                    <ul>
+                        <li>Audit all working items that were liquidated</li>
+                        <li>Modify BPMN to require additional approval for liquidating working items</li>
+                        <li>Create exception rule: If "Does it work?" = Passed, require Level 3 review before liquidation</li>
+                    </ul>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="visuals_recommendations.html#rec1" class="btn-visuals"><span>📊 See Supporting Visuals</span></a>
+                </div>
+            </div>
+
+            <div class="recommendation-card">
+                <h4>2. Implement Exception Handling for High COGS Items</h4>
+                <div class="recommendation-meta">
+                    <div class="meta-item">
+                        <strong>Priority:</strong> <span class="priority-badge priority-high">HIGH</span>
+                    </div>
+                    <div class="meta-item">
+                        <strong>Timeline:</strong> 2-4 weeks
+                    </div>
+                    <div class="meta-item">
+                        <strong>Impact:</strong> $24,336 recovery
+                    </div>
+                </div>
+                <p><strong>Description:</strong> Create exception rules for items with COGS >= $2,000 that pass "Does it work?" check. Currently, 9 high COGS items were liquidated.</p>
+                <div class="action-items">
+                    <strong>Action Items:</strong>
+                    <ul>
+                        <li>Modify BPMN to add exception path for high COGS items</li>
+                        <li>Require additional review before liquidating high COGS items</li>
+                        <li>Consider relaxing cosmetic criteria for high COGS working items</li>
+                    </ul>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="visuals_recommendations.html#rec2" class="btn-visuals"><span>📊 See Supporting Visuals</span></a>
+                </div>
+            </div>
+
+            <div class="recommendation-card">
+                <h4>3. Implement Recovery Process for Working Liquidated Items</h4>
+                <div class="recommendation-meta">
+                    <div class="meta-item">
+                        <strong>Priority:</strong> <span class="priority-badge priority-high">HIGH</span>
+                    </div>
+                    <div class="meta-item">
+                        <strong>Timeline:</strong> 2-3 weeks
+                    </div>
+                    <div class="meta-item">
+                        <strong>Impact:</strong> $8,919 recovery
+                    </div>
+                </div>
+                <p><strong>Description:</strong> Create process to recover working items that were liquidated.</p>
+                <div class="action-items">
+                    <strong>Action Items:</strong>
+                    <ul>
+                        <li>Identify all working items that were liquidated</li>
+                        <li>Create recovery workflow to re-evaluate these items</li>
+                        <li>Implement quality gate before final liquidation decision</li>
+                        <li>Add recovery step in BPMN for working items</li>
+                    </ul>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="visuals_recommendations.html#rec3" class="btn-visuals"><span>📊 See Supporting Visuals</span></a>
+                </div>
+            </div>
+
+            <h3>Process Improvements (2-6 Weeks)</h3>
+
+            <div class="recommendation-card">
+                <h4>4. Review and Relax Cosmetic Check Criteria</h4>
+                <div class="recommendation-meta">
+                    <div class="meta-item">
+                        <strong>Priority:</strong> <span class="priority-badge priority-medium" data-tooltip="Medium priority recommendations can be implemented within 2-6 weeks">MEDIUM</span>
+                    </div>
+                    <div class="meta-item">
+                        <strong>Timeline:</strong> 2-3 weeks
+                    </div>
+                </div>
+                <p><strong>Description:</strong> Cosmetic checks have 79.6% false positive rate - items that failed cosmetic checks were still sellable.</p>
+                <div class="action-items">
+                    <strong>Action Items:</strong>
+                    <ul>
+                        <li>Review cosmetic check criteria and thresholds</li>
+                        <li>Consider making cosmetic issues non-blocking for sellable items</li>
+                        <li>Update BPMN to allow cosmetic issues if item works and is repairable</li>
+                    </ul>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="visuals_recommendations.html#rec4" class="btn-visuals"><span>📊 See Supporting Visuals</span></a>
+                </div>
+            </div>
+
+            <div class="recommendation-card">
+                <h4>5. Review Category-Specific Quality Standards</h4>
+                <div class="recommendation-meta">
+                    <div class="meta-item">
+                        <strong>Priority:</strong> <span class="priority-badge priority-high">HIGH</span>
+                    </div>
+                    <div class="meta-item">
+                        <strong>Timeline:</strong> 4-6 weeks
+                    </div>
+                </div>
+                <p><strong>Description:</strong> 13 categories have >=80% liquidation rate, representing $111,402 in value lost.</p>
+                <div class="action-items">
+                    <strong>Action Items:</strong>
+                    <ul>
+                        <li>Review quality standards for high-rate categories</li>
+                        <li>Consider if standards are appropriate for these categories</li>
+                        <li>Implement category-specific exception rules if needed</li>
+                    </ul>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="visuals_recommendations.html#rec5" class="btn-visuals"><span>📊 See Supporting Visuals</span></a>
+                </div>
+            </div>
+
+            <h3>BPMN Process Modifications (4-6 Weeks)</h3>
+
+            <div class="recommendation-card">
+                <h4>6. Modify BPMN Process Flow</h4>
+                <div class="recommendation-meta">
+                    <div class="meta-item">
+                        <strong>Priority:</strong> <span class="priority-badge priority-high">HIGH</span>
+                    </div>
+                    <div class="meta-item">
+                        <strong>Timeline:</strong> 4-6 weeks
+                    </div>
+                </div>
+                <p><strong>Description:</strong> Update BPMN to incorporate exception handling and improved decision logic.</p>
+                <div class="action-items">
+                    <strong>Action Items:</strong>
+                    <ul>
+                        <li>Add exception path for high COGS items (>= $2,000)</li>
+                        <li>Add review gate for working items before liquidation</li>
+                        <li>Modify cosmetic check logic to be non-blocking for working items</li>
+                        <li>Add Level 3 review requirement for high-value liquidations</li>
+                        <li>Implement category-specific routing where appropriate</li>
+                    </ul>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="visuals_recommendations.html#rec6" class="btn-visuals"><span>📊 See Supporting Visuals</span></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visualizations -->
+        <section id="visualizations" class="section">
+            <h2>📊 Key Visualizations</h2>
+            <p style="font-size: 1.1em; margin-bottom: 30px;">Click on any finding, question, or recommendation above to view detailed visualizations, or browse all visualizations below.</p>
+            
+            <div class="findings-grid">
+                <div class="finding-card high">
+                    <h4>Specific Questions Visuals</h4>
+                    <p>7 key business questions with detailed answers and visualizations</p>
+                    <a href="visuals_specific_questions.html" class="btn-visuals"><span>📊 View Q1-Q7 Visuals</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <h4>Advanced Analysis Visuals</h4>
+                    <p>18 additional questions (Q8-Q25) with comprehensive analysis</p>
+                    <a href="visuals_advanced_analysis.html" class="btn-visuals"><span>📊 View Q8-Q25 Visuals</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <h4>Key Findings Visuals</h4>
+                    <p>Supporting evidence for all key findings</p>
+                    <a href="visuals_key_findings.html" class="btn-visuals"><span>📊 View Findings Visuals</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <h4>Financial Impact Visuals</h4>
+                    <p>Comprehensive financial analysis and ROI</p>
+                    <a href="visuals_financial_impact.html" class="btn-visuals"><span>📊 View Financial Visuals</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <h4>Recommendations Visuals</h4>
+                    <p>Supporting evidence for all recommendations</p>
+                    <a href="visuals_recommendations.html" class="btn-visuals"><span>📊 View Recommendations Visuals</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <h4>All Visualizations</h4>
+                    <p>Complete collection of all 30+ visualizations</p>
+                    <a href="visuals_all.html" class="btn-visuals"><span>📊 View All Visuals</span></a>
+                </div>
+
+                <div class="finding-card high">
+                    <h4>Execution Patterns</h4>
+                    <p>Quality check execution patterns analysis</p>
+                    <a href="execution_patterns_dashboard.html" class="btn-visuals"><span>📊 View Execution Patterns</span></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Next Steps -->
+        <section id="next-steps" class="section">
+            <h2>Next Steps</h2>
+            
+            <h3>Implementation Roadmap</h3>
+            
+            <div class="recommendation-card">
+                <h4>Phase 1: Quick Wins (Weeks 1-4)</h4>
+                <ul style="margin-left: 25px; margin-top: 15px; font-size: 1.05em;">
+                    <li>Review and prevent liquidating working items (1-2 weeks)</li>
+                    <li>Implement exception handling for high COGS items (2-4 weeks)</li>
+                    <li>Implement recovery process for working liquidated items (2-3 weeks)</li>
+                </ul>
+                <p style="margin-top: 20px;"><strong>Expected Impact:</strong> $33,255 immediate recovery potential</p>
+            </div>
+
+            <div class="recommendation-card">
+                <h4>Phase 2: Process Improvements (Weeks 5-12)</h4>
+                <ul style="margin-left: 25px; margin-top: 15px; font-size: 1.05em;">
+                    <li>Review and relax cosmetic check criteria (2-3 weeks)</li>
+                    <li>Review category-specific quality standards (4-6 weeks)</li>
+                    <li>Standardize decision criteria (3-4 weeks)</li>
+                    <li>Review fraud detection accuracy (3-4 weeks)</li>
+                </ul>
+                <p style="margin-top: 20px;"><strong>Expected Impact:</strong> Reduced false liquidations, improved consistency</p>
+            </div>
+
+            <div class="recommendation-card">
+                <h4>Phase 3: BPMN Modifications (Weeks 13-18)</h4>
+                <ul style="margin-left: 25px; margin-top: 15px; font-size: 1.05em;">
+                    <li>Modify BPMN process flow (4-6 weeks)</li>
+                    <li>Implement exception paths and review gates</li>
+                    <li>Add category-specific routing</li>
+                </ul>
+                <p style="margin-top: 20px;"><strong>Expected Impact:</strong> Systemic improvement in decision quality</p>
+            </div>
+
+            <h3>Success Metrics</h3>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h4>Target Liquidation Rate</h4>
+                    <div class="value">< 25%</div>
+                    <div class="label">Down from 29.9%</div>
+                </div>
+                <div class="metric-card">
+                    <h4>Recovery Target</h4>
+                    <div class="value">$33K+</div>
+                    <div class="label">Immediate opportunity</div>
+                </div>
+                <div class="metric-card">
+                    <h4>Working Items</h4>
+                    <div class="value">0</div>
+                    <div class="label">Liquidated (target)</div>
+                </div>
+                <div class="metric-card">
+                    <h4>High COGS</h4>
+                    <div class="value">< 5%</div>
+                    <div class="label">Liquidation rate</div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p><strong>Liquidation Analysis Dashboard</strong></p>
+            <p>Generated: <span id="current-date"></span></p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        });
+
+        document.querySelectorAll('.nav-bar a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

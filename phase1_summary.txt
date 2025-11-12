@@ -1,0 +1,17 @@
+PHASE 1: DATA UNDERSTANDING & PREPARATION - SUMMARY
+================================================================================
+
+Analysis Date: 2025-11-12 00:37:43
+
+FILE INFORMATION:
+  File: Cost Greater than 1000/Repair Order (repair.order).csv
+  Size: 6.62 MB
+
+DATA STRUCTURE:
+  Total Rows: 64,299
+  Order Rows: 954
+  Check Rows: 63,345
+
+DATA QUALITY:
+  Total Issues: 0
+  Rule Violations: 1

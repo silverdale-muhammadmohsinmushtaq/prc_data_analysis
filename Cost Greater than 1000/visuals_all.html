@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Visualizations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            color: #2d3748;
+            line-height: 1.7;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .visual-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        .visual-section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .visual-section h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        .visual-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .visual-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+        }
+
+        .visual-container p {
+            color: #666;
+            font-style: italic;
+            font-size: 1.05em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 All Visualizations</h1>
+            <p>Complete Collection of Analysis Visualizations</p>
+            <a href="EXECUTIVE_DASHBOARD.html" class="back-btn">← Back to Dashboard</a>
+        </header>
+
+        <section class="visual-section">
+            <h2>Phase 8 Visualizations</h2>
+
+            <div class="visual-container">
+                <h3>Disposition Distribution</h3>
+                <img src="Phase8_Visualizations/V01_Disposition_Distribution.png" alt="Disposition Distribution">
+                <p>Overall distribution of Sellable vs Liquidate outcomes</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>COGS Distribution</h3>
+                <img src="Phase8_Visualizations/V02_COGS_Distribution.png" alt="COGS Distribution">
+                <p>Comparison of COGS values between liquidated and sellable items</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Liquidation Rate by Category</h3>
+                <img src="Phase8_Visualizations/V03_Liquidation_Rate_by_Category.png" alt="Liquidation Rate by Category">
+                <p>Top 15 categories with highest liquidation rates</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Liquidation Rate by COGS Bin</h3>
+                <img src="Phase8_Visualizations/V04_Liquidation_Rate_by_COGS_Bin.png" alt="Liquidation Rate by COGS Bin">
+                <p>Liquidation rates across different COGS value ranges</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Check Failure Rates Comparison</h3>
+                <img src="Phase8_Visualizations/V05_Check_Failure_Rates_Comparison.png" alt="Check Failure Rates Comparison">
+                <p>Top 15 checks comparing failure rates between liquidated and sellable</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Liquidation Reasons Breakdown</h3>
+                <img src="Phase8_Visualizations/V06_Liquidation_Reasons_Breakdown.png" alt="Liquidation Reasons Breakdown">
+                <p>Breakdown of liquidation reasons</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Value Lost by Category</h3>
+                <img src="Phase8_Visualizations/V07_Value_Lost_by_Category.png" alt="Value Lost by Category">
+                <p>Top 15 categories by total dollar value lost to liquidation</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Value Lost by Reason</h3>
+                <img src="Phase8_Visualizations/V08_Value_Lost_by_Reason.png" alt="Value Lost by Reason">
+                <p>Total value lost broken down by liquidation reason</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Average COGS Comparison</h3>
+                <img src="Phase8_Visualizations/V09_Avg_COGS_Comparison.png" alt="Average COGS Comparison">
+                <p>Mean and median COGS comparison: liquidated vs sellable</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Top Products by Liquidation</h3>
+                <img src="Phase8_Visualizations/V10_Top_Products_by_Liquidation.png" alt="Top Products by Liquidation">
+                <p>Top 15 products by absolute liquidation count</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>High Liquidation Rate Products</h3>
+                <img src="Phase8_Visualizations/V11_High_Liquidation_Rate_Products.png" alt="High Liquidation Rate Products">
+                <p>Products with >=50% liquidation rate</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Top Checks Causing Liquidations</h3>
+                <img src="Phase8_Visualizations/V12_Top_Checks_Causing_Liquidations.png" alt="Top Checks Causing Liquidations">
+                <p>Top 15 quality checks with highest failure counts in liquidated orders</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Check Failure Rate Heatmap</h3>
+                <img src="Phase8_Visualizations/V13_Check_Failure_Rate_Heatmap.png" alt="Check Failure Rate Heatmap">
+                <p>Heatmap comparing failure rates for liquidated vs sellable</p>
+            </div>
+        </section>
+
+        <section class="visual-section">
+            <h2>Phase 6 Visualizations</h2>
+
+            <div class="visual-container">
+                <h3>Quality Checks Causing Liquidations</h3>
+                <img src="Phase6_Graphs/Q1_Quality_Checks_Causing_Liquidations.png" alt="Quality Checks">
+                <p>Top quality checks causing liquidations</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>High COGS Patterns</h3>
+                <img src="Phase6_Graphs/Q2_High_COGS_Patterns.png" alt="High COGS Patterns">
+                <p>Patterns in high COGS items that get liquidated</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Passed vs Failed Comparison</h3>
+                <img src="Phase6_Graphs/Q3_Passed_Failed_Comparison.png" alt="Passed Failed Comparison">
+                <p>Comparison of passed vs failed checks between Sellable and Liquidate</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Categories Most Affected</h3>
+                <img src="Phase6_Graphs/Q4_Categories_Most_Affected.png" alt="Categories Most Affected">
+                <p>Product categories most affected</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Liquidation Reasons</h3>
+                <img src="Phase6_Graphs/Q5_Liquidation_Reasons.png" alt="Liquidation Reasons">
+                <p>Specific liquidation reasons analysis</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Category Disposition Pivot</h3>
+                <img src="Phase6_Graphs/Q6_Category_Disposition_Pivot.png" alt="Category Disposition">
+                <p>Number of liquidations and sellable for each category</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Product Analysis</h3>
+                <img src="Phase6_Graphs/Q7_Product_Analysis.png" alt="Product Analysis">
+                <p>Number of Sellable and Liquidation for each product</p>
+            </div>
+        </section>
+
+        <section class="visual-section">
+            <h2>Phase 3 Visualizations</h2>
+
+            <div class="visual-container">
+                <h3>Disposition Distribution</h3>
+                <img src="Phase3_Graphs/01_Disposition_Distribution.png" alt="Disposition Distribution">
+                <p>Overall disposition distribution</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>COGS Distribution</h3>
+                <img src="Phase3_Graphs/02_COGS_Distribution.png" alt="COGS Distribution">
+                <p>COGS distribution analysis</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>COGS by Disposition</h3>
+                <img src="Phase3_Graphs/03_COGS_by_Disposition.png" alt="COGS by Disposition">
+                <p>COGS comparison by disposition</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Liquidation Rate by COGS Bin</h3>
+                <img src="Phase3_Graphs/04_Liquidation_Rate_by_COGS_Bin.png" alt="Liquidation Rate by COGS Bin">
+                <p>Liquidation rate analysis by COGS bins</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Top Categories</h3>
+                <img src="Phase3_Graphs/05_Top_Categories.png" alt="Top Categories">
+                <p>Top categories analysis</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Liquidation Reasons</h3>
+                <img src="Phase3_Graphs/06_Liquidation_Reasons.png" alt="Liquidation Reasons">
+                <p>Liquidation reasons breakdown</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Category Liquidation Analysis</h3>
+                <img src="Phase3_Graphs/07_Category_Liquidation_Analysis.png" alt="Category Liquidation Analysis">
+                <p>Detailed category liquidation analysis</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Top Failed Checks</h3>
+                <img src="Phase3_Graphs/08_Top_Failed_Checks.png" alt="Top Failed Checks">
+                <p>Top failed checks analysis</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Check Comparison</h3>
+                <img src="Phase3_Graphs/09_Check_Comparison.png" alt="Check Comparison">
+                <p>Check comparison analysis</p>
+            </div>
+        </section>
+
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="EXECUTIVE_DASHBOARD.html" class="back-btn">← Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>
+

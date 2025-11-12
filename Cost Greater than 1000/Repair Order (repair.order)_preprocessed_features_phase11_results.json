@@ -1,0 +1,110 @@
+{
+  "phase": "Phase 11: Validation & Quality Assurance",
+  "timestamp": "2025-11-12T02:02:41.360093",
+  "file_path": "c:\\Silverdale QA\\BPMN XML\\Cost Greater than 1000\\Repair Order (repair.order)_preprocessed_features.csv",
+  "data_validation": {
+    "totals_match": true,
+    "percentages_correct": true,
+    "value_lost_correct": true,
+    "cogs_values_valid": true,
+    "check_counts_correct": true,
+    "disposition_match": true,
+    "missing_critical_values": {},
+    "no_missing_critical": true,
+    "orders_preserved": true
+  },
+  "sensitivity_analysis": {
+    "cogs_thresholds": [
+      {
+        "threshold": 1500,
+        "count": 214,
+        "liquidation_rate": 32.71,
+        "liquidated_count": 70,
+        "value_lost": 128355.85
+      },
+      {
+        "threshold": 2000,
+        "count": 34,
+        "liquidation_rate": 26.47,
+        "liquidated_count": 9,
+        "value_lost": 24335.74
+      },
+      {
+        "threshold": 2500,
+        "count": 19,
+        "liquidation_rate": 31.58,
+        "liquidated_count": 6,
+        "value_lost": 17804.51
+      },
+      {
+        "threshold": 3000,
+        "count": 7,
+        "liquidation_rate": 14.29,
+        "liquidated_count": 1,
+        "value_lost": 4124.25
+      },
+      {
+        "threshold": 3500,
+        "count": 4,
+        "liquidation_rate": 25.0,
+        "liquidated_count": 1,
+        "value_lost": 4124.25
+      }
+    ],
+    "category_rate_distribution": {
+      "very_high": 1,
+      "high": 2,
+      "medium": 6,
+      "low": 11
+    },
+    "failure_count_thresholds": [
+      {
+        "threshold": 5,
+        "count": 835,
+        "liquidation_rate": 20.12
+      },
+      {
+        "threshold": 10,
+        "count": 349,
+        "liquidation_rate": 30.95
+      },
+      {
+        "threshold": 15,
+        "count": 349,
+        "liquidation_rate": 30.95
+      },
+      {
+        "threshold": 20,
+        "count": 331,
+        "liquidation_rate": 29.0
+      }
+    ],
+    "monthly_rates": {
+      "2025-09": {
+        "liquidated": 132,
+        "total": 428,
+        "rate": 0.308411214953271,
+        "rate_pct": 30.8411214953271
+      },
+      "2025-10": {
+        "liquidated": 110,
+        "total": 387,
+        "rate": 0.2842377260981912,
+        "rate_pct": 28.42377260981912
+      },
+      "2025-11": {
+        "liquidated": 43,
+        "total": 139,
+        "rate": 0.30935251798561153,
+        "rate_pct": 30.935251798561154
+      }
+    },
+    "works_check_sensitivity": {
+      "passed_rate": 1.21,
+      "failed_rate": 74.13,
+      "difference": 72.92
+    }
+  },
+  "validation_checks": [],
+  "business_validation_checklist": "c:\\Silverdale QA\\BPMN XML\\Cost Greater than 1000\\Repair Order (repair.order)_preprocessed_features_BUSINESS_VALIDATION_CHECKLIST.md"
+}

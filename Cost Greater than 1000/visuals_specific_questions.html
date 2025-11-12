@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specific Questions Visualizations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            color: #2d3748;
+            line-height: 1.7;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .question-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            border-left: 6px solid #667eea;
+        }
+
+        .question-section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .question-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .question-header h3 {
+            color: white;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .answer-summary {
+            background: #f7fafc;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 5px solid #667eea;
+        }
+
+        .answer-summary h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .answer-summary ul {
+            margin-left: 25px;
+            margin-top: 10px;
+        }
+
+        .answer-summary li {
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 1.05em;
+        }
+
+        .visual-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .visual-container h4 {
+            color: #764ba2;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .visual-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+        }
+
+        .visual-container p {
+            color: #666;
+            font-style: italic;
+            font-size: 1.05em;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-card .value {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-card .label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>❓ Specific Questions Visualizations</h1>
+            <p>Detailed Answers to 7 Key Business Questions</p>
+            <a href="EXECUTIVE_DASHBOARD.html" class="back-btn">← Back to Dashboard</a>
+        </header>
+
+        <!-- Question 1 -->
+        <section id="q1" class="question-section">
+            <div class="question-header">
+                <h3>Question 1: Which Quality Checks Are Causing Liquidations?</h3>
+            </div>
+            
+            <div class="answer-summary">
+                <h4>Answer Summary</h4>
+                <ul>
+                    <li><strong>Top Check:</strong> "Is it IOG?" - 285 failures (100% failure rate)</li>
+                    <li><strong>Critical Check:</strong> "Does it Work?" - 162 failures (95.9% failure rate)</li>
+                    <li><strong>Total Checks Analyzed:</strong> 44 quality checks</li>
+                    <li><strong>Key Finding:</strong> "Does it Work?" check is the most critical functional check causing liquidations</li>
+                </ul>
+            </div>
+
+            <div class="visual-container">
+                <h4>Quality Checks Causing Liquidations</h4>
+                <img src="Phase6_Graphs/Q1_Quality_Checks_Causing_Liquidations.png" alt="Quality Checks">
+                <p>Top quality checks with highest failure counts in liquidated orders</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>Top Checks Causing Liquidations</h4>
+                <img src="Phase8_Visualizations/V12_Top_Checks_Causing_Liquidations.png" alt="Top Checks">
+                <p>Comprehensive view of checks driving liquidation decisions</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>Check Failure Rates Comparison</h4>
+                <img src="Phase8_Visualizations/V05_Check_Failure_Rates_Comparison.png" alt="Check Failure Rates">
+                <p>Comparison showing which checks have highest failure rates in liquidated vs sellable items</p>
+            </div>
+        </section>
+
+        <!-- Question 2 -->
+        <section id="q2" class="question-section">
+            <div class="question-header">
+                <h3>Question 2: Patterns in High COGS Items That Get Liquidated</h3>
+            </div>
+            
+            <div class="answer-summary">
+                <h4>Answer Summary</h4>
+                <ul>
+                    <li><strong>High COGS (>= $2,000):</strong> 26.5% liquidation rate</li>
+                    <li><strong>Lower COGS (< $2,000):</strong> 30.0% liquidation rate</li>
+                    <li><strong>Counter-intuitive:</strong> Higher value items have lower liquidation rates</li>
+                    <li><strong>High COGS Liquidated:</strong> 9 items totaling $24,336</li>
+                    <li><strong>Average COGS:</strong> Liquidated ($1,328) vs Sellable ($1,311) - very similar</li>
+                </ul>
+            </div>
+
+            <div class="visual-container">
+                <h4>High COGS Patterns Analysis</h4>
+                <img src="Phase6_Graphs/Q2_High_COGS_Patterns.png" alt="High COGS Patterns">
+                <p>Detailed analysis of high COGS items showing liquidation patterns</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>Liquidation Rate by COGS Bin</h4>
+                <img src="Phase8_Visualizations/V04_Liquidation_Rate_by_COGS_Bin.png" alt="COGS Bin Analysis">
+                <p>Liquidation rates across different COGS value ranges</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>COGS Distribution</h4>
+                <img src="Phase8_Visualizations/V02_COGS_Distribution.png" alt="COGS Distribution">
+                <p>Distribution comparison between liquidated and sellable items</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>Average COGS Comparison</h4>
+                <img src="Phase8_Visualizations/V09_Avg_COGS_Comparison.png" alt="Average COGS">
+                <p>Mean and median COGS comparison showing similar values</p>
+            </div>
+        </section>
+
+        <!-- Question 3 -->
+        <section id="q3" class="question-section">
+            <div class="question-header">
+                <h3>Question 3: Comparison of Passed vs Failed Checks</h3>
+            </div>
+            
+            <div class="answer-summary">
+                <h4>Answer Summary</h4>
+                <ul>
+                    <li><strong>Liquidated Items:</strong> Avg 12.73 failed checks, 9.86 passed checks</li>
+                    <li><strong>Sellable Items:</strong> Avg 13.59 failed checks, 8.41 passed checks</li>
+                    <li><strong>Surprising Finding:</strong> Sellable items have MORE failed checks on average</li>
+                    <li><strong>Key Insight:</strong> It's not about quantity of failures, but WHICH checks fail</li>
+                </ul>
+            </div>
+
+            <div class="visual-container">
+                <h4>Passed vs Failed Checks Comparison</h4>
+                <img src="Phase6_Graphs/Q3_Passed_Failed_Comparison.png" alt="Passed Failed Comparison">
+                <p>Detailed comparison showing which checks differentiate liquidated from sellable</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>Check Comparison Analysis</h4>
+                <img src="Phase3_Graphs/09_Check_Comparison.png" alt="Check Comparison">
+                <p>Comprehensive check-level comparison between outcomes</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>Check Failure Rates Comparison</h4>
+                <img src="Phase8_Visualizations/V05_Check_Failure_Rates_Comparison.png" alt="Check Failure Rates">
+                <p>Top checks showing highest difference in failure rates</p>
+            </div>
+        </section>
+
+        <!-- Question 4 -->
+        <section id="q4" class="question-section">
+            <div class="question-header">
+                <h3>Question 4: Product Categories Most Affected</h3>
+            </div>
+            
+            <div class="answer-summary">
+                <h4>Answer Summary</h4>
+                <ul>
+                    <li><strong>Top Category:</strong> Robotic Vacuums (56 liquidations, 35.0% rate, $63,607 lost)</li>
+                    <li><strong>Second:</strong> Armchairs (43 liquidations, 93.5% rate, $48,695 lost)</li>
+                    <li><strong>Third:</strong> Portable Air Conditioners (29 liquidations, 85.3% rate, $47,210 lost)</li>
+                    <li><strong>Finding:</strong> Some categories have extremely high liquidation rates (>=80%)</li>
+                    <li><strong>Action:</strong> Category-specific quality standards review needed</li>
+                </ul>
+            </div>
+
+            <div class="visual-container">
+                <h4>Categories Most Affected</h4>
+                <img src="Phase6_Graphs/Q4_Categories_Most_Affected.png" alt="Categories Most Affected">
+                <p>Top categories with highest liquidation counts and rates</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>Liquidation Rate by Category</h4>
+                <img src="Phase8_Visualizations/V03_Liquidation_Rate_by_Category.png" alt="Liquidation Rate by Category">
+                <p>Top 15 categories ranked by liquidation rate</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>Value Lost by Category</h4>
+                <img src="Phase8_Visualizations/V07_Value_Lost_by_Category.png" alt="Value Lost by Category">
+                <p>Financial impact by category - prioritizing high-value categories</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>Category Liquidation Analysis</h4>
+                <img src="Phase3_Graphs/07_Category_Liquidation_Analysis.png" alt="Category Analysis">
+                <p>Detailed category-level liquidation analysis</p>
+            </div>
+        </section>
+
+        <!-- Question 5 -->
+        <section id="q5" class="question-section">
+            <div class="question-header">
+                <h3>Question 5: Specific Liquidation Reasons</h3>
+            </div>
+            
+            <div class="answer-summary">
+                <h4>Answer Summary</h4>
+                <ul>
+                    <li><strong>Functional Issues:</strong> 47.4% of liquidations ($179,823 value)</li>
+                    <li><strong>Fraud:</strong> 30.5% of liquidations ($113,627 value)</li>
+                    <li><strong>Cosmetic:</strong> 15.1% of liquidations ($55,663 value)</li>
+                    <li><strong>Wrong Item Description:</strong> 6.3% of liquidations ($25,753 value)</li>
+                    <li><strong>Destroy:</strong> 0.7% of liquidations ($3,660 value)</li>
+                </ul>
+            </div>
+
+            <div class="visual-container">
+                <h4>Liquidation Reasons Breakdown</h4>
+                <img src="Phase6_Graphs/Q5_Liquidation_Reasons.png" alt="Liquidation Reasons">
+                <p>Detailed breakdown of all liquidation reasons</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>Liquidation Reasons Distribution</h4>
+                <img src="Phase8_Visualizations/V06_Liquidation_Reasons_Breakdown.png" alt="Reasons Breakdown">
+                <p>Visual breakdown showing proportion of each reason</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>Value Lost by Reason</h4>
+                <img src="Phase8_Visualizations/V08_Value_Lost_by_Reason.png" alt="Value Lost by Reason">
+                <p>Financial impact of each liquidation reason</p>
+            </div>
+        </section>
+
+        <!-- Question 6 -->
+        <section id="q6" class="question-section">
+            <div class="question-header">
+                <h3>Question 6: Liquidation and Sellable Counts by Category</h3>
+            </div>
+            
+            <div class="answer-summary">
+                <h4>Answer Summary</h4>
+                <ul>
+                    <li><strong>Top Category:</strong> Robotic Vacuums (56 liquidated, 104 sellable)</li>
+                    <li><strong>High Rate Category:</strong> Armchairs (43 liquidated, 3 sellable) - 93.5% rate</li>
+                    <li><strong>Analysis:</strong> Some categories show extreme imbalance</li>
+                    <li><strong>Finding:</strong> 13 categories have >=80% liquidation rate</li>
+                    <li><strong>Action:</strong> Review quality standards for high-rate categories</li>
+                </ul>
+            </div>
+
+            <div class="visual-container">
+                <h4>Category Disposition Pivot</h4>
+                <img src="Phase6_Graphs/Q6_Category_Disposition_Pivot.png" alt="Category Disposition">
+                <p>Category-level breakdown showing liquidated vs sellable counts</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>Category Liquidation Analysis</h4>
+                <img src="Phase3_Graphs/07_Category_Liquidation_Analysis.png" alt="Category Analysis">
+                <p>Detailed analysis of category-level outcomes</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>Top Categories</h4>
+                <img src="Phase3_Graphs/05_Top_Categories.png" alt="Top Categories">
+                <p>Top categories by volume and liquidation rate</p>
+            </div>
+        </section>
+
+        <!-- Question 7 -->
+        <section id="q7" class="question-section">
+            <div class="question-header">
+                <h3>Question 7: Liquidation and Sellable Counts by Product</h3>
+            </div>
+            
+            <div class="answer-summary">
+                <h4>Answer Summary</h4>
+                <ul>
+                    <li><strong>Top Product:</strong> ECOVACS DEEBOT X9 PRO OMNI (17 liquidated, 154 sellable)</li>
+                    <li><strong>Inconsistent Products:</strong> 35 products show mixed outcomes</li>
+                    <li><strong>Always Liquidate:</strong> 12 products have 100% liquidation rate</li>
+                    <li><strong>Finding:</strong> Same products can have different outcomes - criteria inconsistency</li>
+                    <li><strong>Action:</strong> Standardize decision criteria for products</li>
+                </ul>
+            </div>
+
+            <div class="visual-container">
+                <h4>Product Analysis</h4>
+                <img src="Phase6_Graphs/Q7_Product_Analysis.png" alt="Product Analysis">
+                <p>Product-level analysis showing liquidated vs sellable counts</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>Top Products by Liquidation</h4>
+                <img src="Phase8_Visualizations/V10_Top_Products_by_Liquidation.png" alt="Top Products">
+                <p>Products with highest liquidation counts</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>High Liquidation Rate Products</h4>
+                <img src="Phase8_Visualizations/V11_High_Liquidation_Rate_Products.png" alt="High Rate Products">
+                <p>Products with >=50% liquidation rate</p>
+            </div>
+        </section>
+
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="EXECUTIVE_DASHBOARD.html" class="back-btn">← Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>
+

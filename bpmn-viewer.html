@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BPMN Diagram Viewer</title>
+    <link rel="stylesheet" href="https://unpkg.com/bpmn-js/dist/assets/diagram-js.css" />
+    <link rel="stylesheet" href="https://unpkg.com/bpmn-js/dist/assets/bpmn-js.css" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        #canvas {
+            width: 100%;
+            height: 100%;
+            flex: 1;
+        }
+        .controls {
+            padding: 10px;
+            background: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+        }
+        button {
+            padding: 8px 16px;
+            margin: 5px;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0052a3;
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <input type="file" id="fileInput" accept=".xml,.bpmn" style="display: none;" onchange="loadFile(event)">
+        <button onclick="document.getElementById('fileInput').click()">Load BPMN File</button>
+        <button onclick="zoomIn()">Zoom In</button>
+        <button onclick="zoomOut()">Zoom Out</button>
+        <button onclick="resetZoom()">Reset Zoom</button>
+        <button onclick="fitViewport()">Fit Viewport</button>
+        <button onclick="downloadSVG()">Download as SVG</button>
+    </div>
+    <div id="canvas"></div>
+
+    <script src="https://unpkg.com/bpmn-js/dist/bpmn-viewer.development.js"></script>
+    <script>
+        // Create BPMN viewer instance
+        const viewer = new BpmnJS({
+            container: '#canvas'
+        });
+
+        // Load BPMN XML from file
+        async function loadBPMN(xmlContent) {
+            try {
+                await viewer.importXML(xmlContent);
+                
+                // Fit viewport to show entire diagram
+                const canvas = viewer.get('canvas');
+                canvas.zoom('fit-viewport');
+                
+                console.log('BPMN diagram loaded successfully');
+            } catch (err) {
+                console.error('Error loading BPMN:', err);
+                alert('Error loading BPMN diagram. Please check the console for details.');
+            }
+        }
+
+        // Load BPMN from file input
+        function loadFile(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    loadBPMN(e.target.result);
+                };
+                reader.readAsText(file);
+            }
+        }
+
+        // Try to load bpmn.xml automatically
+        async function autoLoadBPMN() {
+            try {
+                const response = await fetch('bpmn.xml');
+                if (response.ok) {
+                    const xml = await response.text();
+                    loadBPMN(xml);
+                } else {
+                    console.log('bpmn.xml not found. Use "Load BPMN File" button to select a file.');
+                }
+            } catch (err) {
+                console.log('Could not auto-load bpmn.xml. Use "Load BPMN File" button to select a file.');
+            }
+        }
+
+        // Zoom functions
+        function zoomIn() {
+            const canvas = viewer.get('canvas');
+            canvas.zoom(canvas.zoom() + 0.1);
+        }
+
+        function zoomOut() {
+            const canvas = viewer.get('canvas');
+            canvas.zoom(canvas.zoom() - 0.1);
+        }
+
+        function resetZoom() {
+            const canvas = viewer.get('canvas');
+            canvas.zoom(1);
+        }
+
+        function fitViewport() {
+            const canvas = viewer.get('canvas');
+            canvas.zoom('fit-viewport');
+        }
+
+        // Download as SVG
+        async function downloadSVG() {
+            try {
+                const { svg } = await viewer.saveSVG();
+                const blob = new Blob([svg], { type: 'image/svg+xml' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'bpmn-diagram.svg';
+                link.click();
+                URL.revokeObjectURL(url);
+            } catch (err) {
+                console.error('Error exporting SVG:', err);
+                alert('Error exporting SVG. Please check the console for details.');
+            }
+        }
+
+        // Load diagram on page load
+        autoLoadBPMN();
+    </script>
+</body>
+</html>
+

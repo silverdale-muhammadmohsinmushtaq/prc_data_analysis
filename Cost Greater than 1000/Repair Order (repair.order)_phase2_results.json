@@ -1,0 +1,79 @@
+{
+  "phase": "Phase 2: Data Cleaning & Transformation",
+  "timestamp": "2025-11-12T01:02:57.673167",
+  "file_path": "c:\\Silverdale QA\\BPMN XML\\Cost Greater than 1000\\Repair Order (repair.order).csv",
+  "transformations": {
+    "removed_columns": [
+      "Activity Exception Decoration"
+    ],
+    "missing_values_documented": {
+      "Amazon COGS": {
+        "count": 63345,
+        "percentage": 98.52
+      },
+      "Completed On": {
+        "count": 63345,
+        "percentage": 98.52
+      },
+      "Disposition": {
+        "count": 63345,
+        "percentage": 98.52
+      },
+      "LPN": {
+        "count": 63345,
+        "percentage": 98.52
+      },
+      "Product": {
+        "count": 63345,
+        "percentage": 98.52
+      },
+      "Product Category": {
+        "count": 63345,
+        "percentage": 98.52
+      },
+      "Result of Repair": {
+        "count": 63345,
+        "percentage": 98.52
+      },
+      "Scheduled Date": {
+        "count": 63345,
+        "percentage": 98.52
+      },
+      "Shipped Date": {
+        "count": 63367,
+        "percentage": 98.55
+      },
+      "Started On": {
+        "count": 63356,
+        "percentage": 98.53
+      },
+      "LPN/Amazon COGS": {
+        "count": 63345,
+        "percentage": 98.52
+      },
+      "Checks/Failed by decision logic Automatically": {
+        "count": 37605,
+        "percentage": 58.48
+      }
+    },
+    "format_standardization": "completed",
+    "duplicates_handled": 0,
+    "orders_count": 954,
+    "checks_count_before_filter": 63345,
+    "checks_count_after_filter": 36651,
+    "checks_removed": 26694,
+    "wide_format_checks": 51,
+    "final_columns": 59,
+    "final_rows": 954,
+    "derived_features": [
+      "is_liquidated",
+      "cogs_bin",
+      "processing_days"
+    ],
+    "check_columns_count": 48,
+    "output_files": {
+      "csv": "c:\\Silverdale QA\\BPMN XML\\Cost Greater than 1000\\Repair Order (repair.order)_preprocessed.csv",
+      "excel": "c:\\Silverdale QA\\BPMN XML\\Cost Greater than 1000\\Repair Order (repair.order)_preprocessed.xlsx"
+    }
+  }
+}

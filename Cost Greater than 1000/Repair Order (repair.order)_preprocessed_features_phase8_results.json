@@ -1,0 +1,20 @@
+{
+  "phase": "Phase 8: Data Visualization",
+  "timestamp": "2025-11-12T01:52:21.395500",
+  "file_path": "c:\\Silverdale QA\\BPMN XML\\Cost Greater than 1000\\Repair Order (repair.order)_preprocessed_features.csv",
+  "visualizations_created": [
+    "V01_Disposition_Distribution.png",
+    "V02_COGS_Distribution.png",
+    "V03_Liquidation_Rate_by_Category.png",
+    "V04_Liquidation_Rate_by_COGS_Bin.png",
+    "V05_Check_Failure_Rates_Comparison.png",
+    "V06_Liquidation_Reasons_Breakdown.png",
+    "V07_Value_Lost_by_Category.png",
+    "V08_Value_Lost_by_Reason.png",
+    "V09_Avg_COGS_Comparison.png",
+    "V10_Top_Products_by_Liquidation.png",
+    "V11_High_Liquidation_Rate_Products.png",
+    "V12_Top_Checks_Causing_Liquidations.png",
+    "V13_Check_Failure_Rate_Heatmap.png"
+  ]
+}

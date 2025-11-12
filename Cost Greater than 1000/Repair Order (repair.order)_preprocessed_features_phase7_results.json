@@ -1,0 +1,794 @@
+{
+  "phase": "Phase 7: Advanced Analysis",
+  "timestamp": "2025-11-12T01:48:45.593308",
+  "file_path": "c:\\Silverdale QA\\BPMN XML\\Cost Greater than 1000\\Repair Order (repair.order)_preprocessed_features.csv",
+  "findings": {
+    "q8_time_analysis": {
+      "liquidated_mean_days": 4.01,
+      "sellable_mean_days": 3.04,
+      "difference_days": 0.97
+    },
+    "q9_check_correlation": {
+      "top_15_correlations": {
+        "Is_it_the_expected_item_Es_el_art_culo_esperado": {
+          "correlation": 0.5124867027907738,
+          "abs_correlation": 0.5124867027907738
+        },
+        "DONE": {
+          "correlation": 0.49884596511904133,
+          "abs_correlation": 0.49884596511904133
+        },
+        "Does_the_item_need_to_be_Destroyed_El_art_culo_nec": {
+          "correlation": -0.4972614812392545,
+          "abs_correlation": 0.4972614812392545
+        },
+        "Is_the_Item_Factory_Sealed_El_art_culo_est_sellado": {
+          "correlation": -0.48347752713145653,
+          "abs_correlation": 0.48347752713145653
+        },
+        "Is_the_item_factory_Sealed_El_art_culo_est_sellado": {
+          "correlation": -0.4621989098832255,
+          "abs_correlation": 0.4621989098832255
+        },
+        "Does_the_item_work_El_art_culo_funciona": {
+          "correlation": 0.4399346117369011,
+          "abs_correlation": 0.4399346117369011
+        },
+        "Did_you_add_a_Manual_A_adiste_el_manual": {
+          "correlation": -0.3334981273193781,
+          "abs_correlation": 0.3334981273193781
+        },
+        "Does_the_item_have_scratches_or_dents_larger_that_": {
+          "correlation": -0.28964373150972367,
+          "abs_correlation": 0.28964373150972367
+        },
+        "Does_it_need_Parts_Necesita_partes": {
+          "correlation": -0.2434879226789294,
+          "abs_correlation": 0.2434879226789294
+        },
+        "Does_the_item_have_scratches_or_dents_larger_than_": {
+          "correlation": -0.20297206911889468,
+          "abs_correlation": 0.20297206911889468
+        },
+        "Did_you_use_Harvested_Parts_Has_usado_Harvested_Pa": {
+          "correlation": -0.15615841078870704,
+          "abs_correlation": 0.15615841078870704
+        },
+        "Is_it_the_Expected_Item_Es_el_art_culo_esperado": {
+          "correlation": 0.14089320685642828,
+          "abs_correlation": 0.14089320685642828
+        },
+        "Is_the_item_Repairable_El_art_culo_es_reparable": {
+          "correlation": 0.13760067243183952,
+          "abs_correlation": 0.13760067243183952
+        },
+        "Does_it_need_parts_Necesita_partes": {
+          "correlation": 0.11039295591487039,
+          "abs_correlation": 0.11039295591487039
+        },
+        "Did_you_do_a_Factory_Reset_Hiciste_un_restablecimi": {
+          "correlation": -0.10974985741212522,
+          "abs_correlation": 0.10974985741212522
+        }
+      }
+    },
+    "q10_product_consistency": {
+      "always_liquidate_products": {
+        "[B0DKD2P98G] YOPTO YOPTO": {
+          "liquidated_count": 11,
+          "total_count": 11,
+          "liquidation_rate": 1.0
+        },
+        "[B0DLNPJHR6] MAYIHCAlTw": {
+          "liquidated_count": 11,
+          "total_count": 11,
+          "liquidation_rate": 1.0
+        },
+        "[B0FN7LPZRH] YOPTO YOPTO": {
+          "liquidated_count": 7,
+          "total_count": 7,
+          "liquidation_rate": 1.0
+        },
+        "[B0F82FCT4T] YOPTO YOPTO": {
+          "liquidated_count": 6,
+          "total_count": 6,
+          "liquidation_rate": 1.0
+        },
+        "[B0BZ47K42S] HONBAY SCR192-A7B2C-B": {
+          "liquidated_count": 5,
+          "total_count": 5,
+          "liquidation_rate": 1.0
+        },
+        "[B0BLF2RWNV] SAMSUNG FBASAMLS34BG850S": {
+          "liquidated_count": 3,
+          "total_count": 3,
+          "liquidation_rate": 1.0
+        },
+        "[B09VQ48X5Q] Dell AW3423DW Gaming Monitor": {
+          "liquidated_count": 2,
+          "total_count": 2,
+          "liquidation_rate": 1.0
+        },
+        "[B0B924GWLJ] LG 34WQ73A-B": {
+          "liquidated_count": 2,
+          "total_count": 2,
+          "liquidation_rate": 1.0
+        },
+        "[B0BVB5PTDK] roborock S8 Pro Ultra": {
+          "liquidated_count": 2,
+          "total_count": 2,
+          "liquidation_rate": 1.0
+        },
+        "[B0DKD2F2KP] YOPTO YOPTO": {
+          "liquidated_count": 2,
+          "total_count": 2,
+          "liquidation_rate": 1.0
+        },
+        "[B0C48D7Q22] Samsung FBASAMLS49CG954S": {
+          "liquidated_count": 2,
+          "total_count": 2,
+          "liquidation_rate": 1.0
+        },
+        "[B0CWKVV3HZ] HONBAY SCR192-A8B4C-B": {
+          "liquidated_count": 2,
+          "total_count": 2,
+          "liquidation_rate": 1.0
+        }
+      },
+      "always_liquidate_count": 12
+    },
+    "q11_cogs_threshold": [
+      {
+        "threshold": 1500,
+        "high_cogs_liquidation_rate": 32.71,
+        "low_cogs_liquidation_rate": 29.05,
+        "difference": 3.66
+      },
+      {
+        "threshold": 2000,
+        "high_cogs_liquidation_rate": 26.47,
+        "low_cogs_liquidation_rate": 30.0,
+        "difference": -3.53
+      },
+      {
+        "threshold": 2500,
+        "high_cogs_liquidation_rate": 31.58,
+        "low_cogs_liquidation_rate": 29.84,
+        "difference": 1.74
+      },
+      {
+        "threshold": 3000,
+        "high_cogs_liquidation_rate": 14.29,
+        "low_cogs_liquidation_rate": 29.99,
+        "difference": -15.7
+      }
+    ],
+    "q12_reason_by_cogs": {
+      "Destroy - NRS": {
+        "mean": 1830.0,
+        "sum": 3660.0,
+        "count": 2
+      },
+      "Wrong Item Description - NRM": {
+        "mean": 1430.733888888889,
+        "sum": 25753.21,
+        "count": 18
+      },
+      "Liquidate - Functional Issues - NRF": {
+        "mean": 1332.0240740740742,
+        "sum": 179823.25,
+        "count": 135
+      },
+      "Liquidate - Advanced Fraud - Fake - Not Authentic - NRD": {
+        "mean": 1308.3841860465116,
+        "sum": 112521.04,
+        "count": 86
+      },
+      "Liquidate - Cosmetic - NRC": {
+        "mean": 1294.4902325581395,
+        "sum": 55663.08,
+        "count": 43
+      },
+      "Liquidate - Fraud - Lower Value Item / Junk / Empty Box - NRW": {
+        "mean": 1105.99,
+        "sum": 1105.99,
+        "count": 1
+      }
+    },
+    "q14_works_check_success": {
+      "passed_works_sellable_rate": 98.79,
+      "failed_works_liquidation_rate": 63.04,
+      "total_passed_works": 579,
+      "total_failed_works": 257
+    },
+    "q15_fraud_recovery": {
+      "total_fraud_liquidations": 87,
+      "fraud_total_value": 113627.03,
+      "high_cogs_fraud_count": 3,
+      "high_cogs_fraud_value": 8950.51
+    },
+    "q16_category_value_impact": {
+      "top_15_by_value": {
+        "7004 Robotic Vacuums & Accessories": {
+          "total_value_lost": 63607.450000000004,
+          "avg_cogs": 1135.8473214285716,
+          "count": 56
+        },
+        "Armchairs": {
+          "total_value_lost": 48694.84,
+          "avg_cogs": 1132.4381395348837,
+          "count": 43
+        },
+        "5801 Portable Air Conditioners": {
+          "total_value_lost": 47209.99,
+          "avg_cogs": 1627.9306896551723,
+          "count": 29
+        },
+        "4602 Espresso Machines": {
+          "total_value_lost": 47122.18,
+          "avg_cogs": 1570.7393333333334,
+          "count": 30
+        },
+        "0510 LCD Monitors": {
+          "total_value_lost": 35407.85,
+          "avg_cogs": 1311.4018518518517,
+          "count": 27
+        },
+        "4210 Audio Receivers, Amplifiers, and Preamplifiers": {
+          "total_value_lost": 32879.98,
+          "avg_cogs": 1494.5445454545456,
+          "count": 22
+        },
+        "52020 Cleaning Tools": {
+          "total_value_lost": 16372.34,
+          "avg_cogs": 1091.4893333333334,
+          "count": 15
+        },
+        "0509 Gaming Monitors": {
+          "total_value_lost": 15409.880000000001,
+          "avg_cogs": 1284.1566666666668,
+          "count": 12
+        },
+        "46215 Lawn Mowers": {
+          "total_value_lost": 10269.94,
+          "avg_cogs": 1711.6566666666668,
+          "count": 6
+        },
+        "0911 Routers": {
+          "total_value_lost": 7971.9400000000005,
+          "avg_cogs": 1328.6566666666668,
+          "count": 6
+        },
+        "4601 Coffee Machines": {
+          "total_value_lost": 5190.4400000000005,
+          "avg_cogs": 1297.6100000000001,
+          "count": 4
+        },
+        "7404 Boating Electrical Products": {
+          "total_value_lost": 5126.75,
+          "avg_cogs": 2563.375,
+          "count": 2
+        },
+        "2300 Synthesizers and Workstations": {
+          "total_value_lost": 4432.67,
+          "avg_cogs": 1108.1675,
+          "count": 4
+        },
+        "5100 DJ Equipment": {
+          "total_value_lost": 4066.04,
+          "avg_cogs": 1355.3466666666666,
+          "count": 3
+        },
+        "0209 Gaming Laptops": {
+          "total_value_lost": 3181.0,
+          "avg_cogs": 1590.5,
+          "count": 2
+        }
+      },
+      "total_value_lost_all_categories": 378526.57
+    },
+    "q17_exception_candidates": {
+      "high_cogs_liquidated_count": 9,
+      "high_cogs_liquidated_value": 24335.74,
+      "high_cogs_works_passed_count": 0,
+      "high_cogs_works_passed_value": 0
+    },
+    "q18_processing_time": {
+      "processing_days_correlation": 0.0464,
+      "days_to_ship_correlation": 0.0837,
+      "liquidation_by_time_bin": {
+        "0 days": {
+          "liquidated": 172,
+          "total": 533,
+          "rate": 0.3227016885553471,
+          "rate_pct": 32.270168855534706
+        },
+        "1 day": {
+          "liquidated": 31,
+          "total": 137,
+          "rate": 0.22627737226277372,
+          "rate_pct": 22.62773722627737
+        },
+        "2-3 days": {
+          "liquidated": 27,
+          "total": 115,
+          "rate": 0.23478260869565218,
+          "rate_pct": 23.47826086956522
+        },
+        "4-7 days": {
+          "liquidated": 20,
+          "total": 80,
+          "rate": 0.25,
+          "rate_pct": 25.0
+        },
+        "8-30 days": {
+          "liquidated": 26,
+          "total": 69,
+          "rate": 0.37681159420289856,
+          "rate_pct": 37.68115942028986
+        },
+        "30+ days": {
+          "liquidated": 9,
+          "total": 20,
+          "rate": 0.45,
+          "rate_pct": 45.0
+        }
+      }
+    },
+    "q19_false_positive": {
+      "top_15_false_positive_checks": [
+        {
+          "check_name": "Does_the_item_have_scratches_or_dents_larger_than_",
+          "total_failures": 184,
+          "false_positives": 164,
+          "false_positive_rate": 89.13043478260869
+        },
+        {
+          "check_name": "Is_the_item_factory_Sealed_El_art_culo_est_sellado",
+          "total_failures": 631,
+          "false_positives": 538,
+          "false_positive_rate": 85.26148969889064
+        },
+        {
+          "check_name": "Did_you_add_a_Manual_A_adiste_el_manual",
+          "total_failures": 552,
+          "false_positives": 459,
+          "false_positive_rate": 83.15217391304348
+        },
+        {
+          "check_name": "Does_it_need_Parts_Necesita_partes",
+          "total_failures": 538,
+          "false_positives": 430,
+          "false_positive_rate": 79.92565055762083
+        },
+        {
+          "check_name": "Does_the_item_have_scratches_or_dents_larger_that_",
+          "total_failures": 632,
+          "false_positives": 503,
+          "false_positive_rate": 79.58860759493672
+        },
+        {
+          "check_name": "Did_you_use_Harvested_Parts_Has_usado_Harvested_Pa",
+          "total_failures": 404,
+          "false_positives": 317,
+          "false_positive_rate": 78.46534653465346
+        },
+        {
+          "check_name": "Does_the_item_need_to_be_Destroyed_El_art_culo_nec",
+          "total_failures": 858,
+          "false_positives": 667,
+          "false_positive_rate": 77.73892773892774
+        },
+        {
+          "check_name": "Is_the_Item_Factory_Sealed_El_art_culo_est_sellado",
+          "total_failures": 860,
+          "false_positives": 666,
+          "false_positive_rate": 77.44186046511628
+        },
+        {
+          "check_name": "Are_you_using_the_Original_Box_Est_usando_la_caja_",
+          "total_failures": 378,
+          "false_positives": 285,
+          "false_positive_rate": 75.39682539682539
+        },
+        {
+          "check_name": "Did_you_do_a_Factory_Reset_Hiciste_un_restablecimi",
+          "total_failures": 525,
+          "false_positives": 392,
+          "false_positive_rate": 74.66666666666667
+        },
+        {
+          "check_name": "Complete_T_Rex_Liquidation_Completa_el_proceso_de_",
+          "total_failures": 336,
+          "false_positives": 241,
+          "false_positive_rate": 71.72619047619048
+        },
+        {
+          "check_name": "Open_T_Rex_Abrir_T_Rex",
+          "total_failures": 323,
+          "false_positives": 230,
+          "false_positive_rate": 71.20743034055728
+        },
+        {
+          "check_name": "Send_to_Level_3_Enviar_a_Nivel_3",
+          "total_failures": 332,
+          "false_positives": 235,
+          "false_positive_rate": 70.78313253012048
+        },
+        {
+          "check_name": "Does_it_need_Sanization_Necesita_sanitizaci_n",
+          "total_failures": 328,
+          "false_positives": 232,
+          "false_positive_rate": 70.73170731707317
+        },
+        {
+          "check_name": "Is_it_IOG_Es_IOG",
+          "total_failures": 954,
+          "false_positives": 669,
+          "false_positive_rate": 70.12578616352201
+        }
+      ]
+    },
+    "q21_fraud_check_impact": {
+      "fraud_failed_in_liquidated": 112,
+      "fraud_failed_percentage": 39.3,
+      "fraud_failed_value": 148034.2,
+      "liquidated_fraud_rate": 39.3,
+      "sellable_fraud_rate": 36.02
+    },
+    "q22_working_items_liquidated": {
+      "count": 7,
+      "percentage_of_liquidations": 2.46,
+      "total_value": 8918.89,
+      "avg_cogs": 1274.13,
+      "high_cogs_count": 0,
+      "high_cogs_value": 0
+    },
+    "q23_failure_count": {
+      "liquidated_mean_failures": 12.73,
+      "sellable_mean_failures": 13.59,
+      "liquidation_by_failure_range": {
+        "0-5": {
+          "liquidated": 119,
+          "total": 125,
+          "rate": 0.952,
+          "rate_pct": 95.19999999999999
+        },
+        "6-10": {
+          "liquidated": 58,
+          "total": 480,
+          "rate": 0.12083333333333333,
+          "rate_pct": 12.083333333333334
+        },
+        "11-15": {
+          "liquidated": 0,
+          "total": 1,
+          "rate": 0.0,
+          "rate_pct": 0.0
+        },
+        "16-20": {
+          "liquidated": 15,
+          "total": 22,
+          "rate": 0.6818181818181818,
+          "rate_pct": 68.18181818181817
+        },
+        "21-30": {
+          "liquidated": 91,
+          "total": 324,
+          "rate": 0.2808641975308642,
+          "rate_pct": 28.08641975308642
+        },
+        "30+": {
+          "liquidated": 2,
+          "total": 2,
+          "rate": 1.0,
+          "rate_pct": 100.0
+        }
+      }
+    },
+    "q24_inconsistent_products": {
+      "inconsistent_products_count": 35,
+      "top_20_inconsistent": {
+        "[B0DZXFNVQ2] ECOVACS DEEBOT X9 PRO OMNI": {
+          "liquidated_count": 17,
+          "total_count": 171,
+          "liquidation_rate": 0.09941520467836257,
+          "avg_cogs": 1152.881812865497
+        },
+        "[B0C1T4W797] Breville BES881BSS1BNA1": {
+          "liquidated_count": 6,
+          "total_count": 89,
+          "liquidation_rate": 0.06741573033707865,
+          "avg_cogs": 1108.8534831460674
+        },
+        "[B0BBYSLL3V] Denon AVRX3800H": {
+          "liquidated_count": 9,
+          "total_count": 32,
+          "liquidation_rate": 0.28125,
+          "avg_cogs": 1052.125
+        },
+        "[B073TYYM91] Breville BES990BSS/F": {
+          "liquidated_count": 6,
+          "total_count": 24,
+          "liquidation_rate": 0.25,
+          "avg_cogs": 1916.16
+        },
+        "[B0D9ZRH61T] iRobot X085020": {
+          "liquidated_count": 5,
+          "total_count": 20,
+          "liquidation_rate": 0.25,
+          "avg_cogs": 1147.49
+        },
+        "[B0CV26XVMD] ASUS PG32UCDM": {
+          "liquidated_count": 3,
+          "total_count": 19,
+          "liquidation_rate": 0.15789473684210525,
+          "avg_cogs": 1130.0
+        },
+        "[B00J19PT2K] Breville BES980XL": {
+          "liquidated_count": 5,
+          "total_count": 18,
+          "liquidation_rate": 0.2777777777777778,
+          "avg_cogs": 1621.36
+        },
+        "[B08DYW417W] iRobot 4720096": {
+          "liquidated_count": 15,
+          "total_count": 18,
+          "liquidation_rate": 0.8333333333333334,
+          "avg_cogs": 1036.92
+        },
+        "[B0DR8NJMCJ] ECOVACS DEEBOT X8 PRO OMNI": {
+          "liquidated_count": 2,
+          "total_count": 18,
+          "liquidation_rate": 0.1111111111111111,
+          "avg_cogs": 1066.49
+        },
+        "[B0BHX2K5XL] Denon AVRX4800H": {
+          "liquidated_count": 7,
+          "total_count": 17,
+          "liquidation_rate": 0.4117647058823529,
+          "avg_cogs": 1669.5294117647059
+        },
+        "[B08H5X1WZ9] Fluidra 9650IQ": {
+          "liquidated_count": 8,
+          "total_count": 16,
+          "liquidation_rate": 0.5,
+          "avg_cogs": 1099.0
+        },
+        "[B0DJBR56GX] YITAHOME MAYIHLJpqD": {
+          "liquidated_count": 13,
+          "total_count": 15,
+          "liquidation_rate": 0.8666666666666667,
+          "avg_cogs": 1830.0
+        },
+        "[B0DYGDKQ85] Breville BES985BSS1BNA1": {
+          "liquidated_count": 2,
+          "total_count": 12,
+          "liquidation_rate": 0.16666666666666666,
+          "avg_cogs": 1559.96
+        },
+        "[B0CV1Y7NLT] LG 32GS95UE-B.AUS": {
+          "liquidated_count": 5,
+          "total_count": 11,
+          "liquidation_rate": 0.45454545454545453,
+          "avg_cogs": 1259.99
+        },
+        "[B0DM6SHQTN] ASUS PG27UCDM": {
+          "liquidated_count": 2,
+          "total_count": 10,
+          "liquidation_rate": 0.2,
+          "avg_cogs": 1024.5
+        },
+        "[B0C415HQPX] iRobot C975020": {
+          "liquidated_count": 5,
+          "total_count": 9,
+          "liquidation_rate": 0.5555555555555556,
+          "avg_cogs": 1147.49
+        },
+        "[B0BX9DJS7R] Fluidra FFREEDOM": {
+          "liquidated_count": 4,
+          "total_count": 9,
+          "liquidation_rate": 0.4444444444444444,
+          "avg_cogs": 1014.9299999999998
+        },
+        "[B0CWYJH3MQ] Bosch TPU60309": {
+          "liquidated_count": 1,
+          "total_count": 8,
+          "liquidation_rate": 0.125,
+          "avg_cogs": 1268.1875
+        },
+        "[B09ZH3WM47] Samsung LS32BG852NNXGO": {
+          "liquidated_count": 4,
+          "total_count": 8,
+          "liquidation_rate": 0.5,
+          "avg_cogs": 1169.99
+        },
+        "[B0BTWB72RM] Pioneer DJ DDJ-FLX10": {
+          "liquidated_count": 2,
+          "total_count": 8,
+          "liquidation_rate": 0.25,
+          "avg_cogs": 1458.02
+        }
+      }
+    },
+    "q25_recovery_potential": {
+      "current_recovery_potential_items": 7,
+      "current_recovery_potential_value": 8918.89,
+      "high_cogs_recovery_items": 0,
+      "high_cogs_recovery_value": 0,
+      "relaxed_criteria_potential_items": 9,
+      "relaxed_criteria_potential_value": 24335.74
+    },
+    "check_combinations": [
+      {
+        "check1": "Does_the_item_work_El_art_culo_funciona",
+        "check2": "Is_it_Fraud_Es_fraude",
+        "both_failed_count": 19,
+        "percentage": 6.67
+      },
+      {
+        "check1": "Does_the_item_work_El_art_culo_funciona",
+        "check2": "Does_the_item_have_scratches_or_dents_larger_that_",
+        "both_failed_count": 123,
+        "percentage": 43.16
+      },
+      {
+        "check1": "Does_the_item_work_El_art_culo_funciona",
+        "check2": "Is_the_item_Repairable_El_art_culo_es_reparable",
+        "both_failed_count": 142,
+        "percentage": 49.82
+      },
+      {
+        "check1": "Is_it_Fraud_Es_fraude",
+        "check2": "Does_the_item_have_scratches_or_dents_larger_that_",
+        "both_failed_count": 8,
+        "percentage": 2.81
+      },
+      {
+        "check1": "Is_it_Fraud_Es_fraude",
+        "check2": "Is_the_item_Repairable_El_art_culo_es_reparable",
+        "both_failed_count": 19,
+        "percentage": 6.67
+      },
+      {
+        "check1": "Does_the_item_have_scratches_or_dents_larger_that_",
+        "check2": "Is_the_item_Repairable_El_art_culo_es_reparable",
+        "both_failed_count": 107,
+        "percentage": 37.54
+      }
+    ],
+    "always_liquidate_products": {
+      "count": 12,
+      "products": {
+        "[B0DKD2P98G] YOPTO YOPTO": {
+          "liquidated_count": 11,
+          "total_count": 11,
+          "liquidation_rate": 1.0
+        },
+        "[B0DLNPJHR6] MAYIHCAlTw": {
+          "liquidated_count": 11,
+          "total_count": 11,
+          "liquidation_rate": 1.0
+        },
+        "[B0FN7LPZRH] YOPTO YOPTO": {
+          "liquidated_count": 7,
+          "total_count": 7,
+          "liquidation_rate": 1.0
+        },
+        "[B0F82FCT4T] YOPTO YOPTO": {
+          "liquidated_count": 6,
+          "total_count": 6,
+          "liquidation_rate": 1.0
+        },
+        "[B0BZ47K42S] HONBAY SCR192-A7B2C-B": {
+          "liquidated_count": 5,
+          "total_count": 5,
+          "liquidation_rate": 1.0
+        },
+        "[B0BLF2RWNV] SAMSUNG FBASAMLS34BG850S": {
+          "liquidated_count": 3,
+          "total_count": 3,
+          "liquidation_rate": 1.0
+        },
+        "[B09VQ48X5Q] Dell AW3423DW Gaming Monitor": {
+          "liquidated_count": 2,
+          "total_count": 2,
+          "liquidation_rate": 1.0
+        },
+        "[B0B924GWLJ] LG 34WQ73A-B": {
+          "liquidated_count": 2,
+          "total_count": 2,
+          "liquidation_rate": 1.0
+        },
+        "[B0BVB5PTDK] roborock S8 Pro Ultra": {
+          "liquidated_count": 2,
+          "total_count": 2,
+          "liquidation_rate": 1.0
+        },
+        "[B0DKD2F2KP] YOPTO YOPTO": {
+          "liquidated_count": 2,
+          "total_count": 2,
+          "liquidation_rate": 1.0
+        },
+        "[B0C48D7Q22] Samsung FBASAMLS49CG954S": {
+          "liquidated_count": 2,
+          "total_count": 2,
+          "liquidation_rate": 1.0
+        },
+        "[B0CWKVV3HZ] HONBAY SCR192-A8B4C-B": {
+          "liquidated_count": 2,
+          "total_count": 2,
+          "liquidation_rate": 1.0
+        }
+      }
+    },
+    "category_patterns": {
+      "high_liquidation_categories": {
+        "Armchairs": {
+          "liquidated_count": 43,
+          "total_count": 46,
+          "liquidation_rate": 0.9347826086956522,
+          "liquidation_rate_pct": 93.47826086956522
+        },
+        "5801 Portable Air Conditioners": {
+          "liquidated_count": 29,
+          "total_count": 34,
+          "liquidation_rate": 0.8529411764705882,
+          "liquidation_rate_pct": 85.29411764705883
+        }
+      },
+      "low_liquidation_categories": {
+        "4300 Computer Music": {
+          "liquidated_count": 0,
+          "total_count": 11,
+          "liquidation_rate": 0.0,
+          "liquidation_rate_pct": 0.0
+        },
+        "Heat Guns": {
+          "liquidated_count": 1,
+          "total_count": 10,
+          "liquidation_rate": 0.1,
+          "liquidation_rate_pct": 10.0
+        }
+      }
+    },
+    "primary_drivers": {
+      "functional_issues": {
+        "count": 135,
+        "percentage": 47.37,
+        "value": 179823.25
+      },
+      "works_check_failed": {
+        "count": 278,
+        "percentage": 97.54,
+        "value": 369607.68
+      },
+      "fraud_issues": {
+        "count": 87,
+        "percentage": 30.53,
+        "value": 113627.03
+      }
+    },
+    "secondary_factors": {
+      "high_liquidation_categories_count": 13,
+      "always_liquidate_products_count": 48
+    },
+    "systemic_issues": [
+      {
+        "issue": "Working items liquidated",
+        "count": 7,
+        "value": 8918.89
+      },
+      {
+        "issue": "High COGS items liquidated",
+        "count": 9,
+        "value": 24335.74
+      }
+    ],
+    "process_inefficiencies": [
+      "High check volume per order",
+      "Inconsistent outcomes for same products",
+      "False positives in works check"
+    ]
+  }
+}

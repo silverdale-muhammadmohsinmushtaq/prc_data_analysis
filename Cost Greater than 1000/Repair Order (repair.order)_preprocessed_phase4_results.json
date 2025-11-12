@@ -1,0 +1,59 @@
+{
+  "phase": "Phase 4: Feature Engineering",
+  "timestamp": "2025-11-12T01:29:35.924856",
+  "file_path": "c:\\Silverdale QA\\BPMN XML\\Cost Greater than 1000\\Repair Order (repair.order)_preprocessed.csv",
+  "features_created": {
+    "order_level": [
+      "category_group",
+      "high_value_flag"
+    ],
+    "check_aggregations": [
+      "total_checks",
+      "failed_checks_count",
+      "passed_checks_count",
+      "failure_rate"
+    ],
+    "check_flags": {
+      "features": [
+        "fraud_check_failed",
+        "cosmetic_check_failed",
+        "repairable_check_failed",
+        "works_check_passed",
+        "factory_sealed_check_passed"
+      ],
+      "fraud_checks_found": 2,
+      "cosmetic_checks_found": 2,
+      "repairable_checks_found": 1,
+      "works_checks_found": 1,
+      "factory_sealed_checks_found": 2
+    },
+    "derived_metrics": [
+      "value_lost",
+      "recovery_potential",
+      "days_to_ship",
+      "check_efficiency"
+    ]
+  },
+  "output_file": "c:\\Silverdale QA\\BPMN XML\\Cost Greater than 1000\\Repair Order (repair.order)_preprocessed_features.csv",
+  "total_features": 18,
+  "feature_columns": [
+    "is_liquidated",
+    "cogs_bin",
+    "processing_days",
+    "category_group",
+    "high_value_flag",
+    "total_checks",
+    "failed_checks_count",
+    "passed_checks_count",
+    "failure_rate",
+    "fraud_check_failed",
+    "cosmetic_check_failed",
+    "repairable_check_failed",
+    "works_check_passed",
+    "factory_sealed_check_passed",
+    "value_lost",
+    "recovery_potential",
+    "days_to_ship",
+    "check_efficiency"
+  ]
+}

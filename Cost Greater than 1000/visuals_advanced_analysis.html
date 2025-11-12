@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Analysis Questions Visualizations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            color: #2d3748;
+            line-height: 1.7;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .question-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            border-left: 6px solid #667eea;
+        }
+
+        .question-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .question-header h3 {
+            color: white;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .answer-summary {
+            background: #f7fafc;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 5px solid #667eea;
+        }
+
+        .answer-summary h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .answer-summary ul {
+            margin-left: 25px;
+            margin-top: 10px;
+        }
+
+        .answer-summary li {
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 1.05em;
+        }
+
+        .visual-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .visual-container h4 {
+            color: #764ba2;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .visual-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+        }
+
+        .visual-container p {
+            color: #666;
+            font-style: italic;
+            font-size: 1.05em;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-card .value {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-card .label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔬 Advanced Analysis Questions Visualizations</h1>
+            <p>Deep Dive Analysis - Questions Q8 through Q25</p>
+            <a href="EXECUTIVE_DASHBOARD.html" class="back-btn">← Back to Dashboard</a>
+        </header>
+
+        <!-- Q8 -->
+        <section id="q8" class="question-section">
+            <div class="question-header">
+                <h3>Q8: Time Analysis - Processing Duration</h3>
+            </div>
+            
+            <div class="answer-summary">
+                <h4>Answer Summary</h4>
+                <ul>
+                    <li><strong>Liquidated Items:</strong> 4.01 days average processing time</li>
+                    <li><strong>Sellable Items:</strong> 3.04 days average processing time</li>
+                    <li><strong>Difference:</strong> 0.97 days longer for liquidated items</li>
+                    <li><strong>Insight:</strong> Slightly longer processing for liquidated items, but not a major factor</li>
+                    <li><strong>Correlation:</strong> Processing time has minimal impact on liquidation decisions</li>
+                </ul>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="value">4.01</div>
+                    <div class="label">Days (Liquidated)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">3.04</div>
+                    <div class="label">Days (Sellable)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">0.97</div>
+                    <div class="label">Days Difference</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Q9 -->
+        <section id="q9" class="question-section">
+            <div class="question-header">
+                <h3>Q9: Check Correlation - Strongest Predictors</h3>
+            </div>
+            
+            <div class="answer-summary">
+                <h4>Answer Summary</h4>
+                <ul>
+                    <li><strong>Strongest Predictor:</strong> "Is it the expected item?" (0.5125 correlation)</li>
+                    <li><strong>Second:</strong> "DONE" check (0.4988 correlation)</li>
+                    <li><strong>Third:</strong> "Does it Work?" (0.4399 correlation)</li>
+                    <li><strong>Finding:</strong> 15 checks show strong to moderate correlation with liquidation</li>
+                    <li><strong>Action:</strong> Focus improvement efforts on top correlated checks</li>
+                </ul>
+            </div>
+
+            <div class="visual-container">
+                <h4>Check Failure Rates Comparison</h4>
+                <img src="Phase8_Visualizations/V05_Check_Failure_Rates_Comparison.png" alt="Check Failure Rates">
+                <p>Top checks showing highest correlation with liquidation outcomes</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>Check Failure Rate Heatmap</h4>
+                <img src="Phase8_Visualizations/V13_Check_Failure_Rate_Heatmap.png" alt="Check Heatmap">
+                <p>Heatmap showing correlation patterns between checks and liquidation</p>
+            </div>
+        </section>
+
+        <!-- Q10 -->
+        <section id="q10" class="question-section">
+            <div class="question-header">
+                <h3>Q10: Product Consistency - Always Liquidate Products</h3>
+            </div>
+            
+            <div class="answer-summary">
+                <h4>Answer Summary</h4>
+                <ul>
+                    <li><strong>Count:</strong> 12 products have 100% liquidation rate (min 2 orders)</li>
+                    <li><strong>Top Product:</strong> YOPTO YOPTO variants (multiple SKUs)</li>
+                    <li><strong>Total Value Lost:</strong> $69,223 from these products</li>
+                    <li><strong>Finding:</strong> These products may need exception handling or alternative routing</li>
+                    <li><strong>Action:</strong> Investigate why these products always liquidate</li>
+                </ul>
+            </div>
+
+            <div class="visual-container">
+                <h4>High Liquidation Rate Products</h4>
+                <img src="Phase8_Visualizations/V11_High_Liquidation_Rate_Products.png" alt="High Rate Products">
+                <p>Products with >=50% liquidation rate, including 100% rate products</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>Top Products by Liquidation</h4>
+                <img src="Phase8_Visualizations/V10_Top_Products_by_Liquidation.png" alt="Top Products">
+                <p>Products with highest absolute liquidation counts</p>
+            </div>
+        </section>
+
+        <!-- Q11 -->
+        <section id="q11" class="question-section">
+            <div class="question-header">
+                <h3>Q11: COGS Threshold Analysis</h3>
+            </div>
+            
+            <div class="answer-summary">
+                <h4>Answer Summary</h4>
+                <ul>
+                    <li><strong>$1,500+:</strong> 32.7% liquidation rate (70 liquidated, $128,356 value)</li>
+                    <li><strong>$2,000+:</strong> 26.5% liquidation rate (9 liquidated, $24,336 value)</li>
+                    <li><strong>$2,500+:</strong> 31.6% liquidation rate (6 liquidated, $17,805 value)</li>
+                    <li><strong>$3,000+:</strong> 14.3% liquidation rate (1 liquidated, $4,124 value) - LOWEST</li>
+                    <li><strong>Insight:</strong> Higher COGS items have lower liquidation rates</li>
+                </ul>
+            </div>
+
+            <div class="visual-container">
+                <h4>Liquidation Rate by COGS Bin</h4>
+                <img src="Phase8_Visualizations/V04_Liquidation_Rate_by_COGS_Bin.png" alt="COGS Bin Analysis">
+                <p>Liquidation rates across different COGS thresholds</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>High COGS Patterns</h4>
+                <img src="Phase6_Graphs/Q2_High_COGS_Patterns.png" alt="High COGS Patterns">
+                <p>Detailed analysis of high COGS items liquidation patterns</p>
+            </div>
+        </section>
+
+        <!-- Q12 -->
+        <section id="q12" class="question-section">
+            <div class="question-header">
+                <h3>Q12: Liquidation Reason by COGS</h3>
+            </div>
+            
+            <div class="answer-summary">
+                <h4>Answer Summary</h4>
+                <ul>
+                    <li><strong>Highest Avg COGS:</strong> Destroy - NRS ($1,830 average)</li>
+                    <li><strong>Most Value:</strong> Functional Issues ($179,823 total)</li>
+                    <li><strong>Second:</strong> Fraud ($113,627 total)</li>
+                    <li><strong>Third:</strong> Cosmetic ($55,663 total)</li>
+                    <li><strong>Priority:</strong> Focus on high-value reasons first</li>
+                </ul>
+            </div>
+
+            <div class="visual-container">
+                <h4>Value Lost by Reason</h4>
+                <img src="Phase8_Visualizations/V08_Value_Lost_by_Reason.png" alt="Value Lost by Reason">
+                <p>Total value lost broken down by liquidation reason</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>Liquidation Reasons Breakdown</h4>
+                <img src="Phase8_Visualizations/V06_Liquidation_Reasons_Breakdown.png" alt="Reasons Breakdown">
+                <p>Distribution of liquidation reasons with financial impact</p>
+            </div>
+        </section>
+
+        <!-- Q14 -->
+        <section id="q14" class="question-section">
+            <div class="question-header">
+                <h3>Q14: "Does it Work?" Success Rate</h3>
+            </div>
+            
+            <div class="answer-summary">
+                <h4>Answer Summary</h4>
+                <ul>
+                    <li><strong>Items That PASSED:</strong> 579 total, 572 sellable (98.8% success rate)</li>
+                    <li><strong>Items That FAILED:</strong> 257 total, 162 liquidated (63.0% liquidation rate)</li>
+                    <li><strong>Key Finding:</strong> This check is a strong predictor - 72.9 percentage point difference</li>
+                    <li><strong>Verification:</strong> Check is working correctly as a predictor</li>
+                    <li><strong>Action:</strong> Ensure this check is consistently applied</li>
+                </ul>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="value">98.8%</div>
+                    <div class="label">Success Rate (Passed)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">63.0%</div>
+                    <div class="label">Liquidation Rate (Failed)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">72.9</div>
+                    <div class="label">Percentage Points Difference</div>
+                </div>
+            </div>
+
+            <div class="visual-container">
+                <h4>Check Failure Rates Comparison</h4>
+                <img src="Phase8_Visualizations/V05_Check_Failure_Rates_Comparison.png" alt="Check Failure Rates">
+                <p>"Does it Work?" check shows highest correlation with liquidation</p>
+            </div>
+        </section>
+
+        <!-- Q15 -->
+        <section id="q15" class="question-section">
+            <div class="question-header">
+                <h3>Q15: Fraud Recovery Potential</h3>
+            </div>
+            
+            <div class="answer-summary">
+                <h4>Answer Summary</h4>
+                <ul>
+                    <li><strong>Total Fraud Liquidations:</strong> 87 items ($113,627 total value)</li>
+                    <li><strong>High COGS Fraud (>= $2,000):</strong> 3 items ($8,951 potential recovery)</li>
+                    <li><strong>Fraud Items That Passed "Works" Check:</strong> 0 items</li>
+                    <li><strong>Finding:</strong> Fraud detection appears accurate - no working items marked as fraud</li>
+                    <li><strong>Action:</strong> Review high COGS fraud items for potential false positives</li>
+                </ul>
+            </div>
+
+            <div class="visual-container">
+                <h4>Liquidation Reasons Breakdown</h4>
+                <img src="Phase8_Visualizations/V06_Liquidation_Reasons_Breakdown.png" alt="Reasons Breakdown">
+                <p>Fraud-related liquidations represent 30.5% of all liquidations</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>Value Lost by Reason</h4>
+                <img src="Phase8_Visualizations/V08_Value_Lost_by_Reason.png" alt="Value Lost by Reason">
+                <p>Financial impact of fraud-related liquidations</p>
+            </div>
+        </section>
+
+        <!-- Q16 -->
+        <section id="q16" class="question-section">
+            <div class="question-header">
+                <h3>Q16: Category Value Impact</h3>
+            </div>
+            
+            <div class="answer-summary">
+                <h4>Answer Summary</h4>
+                <ul>
+                    <li><strong>Top Category:</strong> Robotic Vacuums ($63,607 lost, 56 items)</li>
+                    <li><strong>Second:</strong> Armchairs ($48,695 lost, 43 items)</li>
+                    <li><strong>Third:</strong> Portable Air Conditioners ($47,210 lost, 29 items)</li>
+                    <li><strong>Total Value Lost:</strong> $378,527 across all categories</li>
+                    <li><strong>Priority:</strong> Focus improvement on high-value categories</li>
+                </ul>
+            </div>
+
+            <div class="visual-container">
+                <h4>Value Lost by Category</h4>
+                <img src="Phase8_Visualizations/V07_Value_Lost_by_Category.png" alt="Value Lost by Category">
+                <p>Top 15 categories by total dollar value lost to liquidation</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>Category Liquidation Analysis</h4>
+                <img src="Phase3_Graphs/07_Category_Liquidation_Analysis.png" alt="Category Analysis">
+                <p>Detailed category-level analysis showing value impact</p>
+            </div>
+        </section>
+
+        <!-- Q17 -->
+        <section id="q17" class="question-section">
+            <div class="question-header">
+                <h3>Q17: Exception Candidates - High COGS Items</h3>
+            </div>
+            
+            <div class="answer-summary">
+                <h4>Answer Summary</h4>
+                <ul>
+                    <li><strong>High COGS Liquidated:</strong> 9 items with COGS >= $2,000 ($24,336 value)</li>
+                    <li><strong>High COGS That Passed "Works" Check:</strong> 0 items (good sign)</li>
+                    <li><strong>Finding:</strong> High COGS items that work are NOT being liquidated</li>
+                    <li><strong>Exception Candidates:</strong> High COGS items that failed other checks</li>
+                    <li><strong>Action:</strong> Implement exception handling for high COGS items</li>
+                </ul>
+            </div>
+
+            <div class="visual-container">
+                <h4>High COGS Patterns</h4>
+                <img src="Phase6_Graphs/Q2_High_COGS_Patterns.png" alt="High COGS Patterns">
+                <p>Analysis showing high COGS items liquidation patterns</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>Liquidation Rate by COGS Bin</h4>
+                <img src="Phase8_Visualizations/V04_Liquidation_Rate_by_COGS_Bin.png" alt="COGS Bin">
+                <p>Lower liquidation rates for higher COGS items support exception handling</p>
+            </div>
+        </section>
+
+        <!-- Q18 -->
+        <section id="q18" class="question-section">
+            <div class="question-header">
+                <h3>Q18: Processing Time Impact</h3>
+            </div>
+            
+            <div class="answer-summary">
+                <h4>Answer Summary</h4>
+                <ul>
+                    <li><strong>Correlation:</strong> 0.0464 (negligible) - Processing days vs Liquidation</li>
+                    <li><strong>Days to Ship Correlation:</strong> 0.0837 (very weak)</li>
+                    <li><strong>30+ Days Processing:</strong> 45.0% liquidation rate</li>
+                    <li><strong>0 Days Processing:</strong> 32.3% liquidation rate</li>
+                    <li><strong>Insight:</strong> Longer processing may contribute slightly, but not a major factor</li>
+                </ul>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="value">0.0464</div>
+                    <div class="label">Correlation (Processing)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">0.0837</div>
+                    <div class="label">Correlation (Shipping)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">45.0%</div>
+                    <div class="label">Rate (30+ Days)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Q19 -->
+        <section id="q19" class="question-section">
+            <div class="question-header">
+                <h3>Q19: False Positive Rate - Checks Too Strict</h3>
+            </div>
+            
+            <div class="answer-summary">
+                <h4>Answer Summary</h4>
+                <ul>
+                    <li><strong>Top False Positive:</strong> Scratches/dents checks (89.1% false positive rate)</li>
+                    <li><strong>Second:</strong> Factory sealed checks (85.3% false positive rate)</li>
+                    <li><strong>Third:</strong> Manual added check (83.2% false positive rate)</li>
+                    <li><strong>Finding:</strong> Cosmetic checks have very high false positive rates</li>
+                    <li><strong>Action:</strong> Review and relax cosmetic check criteria</li>
+                </ul>
+            </div>
+
+            <div class="visual-container">
+                <h4>Check Failure Rates Comparison</h4>
+                <img src="Phase8_Visualizations/V05_Check_Failure_Rates_Comparison.png" alt="Check Failure Rates">
+                <p>Shows checks with high failure rates but low liquidation correlation (false positives)</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>Check Comparison</h4>
+                <img src="Phase3_Graphs/09_Check_Comparison.png" alt="Check Comparison">
+                <p>Detailed comparison showing false positive patterns</p>
+            </div>
+        </section>
+
+        <!-- Q21 -->
+        <section id="q21" class="question-section">
+            <div class="question-header">
+                <h3>Q21: Fraud Check Impact</h3>
+            </div>
+            
+            <div class="answer-summary">
+                <h4>Answer Summary</h4>
+                <ul>
+                    <li><strong>Liquidated Items:</strong> 39.3% failed fraud check</li>
+                    <li><strong>Sellable Items:</strong> 36.0% failed fraud check</li>
+                    <li><strong>Difference:</strong> Only 3.3 percentage points</li>
+                    <li><strong>Finding:</strong> Fraud check is NOT a strong differentiator</li>
+                    <li><strong>Insight:</strong> Fraud detection may need review for accuracy</li>
+                </ul>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="value">39.3%</div>
+                    <div class="label">Liquidated (Fraud Failed)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">36.0%</div>
+                    <div class="label">Sellable (Fraud Failed)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">3.3</div>
+                    <div class="label">Percentage Points</div>
+                </div>
+            </div>
+
+            <div class="visual-container">
+                <h4>Liquidation Reasons</h4>
+                <img src="Phase8_Visualizations/V06_Liquidation_Reasons_Breakdown.png" alt="Reasons">
+                <p>Fraud-related liquidations breakdown</p>
+            </div>
+        </section>
+
+        <!-- Q22 -->
+        <section id="q22" class="question-section">
+            <div class="question-header">
+                <h3>Q22: Working Items Liquidated (Recovery Opportunity)</h3>
+            </div>
+            
+            <div class="answer-summary">
+                <h4>Answer Summary</h4>
+                <ul>
+                    <li><strong>Count:</strong> 7 items that passed "Does it work?" but were liquidated</li>
+                    <li><strong>Percentage:</strong> 2.5% of all liquidations</li>
+                    <li><strong>Value:</strong> $8,919 potential recovery</li>
+                    <li><strong>Reason:</strong> All marked as "Functional Issues - NRF"</li>
+                    <li><strong>Action:</strong> Review why working items are being liquidated</li>
+                </ul>
+            </div>
+
+            <div class="visual-container">
+                <h4>Passed vs Failed Comparison</h4>
+                <img src="Phase6_Graphs/Q3_Passed_Failed_Comparison.png" alt="Passed Failed">
+                <p>Shows items that passed "Does it Work?" but were still liquidated</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>Check Failure Rates</h4>
+                <img src="Phase8_Visualizations/V05_Check_Failure_Rates_Comparison.png" alt="Check Rates">
+                <p>Evidence supporting recovery of working items</p>
+            </div>
+        </section>
+
+        <!-- Q23 -->
+        <section id="q23" class="question-section">
+            <div class="question-header">
+                <h3>Q23: Failure Count Analysis</h3>
+            </div>
+            
+            <div class="answer-summary">
+                <h4>Answer Summary</h4>
+                <ul>
+                    <li><strong>Liquidated:</strong> 12.73 failed checks (mean), 7.00 (median)</li>
+                    <li><strong>Sellable:</strong> 13.59 failed checks (mean), 8.00 (median)</li>
+                    <li><strong>Counter-intuitive:</strong> Sellable items have MORE failed checks on average</li>
+                    <li><strong>Finding:</strong> It's not about quantity, but which specific checks fail</li>
+                    <li><strong>Insight:</strong> Decision complexity is similar for both outcomes</li>
+                </ul>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="value">12.73</div>
+                    <div class="label">Failed (Liquidated)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">13.59</div>
+                    <div class="label">Failed (Sellable)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">-0.86</div>
+                    <div class="label">Difference</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Q24 -->
+        <section id="q24" class="question-section">
+            <div class="question-header">
+                <h3>Q24: Inconsistent Products</h3>
+            </div>
+            
+            <div class="answer-summary">
+                <h4>Answer Summary</h4>
+                <ul>
+                    <li><strong>Count:</strong> 35 products have inconsistent outcomes (min 5 orders)</li>
+                    <li><strong>Top Product:</strong> ECOVACS DEEBOT X9 PRO OMNI (17 liquidated, 154 sellable)</li>
+                    <li><strong>Finding:</strong> Same products have different outcomes - criteria inconsistency</li>
+                    <li><strong>Impact:</strong> Decision criteria may be inconsistently applied</li>
+                    <li><strong>Action:</strong> Standardize decision criteria for these products</li>
+                </ul>
+            </div>
+
+            <div class="visual-container">
+                <h4>Product Analysis</h4>
+                <img src="Phase6_Graphs/Q7_Product_Analysis.png" alt="Product Analysis">
+                <p>Products showing inconsistent outcomes - some liquidate, some sellable</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>Top Products by Liquidation</h4>
+                <img src="Phase8_Visualizations/V10_Top_Products_by_Liquidation.png" alt="Top Products">
+                <p>Products with mixed outcomes highlighted</p>
+            </div>
+        </section>
+
+        <!-- Q25 -->
+        <section id="q25" class="question-section">
+            <div class="question-header">
+                <h3>Q25: Recovery Potential</h3>
+            </div>
+            
+            <div class="answer-summary">
+                <h4>Answer Summary</h4>
+                <ul>
+                    <li><strong>Current Recovery:</strong> $8,919 (7 working items liquidated)</li>
+                    <li><strong>High COGS Exception:</strong> $24,336 (9 high COGS items)</li>
+                    <li><strong>Total Potential:</strong> $33,255 immediate recovery</li>
+                    <li><strong>Annual Potential:</strong> $253,041 (assuming monthly data)</li>
+                    <li><strong>ROI:</strong> 406.1% with 2.4 months payback</li>
+                </ul>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="value">$33K</div>
+                    <div class="label">Immediate Recovery</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">$253K</div>
+                    <div class="label">Annual Potential</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">406%</div>
+                    <div class="label">ROI</div>
+                </div>
+            </div>
+
+            <div class="visual-container">
+                <h4>Value Lost by Category</h4>
+                <img src="Phase8_Visualizations/V07_Value_Lost_by_Category.png" alt="Value Lost">
+                <p>Prioritizing recovery efforts by category value</p>
+            </div>
+
+            <div class="visual-container">
+                <h4>Value Lost by Reason</h4>
+                <img src="Phase8_Visualizations/V08_Value_Lost_by_Reason.png" alt="Value Lost by Reason">
+                <p>Identifying highest impact areas for recovery</p>
+            </div>
+        </section>
+
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="EXECUTIVE_DASHBOARD.html" class="back-btn">← Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Findings Visualizations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            color: #2d3748;
+            line-height: 1.7;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .visual-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        .visual-section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .visual-section h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        .visual-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .visual-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+        }
+
+        .visual-container p {
+            color: #666;
+            font-style: italic;
+            font-size: 1.05em;
+        }
+
+        .finding-info {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 5px solid #667eea;
+        }
+
+        .finding-info h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Key Findings Visualizations</h1>
+            <p>Supporting Evidence for Each Key Finding</p>
+            <a href="EXECUTIVE_DASHBOARD.html" class="back-btn">← Back to Dashboard</a>
+        </header>
+
+        <!-- Finding 1 -->
+        <section id="finding1" class="visual-section">
+            <h2>Finding 1: "Does it Work?" Check is Strongest Predictor</h2>
+            <div class="finding-info">
+                <h4>Key Statistics</h4>
+                <p><strong>97.5%</strong> of liquidated items failed "Does it work?" check</p>
+                <p><strong>1.2%</strong> liquidation rate for items that passed</p>
+                <p><strong>72.9</strong> percentage point difference</p>
+            </div>
+            
+            <div class="visual-container">
+                <h3>Check Failure Rates Comparison</h3>
+                <img src="Phase8_Visualizations/V05_Check_Failure_Rates_Comparison.png" alt="Check Failure Rates Comparison">
+                <p>Comparison showing "Does it Work?" check has highest correlation with liquidation</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Top Checks Causing Liquidations</h3>
+                <img src="Phase8_Visualizations/V12_Top_Checks_Causing_Liquidations.png" alt="Top Checks">
+                <p>"Does it Work?" check appears as one of the top drivers of liquidations</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Quality Checks Analysis</h3>
+                <img src="Phase6_Graphs/Q1_Quality_Checks_Causing_Liquidations.png" alt="Quality Checks">
+                <p>Detailed analysis of quality checks causing liquidations</p>
+            </div>
+        </section>
+
+        <!-- Finding 2 -->
+        <section id="finding2" class="visual-section">
+            <h2>Finding 2: Functional Issues are Primary Reason</h2>
+            <div class="finding-info">
+                <h4>Key Statistics</h4>
+                <p><strong>47.4%</strong> of liquidations due to functional issues</p>
+                <p><strong>$179,823</strong> value lost to functional issues</p>
+                <p>Largest single cause of liquidation</p>
+            </div>
+            
+            <div class="visual-container">
+                <h3>Liquidation Reasons Breakdown</h3>
+                <img src="Phase8_Visualizations/V06_Liquidation_Reasons_Breakdown.png" alt="Liquidation Reasons">
+                <p>Functional Issues represent the largest portion of liquidations</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Value Lost by Reason</h3>
+                <img src="Phase8_Visualizations/V08_Value_Lost_by_Reason.png" alt="Value Lost by Reason">
+                <p>Financial impact of functional issues vs other reasons</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Liquidation Reasons Analysis</h3>
+                <img src="Phase6_Graphs/Q5_Liquidation_Reasons.png" alt="Liquidation Reasons Analysis">
+                <p>Detailed breakdown of liquidation reasons</p>
+            </div>
+        </section>
+
+        <!-- Finding 3 -->
+        <section id="finding3" class="visual-section">
+            <h2>Finding 3: Working Items Being Liquidated</h2>
+            <div class="finding-info">
+                <h4>Key Statistics</h4>
+                <p><strong>7 items</strong> that passed "Does it work?" were liquidated</p>
+                <p><strong>$8,919</strong> potential recovery value</p>
+                <p>Recovery opportunity identified</p>
+            </div>
+            
+            <div class="visual-container">
+                <h3>Passed vs Failed Checks Comparison</h3>
+                <img src="Phase6_Graphs/Q3_Passed_Failed_Comparison.png" alt="Passed Failed Comparison">
+                <p>Comparison showing items that passed checks but were still liquidated</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Check Comparison Analysis</h3>
+                <img src="Phase3_Graphs/09_Check_Comparison.png" alt="Check Comparison">
+                <p>Detailed comparison of check outcomes</p>
+            </div>
+        </section>
+
+        <!-- Finding 4 -->
+        <section id="finding4" class="visual-section">
+            <h2>Finding 4: High COGS Items Being Liquidated</h2>
+            <div class="finding-info">
+                <h4>Key Statistics</h4>
+                <p><strong>9 items</strong> with COGS >= $2,000 liquidated</p>
+                <p><strong>$24,336</strong> value lost</p>
+                <p>Exception handling needed</p>
+            </div>
+            
+            <div class="visual-container">
+                <h3>High COGS Patterns Analysis</h3>
+                <img src="Phase6_Graphs/Q2_High_COGS_Patterns.png" alt="High COGS Patterns">
+                <p>Analysis of high COGS items showing liquidation patterns</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Liquidation Rate by COGS Bin</h3>
+                <img src="Phase8_Visualizations/V04_Liquidation_Rate_by_COGS_Bin.png" alt="Liquidation Rate by COGS Bin">
+                <p>Liquidation rates across different COGS value ranges</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>COGS Distribution</h3>
+                <img src="Phase8_Visualizations/V02_COGS_Distribution.png" alt="COGS Distribution">
+                <p>Distribution showing high-value items being liquidated</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>COGS by Disposition</h3>
+                <img src="Phase3_Graphs/03_COGS_by_Disposition.png" alt="COGS by Disposition">
+                <p>Comparison of COGS values between liquidated and sellable items</p>
+            </div>
+        </section>
+
+        <!-- Finding 5 -->
+        <section id="finding5" class="visual-section">
+            <h2>Finding 5: Cosmetic Checks Have High False Positive Rate</h2>
+            <div class="finding-info">
+                <h4>Key Statistics</h4>
+                <p><strong>79.6%</strong> false positive rate</p>
+                <p>Items failed cosmetic checks but were still sellable</p>
+                <p>Criteria may be too strict</p>
+            </div>
+            
+            <div class="visual-container">
+                <h3>Check Failure Rates Comparison</h3>
+                <img src="Phase8_Visualizations/V05_Check_Failure_Rates_Comparison.png" alt="Check Failure Rates">
+                <p>Comparison showing cosmetic checks have high failure rates but low liquidation correlation</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Detailed Check Comparison</h3>
+                <img src="Phase3_Graphs/09_Check_Comparison.png" alt="Check Comparison">
+                <p>Detailed comparison of check failure rates between liquidated and sellable items</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Check Failure Rate Heatmap</h3>
+                <img src="Phase8_Visualizations/V13_Check_Failure_Rate_Heatmap.png" alt="Check Heatmap">
+                <p>Heatmap showing cosmetic checks vs liquidation correlation</p>
+            </div>
+        </section>
+
+        <!-- Finding 6 -->
+        <section id="finding6" class="visual-section">
+            <h2>Finding 6: Products That Always Liquidate</h2>
+            <div class="finding-info">
+                <h4>Key Statistics</h4>
+                <p><strong>12 products</strong> have 100% liquidation rate</p>
+                <p><strong>$69,223</strong> value lost from these products</p>
+                <p>Exception rules needed</p>
+            </div>
+            
+            <div class="visual-container">
+                <h3>Top Products by Liquidation</h3>
+                <img src="Phase8_Visualizations/V10_Top_Products_by_Liquidation.png" alt="Top Products by Liquidation">
+                <p>Products with highest liquidation counts</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>High Liquidation Rate Products</h3>
+                <img src="Phase8_Visualizations/V11_High_Liquidation_Rate_Products.png" alt="High Liquidation Rate Products">
+                <p>Products with >=50% liquidation rate</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Product Analysis</h3>
+                <img src="Phase6_Graphs/Q7_Product_Analysis.png" alt="Product Analysis">
+                <p>Detailed product-level analysis</p>
+            </div>
+        </section>
+
+        <!-- Finding 7 -->
+        <section id="finding7" class="visual-section">
+            <h2>Finding 7: Categories with Very High Liquidation Rates</h2>
+            <div class="finding-info">
+                <h4>Key Statistics</h4>
+                <p><strong>13 categories</strong> have >=80% liquidation rate</p>
+                <p><strong>$111,402</strong> value lost from high-rate categories</p>
+                <p>Category-specific standards review needed</p>
+            </div>
+            
+            <div class="visual-container">
+                <h3>Liquidation Rate by Category</h3>
+                <img src="Phase8_Visualizations/V03_Liquidation_Rate_by_Category.png" alt="Liquidation Rate by Category">
+                <p>Top categories with highest liquidation rates</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Categories Most Affected</h3>
+                <img src="Phase6_Graphs/Q4_Categories_Most_Affected.png" alt="Categories Most Affected">
+                <p>Categories most affected by liquidations</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Category Liquidation Analysis</h3>
+                <img src="Phase3_Graphs/07_Category_Liquidation_Analysis.png" alt="Category Liquidation Analysis">
+                <p>Detailed category-level liquidation analysis</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Top Categories</h3>
+                <img src="Phase3_Graphs/05_Top_Categories.png" alt="Top Categories">
+                <p>Top categories by volume and liquidation rate</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Category Disposition Pivot</h3>
+                <img src="Phase6_Graphs/Q6_Category_Disposition_Pivot.png" alt="Category Disposition">
+                <p>Category-level disposition breakdown</p>
+            </div>
+        </section>
+
+        <!-- Finding 8 -->
+        <section id="finding8" class="visual-section">
+            <h2>Finding 8: Fraud Detection Accounts for Significant Liquidations</h2>
+            <div class="finding-info">
+                <h4>Key Statistics</h4>
+                <p><strong>30.5%</strong> of liquidations due to fraud</p>
+                <p><strong>$113,627</strong> value lost to fraud</p>
+                <p>Review fraud detection accuracy</p>
+            </div>
+            
+            <div class="visual-container">
+                <h3>Liquidation Reasons Breakdown</h3>
+                <img src="Phase8_Visualizations/V06_Liquidation_Reasons_Breakdown.png" alt="Liquidation Reasons">
+                <p>Fraud-related liquidations breakdown</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Value Lost by Reason</h3>
+                <img src="Phase8_Visualizations/V08_Value_Lost_by_Reason.png" alt="Value Lost by Reason">
+                <p>Financial impact of fraud-related liquidations</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Liquidation Reasons Analysis</h3>
+                <img src="Phase6_Graphs/Q5_Liquidation_Reasons.png" alt="Liquidation Reasons Analysis">
+                <p>Detailed breakdown showing fraud as a significant reason</p>
+            </div>
+        </section>
+
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="EXECUTIVE_DASHBOARD.html" class="back-btn">← Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>
+

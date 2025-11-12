@@ -1,0 +1,401 @@
+{
+  "phase": "Phase 5: Statistical Analysis",
+  "timestamp": "2025-11-12T01:34:05.243481",
+  "file_path": "c:\\Silverdale QA\\BPMN XML\\Cost Greater than 1000\\Repair Order (repair.order)_preprocessed_features.csv",
+  "findings": {
+    "summary_statistics": {
+      "overall_liquidation_rate": 29.87,
+      "liquidation_rate_by_category": {
+        "7004 Robotic Vacuums & Accessories": {
+          "liquidated": 56,
+          "total": 260,
+          "rate": 0.2153846153846154,
+          "rate_pct": 21.53846153846154
+        },
+        "Armchairs": {
+          "liquidated": 43,
+          "total": 46,
+          "rate": 0.9347826086956522,
+          "rate_pct": 93.47826086956522
+        },
+        "4602 Espresso Machines": {
+          "liquidated": 30,
+          "total": 185,
+          "rate": 0.16216216216216217,
+          "rate_pct": 16.216216216216218
+        },
+        "5801 Portable Air Conditioners": {
+          "liquidated": 29,
+          "total": 34,
+          "rate": 0.8529411764705882,
+          "rate_pct": 85.29411764705883
+        },
+        "0510 LCD Monitors": {
+          "liquidated": 27,
+          "total": 85,
+          "rate": 0.3176470588235294,
+          "rate_pct": 31.76470588235294
+        },
+        "4210 Audio Receivers, Amplifiers, and Preamplifiers": {
+          "liquidated": 22,
+          "total": 65,
+          "rate": 0.3384615384615385,
+          "rate_pct": 33.84615384615385
+        },
+        "52020 Cleaning Tools": {
+          "liquidated": 15,
+          "total": 34,
+          "rate": 0.4411764705882353,
+          "rate_pct": 44.11764705882353
+        },
+        "0509 Gaming Monitors": {
+          "liquidated": 12,
+          "total": 20,
+          "rate": 0.6,
+          "rate_pct": 60.0
+        },
+        "0911 Routers": {
+          "liquidated": 6,
+          "total": 16,
+          "rate": 0.375,
+          "rate_pct": 37.5
+        },
+        "46215 Lawn Mowers": {
+          "liquidated": 6,
+          "total": 8,
+          "rate": 0.75,
+          "rate_pct": 75.0
+        }
+      },
+      "liquidation_rate_by_cogs": {
+        "$1.5K-$2K": {
+          "liquidated": 61,
+          "total": 180,
+          "rate": 0.3388888888888889,
+          "rate_pct": 33.88888888888889
+        },
+        "$1K-$1.5K": {
+          "liquidated": 213,
+          "total": 738,
+          "rate": 0.2886178861788618,
+          "rate_pct": 28.86178861788618
+        },
+        "$2.5K-$3K": {
+          "liquidated": 5,
+          "total": 12,
+          "rate": 0.4166666666666667,
+          "rate_pct": 41.66666666666667
+        },
+        "$2K-$2.5K": {
+          "liquidated": 3,
+          "total": 15,
+          "rate": 0.2,
+          "rate_pct": 20.0
+        },
+        "$3K+": {
+          "liquidated": 1,
+          "total": 7,
+          "rate": 0.14285714285714285,
+          "rate_pct": 14.285714285714285
+        },
+        "<$1K": {
+          "liquidated": 2,
+          "total": 2,
+          "rate": 1.0,
+          "rate_pct": 100.0
+        }
+      },
+      "avg_cogs_liquidated": 1328.16,
+      "avg_cogs_sellable": 1310.97,
+      "cogs_difference": 17.19,
+      "cogs_difference_pct": 1.31
+    },
+    "financial_impact": {
+      "total_value_lost": 378526.57,
+      "avg_value_lost_per_item": 1328.16,
+      "value_lost_by_category": {
+        "7004 Robotic Vacuums & Accessories": {
+          "total_value_lost": 63607.450000000004,
+          "count": 56,
+          "avg_value": 1135.8473214285716
+        },
+        "Armchairs": {
+          "total_value_lost": 48694.84,
+          "count": 43,
+          "avg_value": 1132.4381395348837
+        },
+        "5801 Portable Air Conditioners": {
+          "total_value_lost": 47209.99,
+          "count": 29,
+          "avg_value": 1627.9306896551723
+        },
+        "4602 Espresso Machines": {
+          "total_value_lost": 47122.18,
+          "count": 30,
+          "avg_value": 1570.7393333333334
+        },
+        "0510 LCD Monitors": {
+          "total_value_lost": 35407.85,
+          "count": 27,
+          "avg_value": 1311.4018518518517
+        },
+        "4210 Audio Receivers, Amplifiers, and Preamplifiers": {
+          "total_value_lost": 32879.98,
+          "count": 22,
+          "avg_value": 1494.5445454545456
+        },
+        "52020 Cleaning Tools": {
+          "total_value_lost": 16372.34,
+          "count": 15,
+          "avg_value": 1091.4893333333334
+        },
+        "0509 Gaming Monitors": {
+          "total_value_lost": 15409.880000000001,
+          "count": 12,
+          "avg_value": 1284.1566666666668
+        },
+        "46215 Lawn Mowers": {
+          "total_value_lost": 10269.94,
+          "count": 6,
+          "avg_value": 1711.6566666666668
+        },
+        "0911 Routers": {
+          "total_value_lost": 7971.9400000000005,
+          "count": 6,
+          "avg_value": 1328.6566666666668
+        }
+      },
+      "value_lost_by_reason": {
+        "Liquidate - Functional Issues - NRF": {
+          "total_value_lost": 179823.25,
+          "count": 135,
+          "avg_value": 1332.0240740740742
+        },
+        "Liquidate - Advanced Fraud - Fake - Not Authentic - NRD": {
+          "total_value_lost": 112521.04,
+          "count": 86,
+          "avg_value": 1308.3841860465116
+        },
+        "Liquidate - Cosmetic - NRC": {
+          "total_value_lost": 55663.08,
+          "count": 43,
+          "avg_value": 1294.4902325581395
+        },
+        "Wrong Item Description - NRM": {
+          "total_value_lost": 25753.21,
+          "count": 18,
+          "avg_value": 1430.733888888889
+        },
+        "Destroy - NRS": {
+          "total_value_lost": 3660.0,
+          "count": 2,
+          "avg_value": 1830.0
+        },
+        "Liquidate - Fraud - Lower Value Item / Junk / Empty Box - NRW": {
+          "total_value_lost": 1105.99,
+          "count": 1,
+          "avg_value": 1105.99
+        }
+      }
+    },
+    "hypothesis_tests": {
+      "cogs_difference_test": {
+        "t_statistic": 0.6304,
+        "p_value": 0.5286,
+        "significant": "False",
+        "cohens_d": 0.0446,
+        "effect_size": "negligible"
+      },
+      "liquidation_by_cogs_test": {
+        "chi2_statistic": 8.7473,
+        "p_value": 0.1196,
+        "degrees_of_freedom": 5,
+        "significant": "False",
+        "cramers_v": 0.0958,
+        "effect_size": "negligible"
+      },
+      "failure_rate_test": {
+        "liquidated_rate": 0.5521,
+        "sellable_rate": 0.5242,
+        "difference": 0.0278,
+        "z_statistic": 0.8047,
+        "p_value": 0.421,
+        "significant": "False"
+      }
+    },
+    "correlation_analysis": {
+      "correlation_with_liquidation": {
+        "is_liquidated": 1.0,
+        "value_lost": 0.9484630368716932,
+        "repairable_check_failed": 0.13760067243183974,
+        "days_to_ship": 0.0836746106422439,
+        "failure_rate": 0.05725555117690577,
+        "processing_days": 0.04643460701846771,
+        "fraud_check_failed": 0.031040825140960498,
+        "Amazon COGS": 0.020427392397937817,
+        "high_value_flag": -0.01249525268318741,
+        "failed_checks_count": -0.0415578870269496,
+        "check_efficiency": -0.057255551176905825,
+        "factory_sealed_check_passed": -0.1518738916450327,
+        "total_checks": -0.32283795733477094,
+        "cosmetic_check_failed": -0.6170432016706002,
+        "passed_checks_count": -0.6465790632257201,
+        "works_check_passed": -0.7782013995447827
+      },
+      "cogs_liquidation_correlation": 0.0204,
+      "failure_rate_liquidation_correlation": 0.0573,
+      "key_variables_correlation_matrix": {
+        "is_liquidated": {
+          "is_liquidated": 1.0,
+          "Amazon COGS": 0.020427392397937793,
+          "failure_rate": 0.05725555117690577,
+          "fraud_check_failed": 0.031040825140960498,
+          "cosmetic_check_failed": -0.6170432016706002,
+          "works_check_passed": -0.7782013995447827,
+          "total_checks": -0.32283795733477094
+        },
+        "Amazon COGS": {
+          "is_liquidated": 0.020427392397937793,
+          "Amazon COGS": 1.0,
+          "failure_rate": 0.03913148887126025,
+          "fraud_check_failed": 0.006203852591435081,
+          "cosmetic_check_failed": 0.004739998906809908,
+          "works_check_passed": 0.022390717898350728,
+          "total_checks": -0.02029919891398176
+        },
+        "failure_rate": {
+          "is_liquidated": 0.05725555117690577,
+          "Amazon COGS": 0.03913148887126025,
+          "failure_rate": 1.0,
+          "fraud_check_failed": 0.8880569296065542,
+          "cosmetic_check_failed": 0.3174595850914219,
+          "works_check_passed": -0.23730739021936756,
+          "total_checks": 0.8669069425863123
+        },
+        "fraud_check_failed": {
+          "is_liquidated": 0.031040825140960498,
+          "Amazon COGS": 0.006203852591435081,
+          "failure_rate": 0.8880569296065542,
+          "fraud_check_failed": 1.0,
+          "cosmetic_check_failed": 0.11765976468456273,
+          "works_check_passed": -0.25888457929037173,
+          "total_checks": 0.810822544369563
+        },
+        "cosmetic_check_failed": {
+          "is_liquidated": -0.6170432016706002,
+          "Amazon COGS": 0.004739998906809908,
+          "failure_rate": 0.3174595850914219,
+          "fraud_check_failed": 0.11765976468456273,
+          "cosmetic_check_failed": 1.0,
+          "works_check_passed": 0.5109967192251078,
+          "total_checks": 0.5258907239903948
+        },
+        "works_check_passed": {
+          "is_liquidated": -0.7782013995447827,
+          "Amazon COGS": 0.022390717898350728,
+          "failure_rate": -0.23730739021936756,
+          "fraud_check_failed": -0.25888457929037173,
+          "cosmetic_check_failed": 0.5109967192251078,
+          "works_check_passed": 1.0,
+          "total_checks": 0.0803184081454935
+        },
+        "total_checks": {
+          "is_liquidated": -0.32283795733477094,
+          "Amazon COGS": -0.02029919891398176,
+          "failure_rate": 0.8669069425863123,
+          "fraud_check_failed": 0.810822544369563,
+          "cosmetic_check_failed": 0.5258907239903948,
+          "works_check_passed": 0.0803184081454935,
+          "total_checks": 1.0
+        }
+      },
+      "multicollinearity_pairs": [
+        {
+          "var1": "Amazon COGS",
+          "var2": "high_value_flag",
+          "correlation": 0.7031
+        },
+        {
+          "var1": "total_checks",
+          "var2": "failed_checks_count",
+          "correlation": 0.9358
+        },
+        {
+          "var1": "total_checks",
+          "var2": "failure_rate",
+          "correlation": 0.8669
+        },
+        {
+          "var1": "total_checks",
+          "var2": "fraud_check_failed",
+          "correlation": 0.8108
+        },
+        {
+          "var1": "total_checks",
+          "var2": "repairable_check_failed",
+          "correlation": 0.7293
+        },
+        {
+          "var1": "total_checks",
+          "var2": "check_efficiency",
+          "correlation": -0.8669
+        },
+        {
+          "var1": "failed_checks_count",
+          "var2": "failure_rate",
+          "correlation": 0.9759
+        },
+        {
+          "var1": "failed_checks_count",
+          "var2": "fraud_check_failed",
+          "correlation": 0.9086
+        },
+        {
+          "var1": "failed_checks_count",
+          "var2": "repairable_check_failed",
+          "correlation": 0.865
+        },
+        {
+          "var1": "failed_checks_count",
+          "var2": "check_efficiency",
+          "correlation": -0.9759
+        },
+        {
+          "var1": "failure_rate",
+          "var2": "fraud_check_failed",
+          "correlation": 0.8881
+        },
+        {
+          "var1": "failure_rate",
+          "var2": "repairable_check_failed",
+          "correlation": 0.9003
+        },
+        {
+          "var1": "failure_rate",
+          "var2": "check_efficiency",
+          "correlation": -1.0
+        },
+        {
+          "var1": "fraud_check_failed",
+          "var2": "repairable_check_failed",
+          "correlation": 0.8149
+        },
+        {
+          "var1": "fraud_check_failed",
+          "var2": "check_efficiency",
+          "correlation": -0.8881
+        },
+        {
+          "var1": "repairable_check_failed",
+          "var2": "check_efficiency",
+          "correlation": -0.9003
+        },
+        {
+          "var1": "works_check_passed",
+          "var2": "value_lost",
+          "correlation": -0.7394
+        }
+      ]
+    }
+  }
+}

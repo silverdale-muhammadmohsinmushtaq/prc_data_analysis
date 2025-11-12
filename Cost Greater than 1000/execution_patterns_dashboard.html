@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Execution Patterns Analysis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            color: #2d3748;
+            line-height: 1.7;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        }
+
+        header h1 {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        header p {
+            color: #666;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .summary-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .summary-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .summary-card::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .summary-card::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .summary-card .value {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .summary-card .label {
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+
+        .section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            font-weight: 700;
+        }
+
+        .section h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .path-card {
+            background: #f7fafc;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .path-card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateX(5px);
+        }
+
+        .path-card h4 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .path-card.liquidation {
+            border-left-color: #fa709a;
+            background: linear-gradient(to right, rgba(250, 112, 154, 0.05), #f7fafc);
+        }
+
+        .path-card.sellable {
+            border-left-color: #4facfe;
+            background: linear-gradient(to right, rgba(79, 172, 254, 0.05), #f7fafc);
+        }
+
+        .path-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .path-stat {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .path-stat .value {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .path-stat .label {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .pattern-list {
+            background: #f7fafc;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .pattern-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .pattern-item:hover {
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transform: translateX(3px);
+        }
+
+        .pattern-item.liquidation {
+            border-left-color: #fa709a;
+        }
+
+        .pattern-item.sellable {
+            border-left-color: #4facfe;
+        }
+
+        .pattern-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .pattern-rank {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .pattern-count {
+            background: #f7fafc;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .pattern-path {
+            font-family: 'Courier New', monospace;
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+            word-break: break-all;
+            line-height: 1.6;
+        }
+
+        .pattern-description {
+            color: #666;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .insight-box {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border-left: 5px solid #f39c12;
+        }
+
+        .insight-box h4 {
+            color: #d63031;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+
+        .visualization-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .visualization-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .badge-success {
+            background: #4facfe;
+            color: white;
+        }
+
+        .badge-danger {
+            background: #fa709a;
+            color: white;
+        }
+
+        .badge-warning {
+            background: #fee140;
+            color: #2d3748;
+        }
+
+        /* Tooltip Styles */
+        [data-tooltip] {
+            position: relative;
+            cursor: help;
+        }
+
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 16px;
+            background: rgba(45, 55, 72, 0.98);
+            color: white;
+            border-radius: 8px;
+            font-size: 0.85em;
+            white-space: normal;
+            z-index: 9999;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+            pointer-events: none;
+            max-width: 320px;
+            min-width: 200px;
+            text-align: left;
+            line-height: 1.5;
+            word-wrap: break-word;
+            opacity: 0;
+            animation: tooltipFadeIn 0.2s ease-out forwards;
+        }
+
+        @keyframes tooltipFadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        [data-tooltip]:hover::before {
+            content: '';
+            position: absolute;
+            bottom: calc(100% + 5px);
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: rgba(45, 55, 72, 0.98);
+            z-index: 10000;
+            pointer-events: none;
+            opacity: 0;
+            animation: tooltipFadeIn 0.2s ease-out forwards;
+        }
+
+        /* Prevent tooltip on hover for buttons */
+        .back-btn:not([data-tooltip]),
+        .btn-visuals:not([data-tooltip]),
+        a:not([data-tooltip]),
+        button:not([data-tooltip]) {
+            cursor: pointer;
+        }
+
+        .pattern-path {
+            cursor: help;
+        }
+
+        .pattern-path:hover {
+            background: #e2e8f0;
+        }
+
+        .check-abbreviation {
+            cursor: help;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            text-decoration-color: #667eea;
+        }
+
+        /* Ensure buttons are always clickable and above tooltips */
+        .back-btn,
+        .btn-visuals {
+            position: relative;
+            z-index: 10001 !important;
+            pointer-events: auto !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔍 Execution Patterns Analysis</h1>
+            <p>Quality Check Execution Patterns - Which Paths Users Actually Executed</p>
+            <p style="font-size: 1em; color: #999; margin-top: 10px;">Analysis of 954 orders showing actual execution patterns vs theoretical decision tree paths</p>
+            <a href="EXECUTIVE_DASHBOARD.html" class="back-btn">← Back to Dashboard</a>
+        </header>
+
+        <!-- Summary Section -->
+        <section class="summary-section">
+            <h2>📊 Executive Summary</h2>
+            <div class="summary-grid">
+                <div class="summary-card" data-tooltip="Total number of repair orders analyzed in this dataset">
+                    <div class="value">📋 954</div>
+                    <div class="label">Total Orders</div>
+                </div>
+                <div class="summary-card" data-tooltip="Number of orders that were liquidated (29.9% of total). Liquidated items are routed to Liquidation Palletizer and cannot be sold.">
+                    <div class="value">📦 285</div>
+                    <div class="label">Liquidated (29.9%)</div>
+                </div>
+                <div class="summary-card" data-tooltip="Number of orders that were marked as sellable (70.1% of total). Sellable items are routed to Sellable Palletizer or Cleaner and can be sold.">
+                    <div class="value">✅ 669</div>
+                    <div class="label">Sellable (70.1%)</div>
+                </div>
+                <div class="summary-card" data-tooltip="Total number of unique execution patterns identified. Each pattern represents a unique combination of quality check results (passed/failed).">
+                    <div class="value">🔀 66</div>
+                    <div class="label">Unique Patterns</div>
+                </div>
+                <div class="summary-card" data-tooltip="Number of key decision checks tracked in the analysis. These checks are critical decision points in the BPMN process flow.">
+                    <div class="value">🔍 14</div>
+                    <div class="label">Key Checks Tracked</div>
+                </div>
+                <div class="summary-card" data-tooltip="Number of decision paths analyzed from the theoretical decision tree. These paths represent routes items can take through the process.">
+                    <div class="value">🛤️ 8</div>
+                    <div class="label">Decision Paths</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Decision Paths Analysis -->
+        <section id="paths" class="section">
+            <h2>🛤️ Decision Paths Analysis</h2>
+            <p style="font-size: 1.1em; color: #666; margin-bottom: 25px;">Comparison of theoretical decision tree paths from DECISION_TREE_ANALYSIS.md with actual execution patterns</p>
+
+            <!-- Path 1: Empty Box -->
+            <div class="path-card liquidation">
+                <h4>📦 Path 1: Empty Box → Liquidation</h4>
+                <p><strong>Decision Tree:</strong> <span data-tooltip="First check in the process: Verifies if there is an item in the shipping box. If No (Failed), item goes directly to Liquidation Palletizer.">Is there something in the box?</span> → <span data-tooltip="No = Check Failed. This means the box is empty.">No</span> → <span data-tooltip="Final destination for items that cannot be sold. Items are palletized for liquidation/disposal.">Send to Liquidation Palletizer</span></p>
+                <div class="path-stats">
+                    <div class="path-stat" data-tooltip="Total number of orders that followed this specific path">
+                        <div class="value">1</div>
+                        <div class="label">Total Orders</div>
+                    </div>
+                    <div class="path-stat" data-tooltip="Percentage of orders following this path that resulted in liquidation">
+                        <div class="value">100%</div>
+                        <div class="label">Liquidation Rate</div>
+                    </div>
+                    <div class="path-stat" data-tooltip="Number of orders that were liquidated after following this path">
+                        <div class="value">1</div>
+                        <div class="label">Liquidated</div>
+                    </div>
+                    <div class="path-stat" data-tooltip="Number of orders that were marked as sellable after following this path">
+                        <div class="value">0</div>
+                        <div class="label">Sellable</div>
+                    </div>
+                </div>
+                <p style="margin-top: 15px; color: #666;"><strong>Finding:</strong> Items with empty boxes are routed to liquidation as expected. Only 1 order had an empty box, confirming this is a rare occurrence.</p>
+            </div>
+
+            <!-- Path 2: Non-Repairable -->
+            <div class="path-card liquidation">
+                <h4>🔧 Path 2: Non-Repairable → Liquidation</h4>
+                <p><strong>Decision Tree:</strong> <span data-tooltip="Checks if the item can be repaired. If No (Failed), item should be routed to liquidation.">Is the Item Repairable?</span> → <span data-tooltip="No = Check Failed. Item cannot be repaired.">No</span> → <span data-tooltip="TREX is the system used to track repair orders. Completing TREX Liquidation finalizes the liquidation process.">Complete TREX Liquidation</span></p>
+                <div class="path-stats">
+                    <div class="path-stat" data-tooltip="Total number of orders that followed this specific path">
+                        <div class="value">377</div>
+                        <div class="label">Total Orders</div>
+                    </div>
+                    <div class="path-stat" data-tooltip="Percentage of orders following this path that resulted in liquidation">
+                        <div class="value">37.7%</div>
+                        <div class="label">Liquidation Rate</div>
+                    </div>
+                    <div class="path-stat" data-tooltip="Number of orders that were liquidated after following this path">
+                        <div class="value">142</div>
+                        <div class="label">Liquidated</div>
+                    </div>
+                    <div class="path-stat" data-tooltip="Number of orders that were marked as sellable after following this path">
+                        <div class="value">235</div>
+                        <div class="label">Sellable</div>
+                    </div>
+                </div>
+                <p style="margin-top: 15px; color: #666;"><strong>Finding:</strong> Non-repairable items show a 37.7% liquidation rate, which is lower than expected. This suggests that many non-repairable items are still being routed to sellable, indicating a potential process issue.</p>
+            </div>
+
+            <!-- Path 3: Fraud -->
+            <div class="path-card liquidation">
+                <h4>🚨 Path 3: Fraud Detection → Liquidation</h4>
+                <p><strong>Decision Tree:</strong> <span data-tooltip="Checks if the item is fraudulent (wrong item, counterfeit, etc.). If Yes (Passed), item goes to liquidation.">Is it Fraud?</span> → <span data-tooltip="Yes = Check Passed. Item is identified as fraudulent.">Yes</span> → <span data-tooltip="TREX is the system used to track repair orders. Completing TREX Liquidation finalizes the liquidation process.">Complete TREX Liquidation</span></p>
+                <div class="path-stats">
+                    <div class="path-stat">
+                        <div class="value">6</div>
+                        <div class="label">Fraud = Yes</div>
+                    </div>
+                    <div class="path-stat">
+                        <div class="value">100%</div>
+                        <div class="label">Liquidation Rate</div>
+                    </div>
+                    <div class="path-stat">
+                        <div class="value">63</div>
+                        <div class="label">Fraud = No</div>
+                    </div>
+                    <div class="path-stat">
+                        <div class="value">33.3%</div>
+                        <div class="label">Liquidation Rate</div>
+                    </div>
+                </div>
+                <p style="margin-top: 15px; color: #666;"><strong>Finding:</strong> Fraud detection is working perfectly - all 6 items marked as fraud were liquidated (100% rate).</p>
+            </div>
+
+            <!-- Path 4: Factory Sealed -->
+            <div class="path-card sellable">
+                <h4>📦 Path 4: Factory Sealed → Sellable</h4>
+                <p><strong>Decision Tree:</strong> <span data-tooltip="Checks if the item is still in its original factory-sealed packaging. If Yes (Passed), item goes directly to sellable.">Is the Item Factory Sealed?</span> → <span data-tooltip="Yes = Check Passed. Item is factory sealed.">Yes</span> → <span data-tooltip="TREX is the system used to track repair orders. Completing TREX Sellable finalizes the sellable process.">Complete TREX Sellable</span></p>
+                <div class="path-stats">
+                    <div class="path-stat">
+                        <div class="value">3</div>
+                        <div class="label">Total Orders</div>
+                    </div>
+                    <div class="path-stat">
+                        <div class="value">100%</div>
+                        <div class="label">Sellable Rate</div>
+                    </div>
+                    <div class="path-stat">
+                        <div class="value">0</div>
+                        <div class="label">Liquidated</div>
+                    </div>
+                    <div class="path-stat">
+                        <div class="value">3</div>
+                        <div class="label">Sellable</div>
+                    </div>
+                </div>
+                <p style="margin-top: 15px; color: #666;"><strong>Finding:</strong> Factory sealed items are correctly routed to sellable palletizer with 100% success rate. However, only 3 orders had factory sealed items, indicating this is a rare path.</p>
+            </div>
+
+            <!-- Path 5: Destroy -->
+            <div class="path-card liquidation">
+                <h4>🗑️ Path 5: Destroy → Liquidation</h4>
+                <p><strong>Decision Tree:</strong> <span data-tooltip="Checks if the item needs to be destroyed (safety hazard, recalled item, etc.). If Yes (Passed), item goes to liquidation.">Does the item Need to be Destroyed?</span> → <span data-tooltip="Yes = Check Passed. Item must be destroyed.">Yes</span> → <span data-tooltip="TREX is the system used to track repair orders. Completing TREX Liquidation finalizes the liquidation process.">Complete TREX Liquidation</span></p>
+                <div class="path-stats">
+                    <div class="path-stat">
+                        <div class="value">2</div>
+                        <div class="label">Total Orders</div>
+                    </div>
+                    <div class="path-stat">
+                        <div class="value">100%</div>
+                        <div class="label">Liquidation Rate</div>
+                    </div>
+                    <div class="path-stat">
+                        <div class="value">2</div>
+                        <div class="label">Liquidated</div>
+                    </div>
+                    <div class="path-stat">
+                        <div class="value">0</div>
+                        <div class="label">Sellable</div>
+                    </div>
+                </div>
+                <p style="margin-top: 15px; color: #666;"><strong>Finding:</strong> Items marked for destruction are correctly routed to liquidation with 100% success rate.</p>
+            </div>
+
+            <!-- Path 6: Scratches/Dents -->
+            <div class="path-card liquidation">
+                <h4>💔 Path 6: Scratches/Dents → Liquidation</h4>
+                <p><strong>Decision Tree:</strong> <span data-tooltip="Checks if the item has cosmetic damage (scratches or dents larger than a badge). If Yes (Passed), item goes to liquidation.">Does the item have scratches/dents?</span> → <span data-tooltip="Yes = Check Passed. Item has significant cosmetic damage.">Yes</span> → <span data-tooltip="TREX is the system used to track repair orders. Completing TREX Liquidation finalizes the liquidation process.">Complete TREX Liquidation</span></p>
+                <div class="path-stats">
+                    <div class="path-stat">
+                        <div class="value">36</div>
+                        <div class="label">Total Orders</div>
+                    </div>
+                    <div class="path-stat">
+                        <div class="value">100%</div>
+                        <div class="label">Liquidation Rate</div>
+                    </div>
+                    <div class="path-stat">
+                        <div class="value">36</div>
+                        <div class="label">Liquidated</div>
+                    </div>
+                    <div class="path-stat">
+                        <div class="value">0</div>
+                        <div class="label">Sellable</div>
+                    </div>
+                </div>
+                <p style="margin-top: 15px; color: #666;"><strong>Finding:</strong> Items with significant cosmetic damage are routed to liquidation with 100% success rate.</p>
+            </div>
+
+            <!-- Path 7: Works Check -->
+            <div id="path7" class="path-card sellable">
+                <h4>⚙️ Path 7: Works Check → Most Critical Path</h4>
+                <p><strong>Decision Tree:</strong> <span data-tooltip="Most critical check: Verifies if the item functions properly. This is the strongest predictor of final disposition.">Does the Item Work?</span> → <span data-tooltip="Yes = Check Passed (Works:P), No = Check Failed (Works:F). Routes to sellable if Yes, liquidation if No.">Yes/No</span> → <span data-tooltip="Routes to Sellable Palletizer if Yes, Liquidation Palletizer if No. However, some exceptions exist.">Routes accordingly</span></p>
+                <div class="path-stats">
+                    <div class="path-stat" data-tooltip="Number of orders where the 'Does it Work?' check passed (Yes - item works)">
+                        <div class="value">579</div>
+                        <div class="label">Works = Passed</div>
+                    </div>
+                    <div class="path-stat" data-tooltip="Percentage of items that passed the Works check and became sellable (98.8% = 572 out of 579)">
+                        <div class="value">98.8%</div>
+                        <div class="label">Sellable Rate</div>
+                    </div>
+                    <div class="path-stat" data-tooltip="Number of orders where the 'Does it Work?' check failed (No - item doesn't work)">
+                        <div class="value">257</div>
+                        <div class="label">Works = Failed</div>
+                    </div>
+                    <div class="path-stat" data-tooltip="Percentage of items that failed the Works check and were liquidated (63.0% = 162 out of 257)">
+                        <div class="value">63.0%</div>
+                        <div class="label">Liquidation Rate</div>
+                    </div>
+                </div>
+                <div class="insight-box" style="margin-top: 20px;">
+                    <h4>🎯 Critical Insight</h4>
+                    <p>The "Does it Work?" check is the strongest predictor of final disposition. Items that pass this check have a 98.8% sellable rate (572 out of 579), while items that fail have a 63.0% liquidation rate (162 out of 257). This represents a 72.9 percentage point difference.</p>
+                    <p style="margin-top: 10px;"><strong>⚠️ Recovery Opportunity:</strong> 7 items that passed the "Works" check were still liquidated, representing a potential recovery opportunity.</p>
+                </div>
+            </div>
+
+            <!-- Path 8: IOG -->
+            <div class="path-card">
+                <h4>🔀 Path 8: IOG → Problem Solve</h4>
+                <p><strong>Decision Tree:</strong> <span data-tooltip="IOG = Inbound Outbound Gateway. Checks if the item is an IOG item. If No (Failed), item goes to Problem Solve for resolution.">Is it IOG?</span> → <span data-tooltip="No = Check Failed. Item is not an IOG item.">No</span> → <span data-tooltip="Problem Solve is a process for resolving issues that prevent normal routing. Items requiring special handling go here.">Send to Problem Solve</span></p>
+                <div class="path-stats">
+                    <div class="path-stat">
+                        <div class="value">954</div>
+                        <div class="label">Total Orders</div>
+                    </div>
+                    <div class="path-stat">
+                        <div class="value">100%</div>
+                        <div class="label">IOG Check Performed</div>
+                    </div>
+                    <div class="path-stat">
+                        <div class="value">285</div>
+                        <div class="label">Liquidated</div>
+                    </div>
+                    <div class="path-stat">
+                        <div class="value">669</div>
+                        <div class="label">Sellable</div>
+                    </div>
+                </div>
+                <p style="margin-top: 15px; color: #666;"><strong>Finding:</strong> All 954 orders had the IOG check performed, and all were marked as "Not IOG" (Failed check). This suggests that either all items in this dataset are non-IOG items, or the IOG check is always performed first in the process flow.</p>
+            </div>
+        </section>
+
+        <!-- Top Execution Patterns -->
+        <section id="patterns" class="section">
+            <h2>📈 Top Execution Patterns</h2>
+            
+            <h3 id="liquidation-patterns">Top 10 Patterns Leading to Liquidation</h3>
+            <div class="pattern-list">
+                <div class="pattern-item liquidation">
+                    <div class="pattern-header">
+                        <span class="pattern-rank" data-tooltip="Rank #1 indicates this is the most common pattern leading to liquidation">#1</span>
+                        <span class="pattern-count" data-tooltip="82 orders followed this exact execution pattern">82 orders</span>
+                    </div>
+                    <div class="pattern-path" data-tooltip="Pattern notation: IOG:F = Is it IOG? check Failed (No), Something_in_Box:P = Something in box check Passed (Yes), TREX_Open:P = TREX opened check Passed (Yes). → indicates sequence flow.">IOG:F → Something_in_Box:P → TREX_Open:P</div>
+                    <div class="pattern-description">Simplest pattern: Not IOG, Something in box, TREX opened → Liquidation</div>
+                </div>
+
+                <div class="pattern-item liquidation">
+                    <div class="pattern-header">
+                        <span class="pattern-rank">#2</span>
+                        <span class="pattern-count">68 orders</span>
+                    </div>
+                    <div class="pattern-path" data-tooltip="Pattern notation guide: P = Passed (check succeeded), F = Failed (check failed), → = sequence flow. Example: IOG:F means 'Is it IOG?' check Failed (No), Works:P means 'Does it Work?' check Passed (Yes).">IOG:F → Something_in_Box:P → TREX_Open:P → Factory_Sealed:F → Destroy:F → Scratches_Dents:F → Works:F → Repairable:F → Needs_Parts:F → Has_Parts:F → Needs_Sanitization:F → Factory_Reset:F</div>
+                    <div class="pattern-description">Complete failure pattern: Item doesn't work, not repairable, no parts, etc. → Liquidation</div>
+                </div>
+
+                <div class="pattern-item liquidation">
+                    <div class="pattern-header">
+                        <span class="pattern-rank">#3</span>
+                        <span class="pattern-count">22 orders</span>
+                    </div>
+                    <div class="pattern-path" data-tooltip="Pattern notation: P = Passed, F = Failed, → = sequence. Works:F = Item doesn't work, Repairable:F = Not repairable, Factory_Reset:F = Factory reset failed.">IOG:F → Something_in_Box:P → TREX_Open:P → Factory_Sealed:F → Destroy:F → Scratches_Dents:F → Works:F → Repairable:F → Factory_Reset:F</div>
+                    <div class="pattern-description">Works failed, not repairable → Liquidation</div>
+                </div>
+
+                <div class="pattern-item liquidation">
+                    <div class="pattern-header">
+                        <span class="pattern-rank">#4</span>
+                        <span class="pattern-count">11 orders</span>
+                    </div>
+                    <div class="pattern-path" data-tooltip="Pattern notation: P = Passed, F = Failed. Works:F = Item doesn't work, Repairable:P = Item is repairable, but Needs_Parts:F = No parts available.">IOG:F → Something_in_Box:P → TREX_Open:P → Factory_Sealed:F → Destroy:F → Scratches_Dents:F → Works:F → Repairable:P → Needs_Parts:F → Has_Parts:F → Needs_Sanitization:F → Factory_Reset:F</div>
+                    <div class="pattern-description">Works failed, repairable but no parts → Liquidation</div>
+                </div>
+
+                <div class="pattern-item liquidation">
+                    <div class="pattern-header">
+                        <span class="pattern-rank">#5</span>
+                        <span class="pattern-count">11 orders</span>
+                    </div>
+                    <div class="pattern-path" data-tooltip="Pattern notation: Expected_Item:P = Correct item, Fraud:F = Not fraud, Scratches_Dents:P = Has cosmetic damage, Works:F = Doesn't work.">IOG:F → Something_in_Box:P → TREX_Open:P → Expected_Item:P → Fraud:F → Factory_Sealed:F → Destroy:F → Scratches_Dents:P → Works:F → Repairable:F → Needs_Parts:F → Has_Parts:F → Needs_Sanitization:F</div>
+                    <div class="pattern-description">Expected item, not fraud, but has scratches/dents and doesn't work → Liquidation</div>
+                </div>
+
+                <div class="pattern-item liquidation">
+                    <div class="pattern-header">
+                        <span class="pattern-rank">#6</span>
+                        <span class="pattern-count">11 orders</span>
+                    </div>
+                    <div class="pattern-path" data-tooltip="Pattern notation: Works:F = Item doesn't work, Repairable:F = Not repairable, Factory_Reset:F = Factory reset failed.">IOG:F → Something_in_Box:P → TREX_Open:P → Factory_Sealed:F → Destroy:F → Works:F → Repairable:F → Factory_Reset:F</div>
+                    <div class="pattern-description">Works failed, not repairable → Liquidation</div>
+                </div>
+
+                <div class="pattern-item liquidation">
+                    <div class="pattern-header">
+                        <span class="pattern-rank">#7</span>
+                        <span class="pattern-count">9 orders</span>
+                    </div>
+                    <div class="pattern-path" data-tooltip="Pattern notation: Expected_Item:P = Correct item, Scratches_Dents:P = Has cosmetic damage (scratches/dents larger than badge).">IOG:F → Something_in_Box:P → TREX_Open:P → Expected_Item:P → Factory_Sealed:F → Destroy:F → Scratches_Dents:P</div>
+                    <div class="pattern-description">Expected item, has scratches/dents → Liquidation</div>
+                </div>
+
+                <div class="pattern-item liquidation">
+                    <div class="pattern-header">
+                        <span class="pattern-rank">#8</span>
+                        <span class="pattern-count">8 orders</span>
+                    </div>
+                    <div class="pattern-path" data-tooltip="Pattern notation: Scratches_Dents:P = Has cosmetic damage, Works:F = Doesn't work, Repairable:F = Not repairable.">IOG:F → Something_in_Box:P → TREX_Open:P → Factory_Sealed:F → Destroy:F → Scratches_Dents:P → Works:F → Repairable:F → Needs_Parts:F → Has_Parts:F → Needs_Sanitization:F → Factory_Reset:F</div>
+                    <div class="pattern-description">Has scratches/dents, doesn't work → Liquidation</div>
+                </div>
+
+                <div class="pattern-item liquidation">
+                    <div class="pattern-header">
+                        <span class="pattern-rank">#9</span>
+                        <span class="pattern-count">8 orders</span>
+                    </div>
+                    <div class="pattern-path" data-tooltip="Pattern notation: Scratches_Dents:P = Has cosmetic damage (scratches/dents larger than badge). This alone triggers liquidation.">IOG:F → Something_in_Box:P → TREX_Open:P → Factory_Sealed:F → Destroy:F → Scratches_Dents:P</div>
+                    <div class="pattern-description">Has scratches/dents → Liquidation</div>
+                </div>
+
+                <div class="pattern-item liquidation">
+                    <div class="pattern-header">
+                        <span class="pattern-rank">#10</span>
+                        <span class="pattern-count">7 orders</span>
+                    </div>
+                    <div class="pattern-path" data-tooltip="Pattern notation: Expected_Item:P = Correct item, Scratches_Dents:F = No cosmetic damage, Works:F = Doesn't work, Repairable:F = Not repairable.">IOG:F → Something_in_Box:P → TREX_Open:P → Expected_Item:P → Factory_Sealed:F → Destroy:F → Scratches_Dents:F → Works:F → Repairable:F</div>
+                    <div class="pattern-description">Expected item, doesn't work, not repairable → Liquidation</div>
+                </div>
+            </div>
+
+            <h3 id="sellable-patterns">Top 10 Patterns Leading to Sellable</h3>
+            <div class="pattern-list">
+                <div class="pattern-item sellable">
+                    <div class="pattern-header">
+                        <span class="pattern-rank">#1</span>
+                        <span class="pattern-count">82 orders</span>
+                    </div>
+                    <div class="pattern-path" data-tooltip="Pattern notation guide: P = Passed (check succeeded), F = Failed (check failed), → = sequence flow. Key checks: Works:P = Item works (passed), Factory_Sealed:F = Not factory sealed (failed), Repairable:F = Not repairable (failed).">IOG:F → Something_in_Box:P → TREX_Open:P → Factory_Sealed:F → Destroy:F → Scratches_Dents:F → Works:P → Repairable:F → Needs_Parts:F → Has_Parts:F → Needs_Sanitization:F → Factory_Reset:F</div>
+                    <div class="pattern-description"><strong>Key:</strong> <span data-tooltip="Works:P means the 'Does it Work?' check Passed (Yes). This is the most critical check for sellable outcomes.">Works:P</span> (passed) → Sellable. Item works, not repairable but still sellable</div>
+                </div>
+
+                <div class="pattern-item sellable">
+                    <div class="pattern-header">
+                        <span class="pattern-rank">#2</span>
+                        <span class="pattern-count">79 orders</span>
+                    </div>
+                    <div class="pattern-path" data-tooltip="Pattern notation: Works:P = Item works (passed), Needs_Sanitization:P = Needs sanitization (passed). Item works but requires cleaning before sale.">IOG:F → Something_in_Box:P → TREX_Open:P → Factory_Sealed:F → Destroy:F → Scratches_Dents:F → Works:P → Needs_Parts:F → Needs_Sanitization:P → Factory_Reset:F</div>
+                    <div class="pattern-description"><strong>Key:</strong> <span data-tooltip="Works:P means the 'Does it Work?' check Passed (Yes)">Works:P</span>, <span data-tooltip="Needs_Sanitization:P means the item needs sanitization/cleaning before sale">Needs_Sanitization:P</span> → Sellable. Item works, needs sanitization → Sellable</div>
+                </div>
+
+                <div class="pattern-item sellable">
+                    <div class="pattern-header">
+                        <span class="pattern-rank">#3</span>
+                        <span class="pattern-count">78 orders</span>
+                    </div>
+                    <div class="pattern-path" data-tooltip="Pattern notation: Works:P = Item works, Needs_Sanitization:P = Needs sanitization. Similar to Pattern 2 but without scratches check.">IOG:F → Something_in_Box:P → TREX_Open:P → Factory_Sealed:F → Destroy:F → Works:P → Needs_Parts:F → Needs_Sanitization:P → Factory_Reset:F</div>
+                    <div class="pattern-description"><strong>Key:</strong> <span data-tooltip="Works:P means the 'Does it Work?' check Passed (Yes)">Works:P</span>, <span data-tooltip="Needs_Sanitization:P means the item needs sanitization/cleaning before sale">Needs_Sanitization:P</span> → Sellable. Similar to Pattern 2, without scratches check</div>
+                </div>
+
+                <div class="pattern-item sellable">
+                    <div class="pattern-header">
+                        <span class="pattern-rank">#4</span>
+                        <span class="pattern-count">78 orders</span>
+                    </div>
+                    <div class="pattern-path" data-tooltip="Pattern notation: Works:F = Item doesn't work, but Factory_Reset:P = Factory reset succeeded. Factory reset fixed the item.">IOG:F → Something_in_Box:P → TREX_Open:P → Factory_Sealed:F → Destroy:F → Scratches_Dents:F → Works:F → Repairable:F → Needs_Parts:F → Has_Parts:F → Needs_Sanitization:F → Factory_Reset:P</div>
+                    <div class="pattern-description"><strong>Key:</strong> <span data-tooltip="Works:F means the 'Does it Work?' check Failed (No)">Works:F</span> but <span data-tooltip="Factory_Reset:P means factory reset was successful, fixing the item">Factory_Reset:P</span> → Sellable. Item doesn't work but factory reset passed → Sellable</div>
+                </div>
+
+                <div class="pattern-item sellable">
+                    <div class="pattern-header">
+                        <span class="pattern-rank">#5</span>
+                        <span class="pattern-count">77 orders</span>
+                    </div>
+                    <div class="pattern-path" data-tooltip="Pattern notation: Works:P = Item works, Has_Parts:P = Has required parts, Needs_Sanitization:P = Needs sanitization.">IOG:F → Something_in_Box:P → TREX_Open:P → Factory_Sealed:F → Destroy:F → Scratches_Dents:F → Works:P → Has_Parts:P → Needs_Sanitization:P → Factory_Reset:P</div>
+                    <div class="pattern-description"><strong>Key:</strong> <span data-tooltip="Works:P means the 'Does it Work?' check Passed (Yes)">Works:P</span>, <span data-tooltip="Has_Parts:P means the required parts are available">Has_Parts:P</span>, <span data-tooltip="Needs_Sanitization:P means the item needs sanitization/cleaning before sale">Needs_Sanitization:P</span> → Sellable. Item works, has parts, needs sanitization → Sellable</div>
+                </div>
+
+                <div class="pattern-item sellable">
+                    <div class="pattern-header">
+                        <span class="pattern-rank">#6</span>
+                        <span class="pattern-count">49 orders</span>
+                    </div>
+                    <div class="pattern-path" data-tooltip="Pattern notation: Works:P = Item works, Needs_Parts:P = Needs parts, Has_Parts:P = Has parts available.">IOG:F → Something_in_Box:P → TREX_Open:P → Factory_Sealed:F → Destroy:F → Scratches_Dents:F → Works:P → Needs_Parts:P → Has_Parts:P → Needs_Sanitization:P → Factory_Reset:F</div>
+                    <div class="pattern-description"><strong>Key:</strong> <span data-tooltip="Works:P means the 'Does it Work?' check Passed (Yes)">Works:P</span>, <span data-tooltip="Needs_Parts:P means item needs parts">Needs_Parts:P</span>, <span data-tooltip="Has_Parts:P means the required parts are available">Has_Parts:P</span> → Sellable</div>
+                </div>
+
+                <div class="pattern-item sellable">
+                    <div class="pattern-header">
+                        <span class="pattern-rank">#7</span>
+                        <span class="pattern-count">38 orders</span>
+                    </div>
+                    <div class="pattern-path" data-tooltip="Pattern notation: Works:P = Item works, Needs_Parts:P = Needs parts, Has_Parts:P = Has parts available.">IOG:F → Something_in_Box:P → TREX_Open:P → Factory_Sealed:F → Destroy:F → Works:P → Needs_Parts:P → Has_Parts:P → Needs_Sanitization:P → Factory_Reset:F</div>
+                    <div class="pattern-description"><strong>Key:</strong> <span data-tooltip="Works:P means the 'Does it Work?' check Passed (Yes)">Works:P</span>, <span data-tooltip="Needs_Parts:P means item needs parts">Needs_Parts:P</span>, <span data-tooltip="Has_Parts:P means the required parts are available">Has_Parts:P</span> → Sellable</div>
+                </div>
+
+                <div class="pattern-item sellable">
+                    <div class="pattern-header">
+                        <span class="pattern-rank">#8</span>
+                        <span class="pattern-count">37 orders</span>
+                    </div>
+                    <div class="pattern-path" data-tooltip="Pattern notation: Expected_Item:P = Correct item received, Works:P = Item works, Needs_Sanitization:P = Needs sanitization.">IOG:F → Something_in_Box:P → TREX_Open:P → Expected_Item:P → Factory_Sealed:F → Destroy:F → Scratches_Dents:F → Works:P → Needs_Parts:F → Needs_Sanitization:P</div>
+                    <div class="pattern-description"><strong>Key:</strong> <span data-tooltip="Expected_Item:P means the correct item was received">Expected_Item:P</span>, <span data-tooltip="Works:P means the 'Does it Work?' check Passed (Yes)">Works:P</span> → Sellable</div>
+                </div>
+
+                <div class="pattern-item sellable">
+                    <div class="pattern-header">
+                        <span class="pattern-rank">#9</span>
+                        <span class="pattern-count">33 orders</span>
+                    </div>
+                    <div class="pattern-path" data-tooltip="Pattern notation: Expected_Item:P = Correct item, Fraud:F = Not fraud, Works:P = Item works, Repairable:F = Not repairable but still sellable.">IOG:F → Something_in_Box:P → TREX_Open:P → Expected_Item:P → Fraud:F → Factory_Sealed:F → Destroy:F → Scratches_Dents:F → Works:P → Repairable:F → Needs_Parts:F → Has_Parts:F → Needs_Sanitization:P</div>
+                    <div class="pattern-description"><strong>Key:</strong> <span data-tooltip="Expected_Item:P means the correct item was received">Expected_Item:P</span>, <span data-tooltip="Fraud:F means not fraudulent">Fraud:F</span>, <span data-tooltip="Works:P means the 'Does it Work?' check Passed (Yes)">Works:P</span> → Sellable</div>
+                </div>
+
+                <div class="pattern-item sellable">
+                    <div class="pattern-header">
+                        <span class="pattern-rank">#10</span>
+                        <span class="pattern-count">15 orders</span>
+                    </div>
+                    <div class="pattern-path" data-tooltip="Pattern notation: Works:P = Item works, Repairable:F = Not repairable but still sellable, Needs_Parts:P = Needs parts, Has_Parts:F = No parts available.">IOG:F → Something_in_Box:P → TREX_Open:P → Factory_Sealed:F → Destroy:F → Scratches_Dents:F → Works:P → Repairable:F → Needs_Parts:P → Has_Parts:F → Needs_Sanitization:F → Factory_Reset:F</div>
+                    <div class="pattern-description"><strong>Key:</strong> <span data-tooltip="Works:P means the 'Does it Work?' check Passed (Yes)">Works:P</span>, <span data-tooltip="Repairable:F means item is not repairable but still sellable if it works">Repairable:F</span> → Sellable</div>
+                </div>
+            </div>
+
+            <div class="insight-box" style="margin-top: 30px;">
+                <h4>💡 Key Insight</h4>
+                <p>The common theme across all top sellable patterns is that items either:</p>
+                <ul style="margin-left: 25px; margin-top: 10px;">
+                    <li>Pass the "Works" check (Works:P), OR</li>
+                    <li>Pass the "Factory Reset" check (Factory_Reset:P)</li>
+                </ul>
+                <p style="margin-top: 15px;">This confirms that functional capability is the primary driver of sellable outcomes.</p>
+            </div>
+        </section>
+
+        <!-- Pattern Frequency Analysis -->
+        <section class="section">
+            <h2>📊 Pattern Frequency Analysis</h2>
+            
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="value">66</div>
+                    <div class="label">Unique Patterns</div>
+                </div>
+                <div class="summary-card">
+                    <div class="value">70%</div>
+                    <div class="label">Top 20 Liquidation Patterns Coverage</div>
+                </div>
+                <div class="summary-card">
+                    <div class="value">75%</div>
+                    <div class="label">Top 20 Sellable Patterns Coverage</div>
+                </div>
+            </div>
+
+            <div class="insight-box" style="margin-top: 30px;">
+                <h4>📈 Pattern Concentration</h4>
+                <p>The top 20 liquidation patterns account for approximately 70% of all liquidations, while the top 20 sellable patterns account for approximately 75% of all sellable outcomes.</p>
+                <p style="margin-top: 10px;">This indicates moderate pattern concentration, with some common paths but also significant diversity in execution patterns.</p>
+            </div>
+
+            <h3>Common Starting Pattern</h3>
+            <div class="pattern-item" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));">
+                <div class="pattern-header">
+                    <span class="pattern-rank">Universal</span>
+                    <span class="pattern-count">954 orders</span>
+                </div>
+                <div class="pattern-path" data-tooltip="Common starting pattern: IOG:F = Is it IOG? Failed (No), Something_in_Box:P = Something in box Passed (Yes), TREX_Open:P = TREX opened Passed (Yes). This is the universal starting sequence for all orders.">IOG:F → Something_in_Box:P → TREX_Open:P</div>
+                <div class="pattern-description">Almost all orders start with this sequence, indicating these are the first three checks in the process flow.</div>
+            </div>
+        </section>
+
+        <!-- Key Insights -->
+        <section id="insights" class="section">
+            <h2>🔍 Key Insights</h2>
+            
+            <div class="insight-box">
+                <h4>1. Pattern Consistency</h4>
+                <p>Most orders follow predictable patterns based on key decision checks. The top patterns account for 70-75% of outcomes.</p>
+            </div>
+
+            <div class="insight-box" style="background: linear-gradient(135deg, rgba(79, 172, 254, 0.1), rgba(67, 233, 123, 0.1)); border-left-color: #4facfe;">
+                <h4>2. Critical Checks</h4>
+                <p>The "Does it Work?" check is the most critical determinant of final disposition:</p>
+                <ul style="margin-left: 25px; margin-top: 10px;">
+                    <li>98.8% sellable rate when Works check passes</li>
+                    <li>63.0% liquidation rate when Works check fails</li>
+                    <li>72.9 percentage point difference</li>
+                </ul>
+            </div>
+
+            <div class="insight-box" style="background: linear-gradient(135deg, rgba(250, 112, 154, 0.1), rgba(255, 107, 157, 0.1)); border-left-color: #fa709a;">
+                <h4>3. Path Adherence</h4>
+                <p>Users generally follow the decision tree paths as designed:</p>
+                <ul style="margin-left: 25px; margin-top: 10px;">
+                    <li>Empty Box → 100% liquidation rate ✓</li>
+                    <li>Fraud = Yes → 100% liquidation rate ✓</li>
+                    <li>Factory Sealed → 100% sellable rate ✓</li>
+                    <li>Destroy → 100% liquidation rate ✓</li>
+                    <li>Scratches/Dents → 100% liquidation rate ✓</li>
+                </ul>
+            </div>
+
+            <div class="insight-box" style="background: linear-gradient(135deg, rgba(254, 225, 64, 0.1), rgba(255, 217, 61, 0.1)); border-left-color: #fee140;">
+                <h4>4. Exception Cases</h4>
+                <p>Some patterns show exceptions where items that should be sellable are liquidated:</p>
+                <ul style="margin-left: 25px; margin-top: 10px;">
+                    <li>7 items that passed "Works" check were liquidated (recovery opportunity)</li>
+                    <li>Non-repairable items show only 37.7% liquidation rate (should be higher)</li>
+                </ul>
+            </div>
+
+            <div class="insight-box">
+                <h4>5. Pattern Complexity</h4>
+                <p>Many orders involve multiple checks (10-14 checks per order), creating complex execution patterns. The most common patterns involve 3-12 sequential checks.</p>
+            </div>
+        </section>
+
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="EXECUTIVE_DASHBOARD.html" class="back-btn">← Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>
+

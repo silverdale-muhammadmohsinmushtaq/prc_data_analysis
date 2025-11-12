@@ -1,0 +1,154 @@
+{
+  "phase": "Phase 1: Data Understanding & Preparation",
+  "timestamp": "2025-11-12T00:54:58.731275",
+  "file_path": "c:\\Silverdale QA\\BPMN XML\\Cost Greater than 1000\\Repair Order (repair.order).csv",
+  "findings": {
+    "file_size_mb": 6.62,
+    "file_size_bytes": 6939760,
+    "encoding": "UTF-8",
+    "total_rows": 64299,
+    "total_columns": 15,
+    "encoding_issues": 1,
+    "column_names": [
+      "Activity Exception Decoration",
+      "Amazon COGS",
+      "Completed On",
+      "Disposition",
+      "LPN",
+      "Product",
+      "Product Category",
+      "Result of Repair",
+      "Scheduled Date",
+      "Shipped Date",
+      "Started On",
+      "LPN/Amazon COGS",
+      "Checks/Title",
+      "Checks/Failed by decision logic Automatically",
+      "Checks/Status"
+    ],
+    "column_dtypes": {
+      "Activity Exception Decoration": "float64",
+      "Amazon COGS": "float64",
+      "Completed On": "object",
+      "Disposition": "object",
+      "LPN": "object",
+      "Product": "object",
+      "Product Category": "object",
+      "Result of Repair": "object",
+      "Scheduled Date": "object",
+      "Shipped Date": "object",
+      "Started On": "object",
+      "LPN/Amazon COGS": "float64",
+      "Checks/Title": "object",
+      "Checks/Failed by decision logic Automatically": "object",
+      "Checks/Status": "object"
+    },
+    "order_headers_count": "954",
+    "check_steps_count": 63345,
+    "unique_lpns": 954,
+    "orders_with_lpn": "954",
+    "dtype_distribution": {
+      "object": 12,
+      "float64": 3
+    },
+    "missing_values": {
+      "Activity Exception Decoration": {
+        "count": 64299,
+        "percentage": 100.0
+      },
+      "Amazon COGS": {
+        "count": 63345,
+        "percentage": 98.52
+      },
+      "Completed On": {
+        "count": 63345,
+        "percentage": 98.52
+      },
+      "Disposition": {
+        "count": 63345,
+        "percentage": 98.52
+      },
+      "LPN": {
+        "count": 63345,
+        "percentage": 98.52
+      },
+      "Product": {
+        "count": 63345,
+        "percentage": 98.52
+      },
+      "Product Category": {
+        "count": 63345,
+        "percentage": 98.52
+      },
+      "Result of Repair": {
+        "count": 63345,
+        "percentage": 98.52
+      },
+      "Scheduled Date": {
+        "count": 63345,
+        "percentage": 98.52
+      },
+      "Shipped Date": {
+        "count": 63367,
+        "percentage": 98.55
+      },
+      "Started On": {
+        "count": 63356,
+        "percentage": 98.53
+      },
+      "LPN/Amazon COGS": {
+        "count": 63345,
+        "percentage": 98.52
+      },
+      "Checks/Failed by decision logic Automatically": {
+        "count": 37605,
+        "percentage": 58.48
+      }
+    },
+    "unique_products": 224,
+    "unique_categories": 63,
+    "quality_issues": [
+      "High missing values in Activity Exception Decoration: 100.0%",
+      "High missing values in Amazon COGS: 98.5%",
+      "High missing values in Completed On: 98.5%",
+      "High missing values in Disposition: 98.5%",
+      "High missing values in LPN: 98.5%",
+      "High missing values in Product: 98.5%",
+      "High missing values in Product Category: 98.5%",
+      "High missing values in Result of Repair: 98.5%",
+      "High missing values in Scheduled Date: 98.5%",
+      "High missing values in Shipped Date: 98.6%",
+      "High missing values in Started On: 98.5%",
+      "High missing values in LPN/Amazon COGS: 98.5%",
+      "High missing values in Checks/Failed by decision logic Automatically: 58.5%",
+      "Duplicate rows: 63211"
+    ],
+    "data_completeness": {
+      "Activity Exception Decoration": 0.0,
+      "Amazon COGS": 1.48,
+      "Completed On": 1.48,
+      "Disposition": 1.48,
+      "LPN": 1.48,
+      "Product": 1.48,
+      "Product Category": 1.48,
+      "Result of Repair": 1.48,
+      "Scheduled Date": 1.48,
+      "Shipped Date": 1.45,
+      "Started On": 1.47,
+      "LPN/Amazon COGS": 1.48,
+      "Checks/Title": 100.0,
+      "Checks/Failed by decision logic Automatically": 41.52,
+      "Checks/Status": 100.0
+    },
+    "business_rule_validation": {
+      "cogs_below_1000": 2,
+      "invalid_dispositions": 0,
+      "disposition_distribution": {
+        "Sellable": 669,
+        "Liquidate": 285
+      },
+      "date_format_issues": [],
+      "unique_lpn_check": "PASS"
+    }
+  }
+}

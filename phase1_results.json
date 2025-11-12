@@ -1,0 +1,179 @@
+{
+  "file_info": {
+    "file_path": "Cost Greater than 1000/Repair Order (repair.order).csv",
+    "file_size_mb": 6.62,
+    "encoding": "UTF-8"
+  },
+  "data_structure": {
+    "total_rows": 64299,
+    "order_rows": 954,
+    "check_rows": 63345,
+    "other_rows": 0
+  },
+  "data_profiling": {
+    "data_types": {
+      "object": 12,
+      "float64": 3
+    },
+    "missing_values": [
+      {
+        "Column": "Activity Exception Decoration",
+        "Missing_Count": 64299,
+        "Missing_Percentage": 100.0
+      },
+      {
+        "Column": "Shipped Date",
+        "Missing_Count": 63367,
+        "Missing_Percentage": 98.55052178105413
+      },
+      {
+        "Column": "Started On",
+        "Missing_Count": 63356,
+        "Missing_Percentage": 98.53341420550863
+      },
+      {
+        "Column": "Amazon COGS",
+        "Missing_Count": 63345,
+        "Missing_Percentage": 98.51630662996314
+      },
+      {
+        "Column": "Completed On",
+        "Missing_Count": 63345,
+        "Missing_Percentage": 98.51630662996314
+      },
+      {
+        "Column": "LPN",
+        "Missing_Count": 63345,
+        "Missing_Percentage": 98.51630662996314
+      },
+      {
+        "Column": "Disposition",
+        "Missing_Count": 63345,
+        "Missing_Percentage": 98.51630662996314
+      },
+      {
+        "Column": "Product",
+        "Missing_Count": 63345,
+        "Missing_Percentage": 98.51630662996314
+      },
+      {
+        "Column": "Product Category",
+        "Missing_Count": 63345,
+        "Missing_Percentage": 98.51630662996314
+      },
+      {
+        "Column": "Scheduled Date",
+        "Missing_Count": 63345,
+        "Missing_Percentage": 98.51630662996314
+      },
+      {
+        "Column": "Result of Repair",
+        "Missing_Count": 63345,
+        "Missing_Percentage": 98.51630662996314
+      },
+      {
+        "Column": "LPN/Amazon COGS",
+        "Missing_Count": 63345,
+        "Missing_Percentage": 98.51630662996314
+      },
+      {
+        "Column": "Checks/Failed by decision logic Automatically",
+        "Missing_Count": 37605,
+        "Missing_Percentage": 58.484579853496946
+      }
+    ],
+    "unique_identifiers": {
+      "lpn_unique": 954,
+      "product_unique": 224
+    }
+  },
+  "data_quality": {
+    "quality_issues": [],
+    "business_rules": {
+      "cogs_min_1000": {
+        "status": "violated",
+        "violation_count": 2,
+        "min_value": 999.99
+      },
+      "disposition_valid": {
+        "status": "passed",
+        "distribution": {
+          "Sellable": 669,
+          "Liquidate": 285
+        }
+      },
+      "date_logic": {
+        "status": "passed"
+      },
+      "lpn_unique": {
+        "status": "passed"
+      }
+    },
+    "completeness": {
+      "Activity Exception Decoration": {
+        "non_null_count": 0,
+        "completeness_percentage": 0.0
+      },
+      "Amazon COGS": {
+        "non_null_count": 954,
+        "completeness_percentage": 100.0
+      },
+      "Completed On": {
+        "non_null_count": 954,
+        "completeness_percentage": 100.0
+      },
+      "Disposition": {
+        "non_null_count": 954,
+        "completeness_percentage": 100.0
+      },
+      "LPN": {
+        "non_null_count": 954,
+        "completeness_percentage": 100.0
+      },
+      "Product": {
+        "non_null_count": 954,
+        "completeness_percentage": 100.0
+      },
+      "Product Category": {
+        "non_null_count": 954,
+        "completeness_percentage": 100.0
+      },
+      "Result of Repair": {
+        "non_null_count": 954,
+        "completeness_percentage": 100.0
+      },
+      "Scheduled Date": {
+        "non_null_count": 954,
+        "completeness_percentage": 100.0
+      },
+      "Shipped Date": {
+        "non_null_count": 932,
+        "completeness_percentage": 97.69
+      },
+      "Started On": {
+        "non_null_count": 943,
+        "completeness_percentage": 98.85
+      },
+      "LPN/Amazon COGS": {
+        "non_null_count": 954,
+        "completeness_percentage": 100.0
+      },
+      "Checks/Title": {
+        "non_null_count": 954,
+        "completeness_percentage": 100.0
+      },
+      "Checks/Failed by decision logic Automatically": {
+        "non_null_count": 0,
+        "completeness_percentage": 0.0
+      },
+      "Checks/Status": {
+        "non_null_count": 954,
+        "completeness_percentage": 100.0
+      }
+    },
+    "summary": {
+      "total_issues": 0,
+      "rule_violations": 1
+    }
+  }
+}

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations Visualizations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            color: #2d3748;
+            line-height: 1.7;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .visual-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        .visual-section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .visual-section h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        .visual-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .visual-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+        }
+
+        .visual-container p {
+            color: #666;
+            font-style: italic;
+            font-size: 1.05em;
+        }
+
+        .rec-info {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 5px solid #667eea;
+        }
+
+        .rec-info h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💡 Recommendations Visualizations</h1>
+            <p>Supporting Evidence for Each Recommendation</p>
+            <a href="EXECUTIVE_DASHBOARD.html" class="back-btn">← Back to Dashboard</a>
+        </header>
+
+        <!-- Recommendation 1 -->
+        <section id="rec1" class="visual-section">
+            <h2>Recommendation 1: Review and Prevent Liquidating Working Items</h2>
+            <div class="rec-info">
+                <h4>Key Details</h4>
+                <p><strong>Priority:</strong> HIGH | <strong>Timeline:</strong> 1-2 weeks | <strong>Impact:</strong> $8,919 recovery</p>
+                <p>Items that pass "Does it work?" should rarely be liquidated. Currently, 7 working items were liquidated.</p>
+            </div>
+            
+            <div class="visual-container">
+                <h3>Check Failure Rates Comparison</h3>
+                <img src="Phase8_Visualizations/V05_Check_Failure_Rates_Comparison.png" alt="Check Failure Rates">
+                <p>Shows "Does it Work?" check has 72.9 percentage point difference between passed/failed</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Passed vs Failed Comparison</h3>
+                <img src="Phase6_Graphs/Q3_Passed_Failed_Comparison.png" alt="Passed Failed Comparison">
+                <p>Evidence of items that passed checks but were still liquidated</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Check Comparison</h3>
+                <img src="Phase3_Graphs/09_Check_Comparison.png" alt="Check Comparison">
+                <p>Detailed comparison showing working items being liquidated</p>
+            </div>
+        </section>
+
+        <!-- Recommendation 2 -->
+        <section id="rec2" class="visual-section">
+            <h2>Recommendation 2: Implement Exception Handling for High COGS Items</h2>
+            <div class="rec-info">
+                <h4>Key Details</h4>
+                <p><strong>Priority:</strong> HIGH | <strong>Timeline:</strong> 2-4 weeks | <strong>Impact:</strong> $24,336 recovery</p>
+                <p>Create exception rules for items with COGS >= $2,000 that pass "Does it work?" check.</p>
+            </div>
+            
+            <div class="visual-container">
+                <h3>High COGS Patterns</h3>
+                <img src="Phase6_Graphs/Q2_High_COGS_Patterns.png" alt="High COGS Patterns">
+                <p>Analysis showing high COGS items liquidation patterns</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Liquidation Rate by COGS Bin</h3>
+                <img src="Phase8_Visualizations/V04_Liquidation_Rate_by_COGS_Bin.png" alt="COGS Bin Analysis">
+                <p>Lower liquidation rates for higher COGS items (26.5% vs 30.0%)</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>COGS Distribution</h3>
+                <img src="Phase8_Visualizations/V02_COGS_Distribution.png" alt="COGS Distribution">
+                <p>Distribution showing high-value items being liquidated</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>COGS by Disposition</h3>
+                <img src="Phase3_Graphs/03_COGS_by_Disposition.png" alt="COGS by Disposition">
+                <p>Comparison of COGS values between liquidated and sellable items</p>
+            </div>
+        </section>
+
+        <!-- Recommendation 3 -->
+        <section id="rec3" class="visual-section">
+            <h2>Recommendation 3: Implement Recovery Process for Working Liquidated Items</h2>
+            <div class="rec-info">
+                <h4>Key Details</h4>
+                <p><strong>Priority:</strong> HIGH | <strong>Timeline:</strong> 2-3 weeks | <strong>Impact:</strong> $8,919 recovery</p>
+                <p>Create process to recover working items that were liquidated.</p>
+            </div>
+            
+            <div class="visual-container">
+                <h3>Passed vs Failed Comparison</h3>
+                <img src="Phase6_Graphs/Q3_Passed_Failed_Comparison.png" alt="Passed Failed Comparison">
+                <p>Shows items that passed "Does it Work?" but were liquidated</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Check Failure Rates</h3>
+                <img src="Phase8_Visualizations/V05_Check_Failure_Rates_Comparison.png" alt="Check Failure Rates">
+                <p>Evidence supporting recovery of working items</p>
+            </div>
+        </section>
+
+        <!-- Recommendation 4 -->
+        <section id="rec4" class="visual-section">
+            <h2>Recommendation 4: Review and Relax Cosmetic Check Criteria</h2>
+            <div class="rec-info">
+                <h4>Key Details</h4>
+                <p><strong>Priority:</strong> MEDIUM | <strong>Timeline:</strong> 2-3 weeks</p>
+                <p>Cosmetic checks have 79.6% false positive rate - items that failed cosmetic checks were still sellable.</p>
+            </div>
+            
+            <div class="visual-container">
+                <h3>Check Failure Rates Comparison</h3>
+                <img src="Phase8_Visualizations/V05_Check_Failure_Rates_Comparison.png" alt="Check Failure Rates">
+                <p>Shows cosmetic checks have high failure rates but low liquidation correlation</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Detailed Check Comparison</h3>
+                <img src="Phase3_Graphs/09_Check_Comparison.png" alt="Check Comparison">
+                <p>Detailed comparison showing cosmetic checks false positive pattern</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Check Failure Rate Heatmap</h3>
+                <img src="Phase8_Visualizations/V13_Check_Failure_Rate_Heatmap.png" alt="Check Heatmap">
+                <p>Heatmap showing cosmetic checks vs liquidation correlation</p>
+            </div>
+        </section>
+
+        <!-- Recommendation 5 -->
+        <section id="rec5" class="visual-section">
+            <h2>Recommendation 5: Review Category-Specific Quality Standards</h2>
+            <div class="rec-info">
+                <h4>Key Details</h4>
+                <p><strong>Priority:</strong> HIGH | <strong>Timeline:</strong> 4-6 weeks</p>
+                <p>13 categories have >=80% liquidation rate, representing $111,402 in value lost.</p>
+            </div>
+            
+            <div class="visual-container">
+                <h3>Liquidation Rate by Category</h3>
+                <img src="Phase8_Visualizations/V03_Liquidation_Rate_by_Category.png" alt="Liquidation Rate by Category">
+                <p>Top categories with highest liquidation rates</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Value Lost by Category</h3>
+                <img src="Phase8_Visualizations/V07_Value_Lost_by_Category.png" alt="Value Lost by Category">
+                <p>Financial impact by category - prioritizing high-value categories</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Categories Most Affected</h3>
+                <img src="Phase6_Graphs/Q4_Categories_Most_Affected.png" alt="Categories Most Affected">
+                <p>Categories most affected by liquidations</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Category Liquidation Analysis</h3>
+                <img src="Phase3_Graphs/07_Category_Liquidation_Analysis.png" alt="Category Analysis">
+                <p>Detailed category-level analysis</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Category Disposition Pivot</h3>
+                <img src="Phase6_Graphs/Q6_Category_Disposition_Pivot.png" alt="Category Disposition">
+                <p>Category-level disposition breakdown</p>
+            </div>
+        </section>
+
+        <!-- Recommendation 6 -->
+        <section id="rec6" class="visual-section">
+            <h2>Recommendation 6: Modify BPMN Process Flow</h2>
+            <div class="rec-info">
+                <h4>Key Details</h4>
+                <p><strong>Priority:</strong> HIGH | <strong>Timeline:</strong> 4-6 weeks</p>
+                <p>Update BPMN to incorporate exception handling and improved decision logic.</p>
+            </div>
+            
+            <div class="visual-container">
+                <h3>Top Checks Causing Liquidations</h3>
+                <img src="Phase8_Visualizations/V12_Top_Checks_Causing_Liquidations.png" alt="Top Checks">
+                <p>Key checks that drive liquidation decisions - priority for BPMN modifications</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Quality Checks Causing Liquidations</h3>
+                <img src="Phase6_Graphs/Q1_Quality_Checks_Causing_Liquidations.png" alt="Quality Checks">
+                <p>Top quality checks causing liquidations - focus areas for process improvement</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Check Failure Rate Heatmap</h3>
+                <img src="Phase8_Visualizations/V13_Check_Failure_Rate_Heatmap.png" alt="Check Heatmap">
+                <p>Check failure rate patterns - informing BPMN decision logic</p>
+            </div>
+
+            <div class="visual-container">
+                <h3>Top Failed Checks</h3>
+                <img src="Phase3_Graphs/08_Top_Failed_Checks.png" alt="Top Failed Checks">
+                <p>Most frequently failed checks - critical for BPMN flow design</p>
+            </div>
+        </section>
+
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="EXECUTIVE_DASHBOARD.html" class="back-btn">← Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>
+
